@@ -57,8 +57,10 @@ const MyTodo: React.FC = () => {
   return (
     <IonPage>
       <IonContent>
+        {/** Grid layout for top menu **/}
         <IonGrid class="mytodo-grid">
           <IonRow class="mytodo-tab">
+            {/** Grid column for day **/}
             <IonCol size="4" class="mytodo-tab-col">
               <p className="mytodo-tab-text-selected">Day</p>
               <div
@@ -66,10 +68,12 @@ const MyTodo: React.FC = () => {
                 style={{ borderRadius: "20px 0px 0px 20px" }}
               />
             </IonCol>
+            {/** Grid column for week **/}
             <IonCol size="4" class="mytodo-tab-col">
               <p className="mytodo-tab-text">Week</p>
               <div className="mytodo-tab-underline" />
             </IonCol>
+            {/** Grid column for month **/}
             <IonCol size="4" class="mytodo-tab-col">
               <p className="mytodo-tab-text">Month</p>
               <div
