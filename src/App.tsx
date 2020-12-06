@@ -28,7 +28,7 @@ Design
 ----- */
 
 /* App design */
-import "./design/app.scss"
+import "./design/app.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -46,6 +46,7 @@ import "@ionic/react/css/display.css";
 
 /* Global Theme */
 import "./theme/variables.scss";
+import ScreenLogin from "./pages/ScreenLogin";
 
 /* -----
 App.tsx
@@ -55,7 +56,7 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonContent>
-        <IonTabs >
+        <IonTabs>
           {/* 
             //* Ionic router
             Here are the routes for the TabBar at the bottom defined
@@ -63,16 +64,18 @@ const App: React.FC = () => (
           */}
 
           <IonRouterOutlet>
-            <Route path="/mytodo" component={MyTodo} exact/>
-            <Route path="/mytodo/day" component={MyTodo} exact/>
-            <Route path="/mytodo/week" component={MyTodo} exact/>
-            <Route path="/mytodo/month" component={MyTodo} exact/>
-
+            <Route path="/mytodo" component={MyTodo} exact />
+            <Route path="/mytodo/day" component={MyTodo} exact />
+            <Route path="/mytodo/week" component={MyTodo} exact />
+            <Route path="/mytodo/month" component={MyTodo} exact />
 
             <Route path="/deepfocus" component={DeepFocus} exact />
             <Route path="/progress" component={Progress} exact />
             <Route path="/remindme" component={RemindMe} exact />
             <Route path="/solarsystem" component={SolarSystem} exact />
+
+            <Route path="/screenlogin" component={ScreenLogin} exact />
+
             <Redirect exact from="/" to="/mytodo" />
           </IonRouterOutlet>
 
@@ -83,7 +86,7 @@ const App: React.FC = () => (
 
           <IonTabBar slot="bottom">
             <IonTabButton tab="mytodo" href="/mytodo">
-              <IonLabel>My ToDo</IonLabel>
+              <IonLabel>Aca estoy</IonLabel>
             </IonTabButton>
             <IonTabButton tab="deepfocus" href="/deepfocus">
               <IonLabel>Deep Focus</IonLabel>
@@ -93,6 +96,10 @@ const App: React.FC = () => (
             </IonTabButton>
             <IonTabButton tab="remindme" href="/remindme">
               <IonLabel>Remind Me</IonLabel>
+            </IonTabButton>
+
+            <IonTabButton tab="screenlogin" href="/screenlogin">
+              <IonLabel>Login Screen</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
