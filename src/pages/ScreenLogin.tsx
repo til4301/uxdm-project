@@ -55,6 +55,7 @@ const ScreenLogin: React.FC = () => {
               </IonItem>
             </IonCol>
             <IonCol>
+              /** I have to change this as a link */
               <h5 className="move-right"> Forgot password?</h5>
             </IonCol>
           </IonRow>

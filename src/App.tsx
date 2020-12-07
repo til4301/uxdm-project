@@ -86,7 +86,7 @@ const App: React.FC = () => (
 
           <IonTabBar slot="bottom">
             <IonTabButton tab="mytodo" href="/mytodo">
-              <IonLabel>Aca estoy</IonLabel>
+              <IonLabel>My ToDo</IonLabel>
             </IonTabButton>
             <IonTabButton tab="deepfocus" href="/deepfocus">
               <IonLabel>Deep Focus</IonLabel>
