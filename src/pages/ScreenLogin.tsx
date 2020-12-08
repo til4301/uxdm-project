@@ -10,19 +10,35 @@ import {
   IonPage,
   IonRow,
 } from "@ionic/react";
-import React from "react";
+import React, { useState } from "react";
+import App from "../App";
 
 /* ScreenLogin design */
 import "../design/screenlogin.scss";
+import MyTodo from "./MyTodo";
 
-const ScreenLogin: React.FC = () => {
+const ScreenLogin: React.FC = (props) => {
+  const [user, setUser] = useState("");
+  const [pass, setPass] = useState("");
+
+  // with this function I verify if the values of the inputs were updated correctly
+  const login = () => {
+    if (user == "Kevin" && pass == "Diaz") {
+      console.log("bien");
+      // this was a try to redirect the user to the main menu when the user and password were 'correct'
+      return <App />;
+    } else {
+      alert("Incorrect data");
+    }
+  };
+
   return (
     <IonPage>
       <IonContent>
         <IonGrid>
           <IonRow>
             <IonCol>
-              <h1> here comes the Logo.jpg</h1>
+              <h1> Logo.jpg </h1>
             </IonCol>
           </IonRow>
           <IonRow>
@@ -34,7 +50,11 @@ const ScreenLogin: React.FC = () => {
             <IonCol>
               <IonItem className="screenlogin-item">
                 <IonLabel position="floating">User name</IonLabel>
-                <IonInput></IonInput>
+                <IonInput
+                  onInput={(ev) =>
+                    setUser((ev.target as HTMLInputElement).value)
+                  }
+                ></IonInput>
               </IonItem>
             </IonCol>
           </IonRow>
@@ -42,7 +62,12 @@ const ScreenLogin: React.FC = () => {
             <IonCol>
               <IonItem className="screenlogin-item">
                 <IonLabel position="floating">Passwort</IonLabel>
-                <IonInput type="password"></IonInput>
+                <IonInput
+                  onInput={(ev) =>
+                    setPass((ev.target as HTMLInputElement).value)
+                  }
+                  type="password"
+                ></IonInput>
               </IonItem>
             </IonCol>
           </IonRow>
@@ -62,7 +87,12 @@ const ScreenLogin: React.FC = () => {
 
           <IonRow>
             <IonCol>
-              <IonButton expand="block" fill="solid" className="button-des">
+              <IonButton
+                onClick={login}
+                expand="block"
+                fill="solid"
+                className="button-des"
+              >
                 Sign in
               </IonButton>
             </IonCol>
