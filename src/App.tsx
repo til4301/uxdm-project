@@ -68,6 +68,7 @@ const App: React.FC = () => {
         <IonContent>
           <IonTabs>
             {/* 
+
             //* Ionic router
             Here are the routes for the TabBar at the bottom defined
             At the end a redirect for the root path is defined
@@ -128,6 +129,7 @@ const App: React.FC = () => {
                 />
               </Switch>
             </IonRouterOutlet>
+
 
             {/*
             //* Ionic TabBar
