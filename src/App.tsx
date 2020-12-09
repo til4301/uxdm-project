@@ -28,7 +28,7 @@ Design
 ----- */
 
 /* App design */
-import "./design/app.scss"
+import "./design/app.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -55,7 +55,7 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonContent>
-        <IonTabs >
+        <IonTabs>
           {/* 
             //* Ionic router
             Here are the routes for the TabBar at the bottom defined
@@ -63,11 +63,10 @@ const App: React.FC = () => (
           */}
 
           <IonRouterOutlet>
-            <Route path="/mytodo" component={MyTodo} exact/>
-            <Route path="/mytodo/day" component={MyTodo} exact/>
-            <Route path="/mytodo/week" component={MyTodo} exact/>
-            <Route path="/mytodo/month" component={MyTodo} exact/>
-
+            <Route path="/mytodo" component={MyTodo} exact />
+            <Route path="/mytodo/day" component={MyTodo} exact />
+            <Route path="/mytodo/week" component={MyTodo} exact />
+            <Route path="/mytodo/month" component={MyTodo} exact />
 
             <Route path="/deepfocus" component={DeepFocus} exact />
             <Route path="/progress" component={Progress} exact />
