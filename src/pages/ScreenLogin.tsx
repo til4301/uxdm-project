@@ -36,14 +36,12 @@ const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
 
   const history = useHistory();
 
-
   // with this function I verify if the values of the inputs were updated correctly
   const handleLogin = () => {
     if (user == "Kevin" && pass == "Diaz") {
       console.log("bien");
       changeLogin(true);
       history.push("/mytodo");
-
     } else {
       alert("Your login data was not correct. Please try again.");
     }
@@ -86,14 +84,6 @@ const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
                   type="password"
                 ></IonInput>
               </IonItem>
-            </IonCol>
-          </IonRow>
-
-          <IonRow>
-            
-            <IonCol>
-              {/* I have to change this as a link  */}
-              <h5 className="move-right"> Forgot password?</h5>
             </IonCol>
           </IonRow>
 
