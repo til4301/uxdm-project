@@ -3,8 +3,8 @@ Imports
 ----- */
 
 /* React and Ionic */
-import React, { useState } from "react";
-import { Redirect, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import {
   IonApp,
   IonContent,
@@ -53,7 +53,15 @@ App.tsx
 ----- */
 
 const App: React.FC = () => {
-  const [isLogIn, setIsLogIn] = useState(false);
+  /* States */
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  /* Handle methdods */
+  const handleLogin = (value: boolean) => {
+    setIsLoggedIn(value);
+  };
+
+  /* return */
   return (
     <IonApp>
       <IonReactRouter>
@@ -66,32 +74,59 @@ const App: React.FC = () => {
           */}
 
             <IonRouterOutlet>
-              <Route path="/mytodo" component={MyTodo} exact />
-              <Route path="/mytodo/day" component={MyTodo} exact />
-              <Route path="/mytodo/week" component={MyTodo} exact />
-              <Route path="/mytodo/month" component={MyTodo} exact />
-              <Route path="/deepfocus" component={DeepFocus} exact />
-              <Route path="/progress" component={Progress} exact />
-              <Route path="/remindme" component={RemindMe} exact />
-              <Route path="/solarsystem" component={SolarSystem} exact />
-              <Route path="/screenlogin" component={ScreenLogin} exact />
-              {/* <Redirect exact from="/" to="/mytodo" /> */}
-              {/* With this conditional I verify the value of isLogIn to redirect the user to the main menu  */}
-              <div>
-                {
-                  isLogIn!
-                    ? (console.log("Correct User and Password"),
-                      (
-                        (<Redirect exact from="/" to="/mytodo" />)
-                        // <MyTodo />
-                      ))
-                    : (console.log("Incorrect User and Password"),
-                      // (<Redirect exact from="/" to="/screenlogin" />))
-                  <ScreenLogin vari={setIsLogIn} />
-                }
-                ;
-              </div>
-              
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={() =>
+                    !isLoggedIn ? (
+                      <ScreenLogin changeLogin={handleLogin} />
+                    ) : (
+                      <Redirect to="/mytodo" />
+                    )
+                  }
+                />
+                <Route
+                  exact
+                  path="/mytodo"
+                  render={(props) =>
+                    isLoggedIn ? <MyTodo /> : <Redirect to="/" />
+                  }
+                />
+                <Route
+                  exact
+                  path="/deepfocus"
+                  render={(props) =>
+                    isLoggedIn ? <DeepFocus /> : <Redirect to="/" />
+                  }
+                />
+                <Route
+                  exact
+                  path="/progress"
+                  render={(props) =>
+                    isLoggedIn ? <Progress /> : <Redirect to="/" />
+                  }
+                />
+                <Route
+                  exact
+                  path="/remindme"
+                  render={(props) =>
+                    isLoggedIn ? <RemindMe /> : <Redirect to="/" />
+                  }
+                />
+                <Route
+                  exact
+                  path="/solarsystem"
+                  render={(props) =>
+                    isLoggedIn ? <SolarSystem /> : <Redirect to="/" />
+                  }
+                />
+                <Route
+                  render={(props) =>
+                    isLoggedIn ? <MyTodo /> : <Redirect to="/" />
+                  }
+                />
+              </Switch>
             </IonRouterOutlet>
 
             {/*
