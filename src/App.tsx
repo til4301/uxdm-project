@@ -62,102 +62,110 @@ const App: React.FC = () => {
   };
 
   /* return */
-  return (
-    <IonApp>
-      <IonReactRouter>
-        <IonContent>
-          <IonTabs>
-            {/* 
+  if (isLoggedIn) {
+    return (
+      <IonApp>
+        <IonReactRouter>
+          <IonContent>
+            <IonTabs>
+              {/* 
 
+        //* Ionic router
+        Here are the routes for the TabBar at the bottom defined
+        At the end a redirect for the root path is defined
+      */}
+
+              <IonRouterOutlet>
+                <Switch>
+                  <Route
+                    exact
+                    path="/mytodo"
+                    render={(props) =>
+                      isLoggedIn ? <MyTodo /> : <Redirect to="/" />
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/deepfocus"
+                    render={(props) =>
+                      isLoggedIn ? <DeepFocus /> : <Redirect to="/" />
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/progress"
+                    render={(props) =>
+                      isLoggedIn ? <Progress /> : <Redirect to="/" />
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/remindme"
+                    render={(props) =>
+                      isLoggedIn ? <RemindMe /> : <Redirect to="/" />
+                    }
+                  />
+                  <Route
+                    exact
+                    path="/solarsystem"
+                    render={(props) =>
+                      isLoggedIn ? <SolarSystem /> : <Redirect to="/" />
+                    }
+                  />
+                  <Route
+                    render={(props) =>
+                      isLoggedIn ? <MyTodo /> : <Redirect to="/" />
+                    }
+                  />
+                </Switch>
+              </IonRouterOutlet>
+
+              {/*
+              //* Ionic TabBar
+              This is the permanent menu at the bottom of the app
+              */}
+
+              <IonTabBar slot="bottom" style={{}}>
+                <IonTabButton tab="mytodo" href="/mytodo">
+                  <IonLabel>My ToDo</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="deepfocus" href="/deepfocus">
+                  <IonLabel>Deep Focus</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="progress" href="/progress">
+                  <IonLabel>Progress</IonLabel>
+                </IonTabButton>
+                <IonTabButton tab="remindme" href="/remindme">
+                  <IonLabel>Remind Me</IonLabel>
+                </IonTabButton>
+              </IonTabBar>
+            </IonTabs>
+          </IonContent>
+        </IonReactRouter>
+      </IonApp>
+    );
+  } else if (!isLoggedIn) {
+    return (
+      <IonApp>
+        <IonReactRouter>
+          <IonContent>
+            {/* 
             //* Ionic router
             Here are the routes for the TabBar at the bottom defined
             At the end a redirect for the root path is defined
-          */}
-
+            */}
             <IonRouterOutlet>
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={() =>
-                    !isLoggedIn ? (
-                      <ScreenLogin changeLogin={handleLogin} />
-                    ) : (
-                      <Redirect to="/mytodo" />
-                    )
-                  }
-                />
-                <Route
-                  exact
-                  path="/mytodo"
-                  render={(props) =>
-                    isLoggedIn ? <MyTodo /> : <Redirect to="/" />
-                  }
-                />
-                <Route
-                  exact
-                  path="/deepfocus"
-                  render={(props) =>
-                    isLoggedIn ? <DeepFocus /> : <Redirect to="/" />
-                  }
-                />
-                <Route
-                  exact
-                  path="/progress"
-                  render={(props) =>
-                    isLoggedIn ? <Progress /> : <Redirect to="/" />
-                  }
-                />
-                <Route
-                  exact
-                  path="/remindme"
-                  render={(props) =>
-                    isLoggedIn ? <RemindMe /> : <Redirect to="/" />
-                  }
-                />
-                <Route
-                  exact
-                  path="/solarsystem"
-                  render={(props) =>
-                    isLoggedIn ? <SolarSystem /> : <Redirect to="/" />
-                  }
-                />
-                <Route
-                  render={(props) =>
-                    isLoggedIn ? <MyTodo /> : <Redirect to="/" />
-                  }
-                />
-              </Switch>
+              <Route
+                render={() => <ScreenLogin changeLogin={handleLogin} />}
+              />
             </IonRouterOutlet>
-
-
-            {/*
-            //* Ionic TabBar
-            This is the permanent menu at the bottom of the app
-          */}
-
-            <IonTabBar slot="bottom">
-              <IonTabButton tab="mytodo" href="/mytodo">
-                <IonLabel>My ToDo</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="deepfocus" href="/deepfocus">
-                <IonLabel>Deep Focus</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="progress" href="/progress">
-                <IonLabel>Progress</IonLabel>
-              </IonTabButton>
-              <IonTabButton tab="remindme" href="/remindme">
-                <IonLabel>Remind Me</IonLabel>
-              </IonTabButton>
-            </IonTabBar>
-            <IonTabButton tab="screenlogin" href="/screenlogin">
-              <IonLabel>Login Screen</IonLabel>
-            </IonTabButton>
-          </IonTabs>
-        </IonContent>
-      </IonReactRouter>
-    </IonApp>
-  );
+          </IonContent>
+        </IonReactRouter>
+      </IonApp>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default App;
