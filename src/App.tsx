@@ -81,17 +81,14 @@ const App: React.FC = () => {
                 {
                   isLogIn!
                     ? (console.log("Correct User and Password"),
-                      (
-                        (<Redirect exact from="/" to="/mytodo" />)
-                        // <MyTodo />
-                      ))
-                    : (console.log("Incorrect User and Password"),
-                      // (<Redirect exact from="/" to="/screenlogin" />))
-                  <ScreenLogin vari={setIsLogIn} />
+                      (<Redirect exact from="/" to="/mytodo" />))
+                    : // <MyTodo />
+                      (console.log("Incorrect User and Password"),
+                      (<Redirect exact from="/" to="/screenlogin" />))
+                  // <ScreenLogin vari={setIsLogIn} />
                 }
                 ;
               </div>
-              
             </IonRouterOutlet>
 
             {/*

@@ -15,7 +15,6 @@ import App from "../App";
 
 /* ScreenLogin design */
 import "../design/screenlogin.scss";
-import MyTodo from "./MyTodo";
 
 const ScreenLogin: React.FC = (props) => {
   const [user, setUser] = useState("");
