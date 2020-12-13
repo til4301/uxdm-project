@@ -1,3 +1,4 @@
+/* Ionic imports */
 import {
   IonButton,
   IonCheckbox,
@@ -10,24 +11,39 @@ import {
   IonPage,
   IonRow,
 } from "@ionic/react";
+
+/* React imports */
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+/* Component import */
 import App from "../App";
 
 /* ScreenLogin design */
 import "../design/screenlogin.scss";
+import MyTodo from "./MyTodo";
 
-const ScreenLogin: React.FC = (props) => {
+/* Props */
+interface LoginProps {
+  changeLogin: Function;
+}
+
+/* ScreenLogin component */
+const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
+  /* states */
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
 
+  const history = useHistory();
+
   // with this function I verify if the values of the inputs were updated correctly
-  const login = () => {
+  const handleLogin = () => {
     if (user == "Kevin" && pass == "Diaz") {
       console.log("bien");
-      // this was a try to redirect the user to the main menu when the user and password were 'correct'
-      return <App />;
+      changeLogin(true);
+      history.push("/mytodo");
     } else {
-      alert("Incorrect data");
+      alert("Your login data was not correct. Please try again.");
     }
   };
 
@@ -73,21 +89,8 @@ const ScreenLogin: React.FC = (props) => {
 
           <IonRow>
             <IonCol>
-              <IonItem>
-                <h5 className="move-left">Remember me</h5>
-                <IonCheckbox mode="md" slot="start" />
-              </IonItem>
-            </IonCol>
-            <IonCol>
-              {/* I have to change this as a link  */}
-              <h5 className="move-right"> Forgot password?</h5>
-            </IonCol>
-          </IonRow>
-
-          <IonRow>
-            <IonCol>
               <IonButton
-                onClick={login}
+                onClick={handleLogin}
                 expand="block"
                 fill="solid"
                 className="button-des"

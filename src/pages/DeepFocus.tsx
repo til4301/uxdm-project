@@ -22,6 +22,7 @@ import {
   IonInput,
   IonItem,
   IonPage,
+  IonProgressBar,
   IonRow,
   IonTitle,
   IonToolbar,
@@ -60,7 +61,7 @@ const DeepFocus: React.FC = () => {
   const [min, setMin] = useState(5);
   const [active, setActive] = useState(false);
   const [session, setSession] = useState(3);
-
+  const [progress, setProgress] = useState(0.01);
   function touch() {
     setActive(!active);
     console.log(sec + " entre");
@@ -76,6 +77,7 @@ const DeepFocus: React.FC = () => {
     if (active && sec > 0) {
       interval = setInterval(() => {
         setSec((sec) => sec - 1);
+        setProgress(progress + 0.01);
       }, 1000);
     } else if (!active && sec !== 0) {
       clearInterval(interval);
@@ -93,6 +95,7 @@ const DeepFocus: React.FC = () => {
 
   function pre() {
     console.log("im Betrieb");
+    setProgress(progress + 10);
   }
   function prea() {
     console.log("im anderen Betrieb");
@@ -102,6 +105,7 @@ const DeepFocus: React.FC = () => {
       <IonContent>
         <div>
           <h3 className="rounded">Break time</h3>
+          <IonProgressBar value={progress}></IonProgressBar>
         </div>
         <div>
           <h3 className="rounded">
