@@ -1,0 +1,101 @@
+{
+  "tasks_day": [
+    {
+      "task": "Weihnachtseinkäufe erledigen",
+      "subTasks": [
+        { "subtask": "Kartoffeln", "checked": true, "id": 1 },
+        {
+          "subtask": "Fleisch",
+          "checked": false,
+          "id": 2
+        },
+        { "subtask": "Bier", "checked": false, "id": 3 }
+      ],
+      "solar": "Star",
+      "tags": ["Home", "Holiday"],
+      "checked": false,
+      "id": 1
+    },
+    {
+      "task": "Mandant treffen",
+      "subTasks": [
+        { "subtask": "Verhandlung besprechen", "checked": false, "id": 1 },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": false,
+          "id": 2
+        }
+      ],
+      "solar": "Planet",
+      "tags": ["Work", "Next One", "Dodo"],
+      "checked": true,
+      "id": 2
+    },
+    {
+      "task": "Mandant treffen",
+      "subTasks": [
+        { "subtask": "Verhandlung besprechen", "checked": true, "id": 1 },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": true,
+          "id": 2
+        },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": false,
+          "id": 2
+        },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": true,
+          "id": 2
+        },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": false,
+          "id": 2
+        }
+        ,
+        {
+          "subtask": "Zeugen suchen",
+          "checked": false,
+          "id": 2
+        },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": true,
+          "id": 2
+        },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": true,
+          "id": 2
+        },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": false,
+          "id": 2
+        }
+      ],
+      "solar": "Moon",
+      "tags": ["Work", "Next One", "Dodo"],
+      "checked": true,
+      "id": 2
+    },
+    {
+      "task": "Mandant treffen",
+      "subTasks": [
+        { "subtask": "Verhandlung besprechen", "checked": true, "id": 1 },
+        {
+          "subtask": "Zeugen suchen",
+          "checked": false,
+          "id": 2
+        }
+      ],
+      "solar": "",
+      "tags": ["Work", "Next One", "Dodo"],
+      "checked": true,
+      "id": 2
+    }
+  ]
+}

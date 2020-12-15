@@ -1,0 +1,114 @@
+//* Wrapper Design *//
+.mytodo_day-wrapper {
+  width: 100%;
+  height: 100%;
+  padding-top: 100px;
+}
+
+.mytodo_day-alert {
+  --background: #000000;
+}
+
+//* Dialog window *//
+
+/* General Design */
+
+#mytodo_day-dialog {
+  backdrop-filter: blur(10px);
+  position: absolut;
+  z-index: 3 !important;
+}
+
+.mytodo_day-dialog-wrapper {
+}
+
+/* Add Task input section */
+
+.mytodo_day-dialog-addtask-input {
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #696e7f;
+  display: flex;
+  align-items: center;
+}
+
+.mytodo_day-dialog-addtask-input-text {
+  color: #ffffff;
+  display: inline;
+  font-weight: 600;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+/* Select Date input section */
+.mytodo_day-dialog-selectdate-input {
+  display: inline-flex;
+  align-items: center;
+  width: 50%;
+  margin: 25px 5% 25px 0px;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #696e7f;
+}
+
+.mytodo_day-dialog-selectdate-input-text {
+  color: #ffffff;
+  display: inline;
+  font-weight: 600;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+/* Select Group input section */
+.mytodo_day-dialog-selectgroup-input {
+  display: inline-flex;
+  align-items: center;
+  width: 40%;
+  margin: 25px 0px 25px 5%;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: #696e7f;
+}
+
+.mytodo_day-dialog-selectgroup-input-text {
+  color: #ffffff;
+  display: inline;
+  font-weight: 600;
+  font-size: 12px;
+  padding-left: 10px;
+}
+
+/* Solar Select */
+
+.mytodo_day-dialog-solarSelect {
+  width: 100%;
+  text-align: center;
+}
+
+.mytodo_day-dialog-solarSelect-icons {
+  padding: 0px 15px 25px 15px;
+}
+
+/* Dialog Buttons (Add Task, Cancel */
+
+.mytodo_day-dialog-add-button {
+  --background: #00ffe2;
+  --color: #1e2662;
+  --border-radius: 4px;
+  font-size: 12px;
+  width: 35vw;
+  height: 40px;
+  font-weight: 700;
+}
+
+.mytodo_day-dialog-cancel-button {
+  --background: rgba(0, 0, 0, 0);
+  --color: #00ffe2;
+  --border-radius: 4px;
+  font-size: 12px;
+  width: 35vw;
+  height: 40px;
+  font-weight: 700;
+}
+
+
