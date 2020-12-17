@@ -2,7 +2,24 @@
   "tasks_day": [
     {
       "task": "Project UXD Meeting",
-      "date": "2020-12-17",
+      "date": "2020-12-18",
+      "subTasks": [
+        { "subtask": "Organization", "checked": true, "id": 1 },
+        {
+          "subtask": "Implementation",
+          "checked": false,
+          "id": 2
+        },
+        { "subtask": "Presentation", "checked": false, "id": 3 }
+      ],
+      "solar": "Star",
+      "tags": ["University", "Meeting"],
+      "checked": false,
+      "id": 1
+    },
+    {
+      "task": "Project UXD Meeting",
+      "date": "2021-12-17",
       "subTasks": [
         { "subtask": "Organization", "checked": true, "id": 1 },
         {

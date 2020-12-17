@@ -31,8 +31,8 @@ import solarPlanetIconDisabled from "../resources/solarPlanet-disabled_icon.svg"
 Design
 ----- */
 
-/* MyTodo design */
-import "../design/mytodo_day.scss";
+/* AddTaskDialog design */
+import "../design/addtaskdialog.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -80,7 +80,7 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
           setShowAddTask(false);
           setSolarSelected("NONE");
         }}
-        id="mytodo_day-dialog"
+        id="addtaskdialog-dialog"
         PaperProps={{
           style: {
             background:
@@ -93,17 +93,17 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
         }}
       >
         <DialogContent>
-          <div className="mytodo_day-dialog-wrapper">
+          <div className="addtaskdialog-dialog-wrapper">
             {/* Add Task input field */}
             <div
-              className="mytodo_day-dialog-addtask-input"
+              className="addtaskdialog-dialog-addtask-input"
               onClick={() => {
                 setShowSelectTaskName(true);
                 setShowAddTask(false);
               }}
             >
               <img src={addTaskIcon} alt="addTask" />
-              <p className="mytodo_day-dialog-addtask-input-text">
+              <p className="addtaskdialog-dialog-addtask-input-text">
                 {selectedTaskName}
               </p>
             </div>
@@ -114,24 +114,24 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
                 setShowSelectDate(true);
                 setShowAddTask(false);
               }}
-              className="mytodo_day-dialog-selectdate-input"
+              className="addtaskdialog-dialog-selectdate-input"
             >
               <img src={selectDateIcon} alt="selectDate" />
-              <p className="mytodo_day-dialog-selectdate-input-text">
+              <p className="addtaskdialog-dialog-selectdate-input-text">
                 {selectedDate}
               </p>
             </div>
 
             {/* Select Group input field */}
-            <div className="mytodo_day-dialog-selectgroup-input">
+            <div className="addtaskdialog-dialog-selectgroup-input">
               <img src={selectGroupIcon} alt="selectGroup" />
-              <p className="mytodo_day-dialog-selectgroup-input-text">
+              <p className="addtaskdialog-dialog-selectgroup-input-text">
                 UXD Project
               </p>
             </div>
 
             {/* Solar selection field */}
-            <div className="mytodo_day-dialog-solarSelect">
+            <div className="addtaskdialog-dialog-solarSelect">
               <img
                 src={
                   solarSelected === "MOON"
@@ -139,7 +139,7 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
                     : solarMoonIconDisabled
                 }
                 alt="solarMoon"
-                className="mytodo_day-dialog-solarSelect-icons"
+                className="addtaskdialog-dialog-solarSelect-icons"
                 onClick={() => {
                   solarSelected === "MOON"
                     ? setSolarSelected("NONE")
@@ -153,7 +153,7 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
                     : solarPlanetIconDisabled
                 }
                 alt="solarPlanet"
-                className="mytodo_day-dialog-solarSelect-icons"
+                className="addtaskdialog-dialog-solarSelect-icons"
                 onClick={() => {
                   solarSelected === "PLANET"
                     ? setSolarSelected("NONE")
@@ -167,7 +167,7 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
                     : solarStarIconDisabled
                 }
                 alt="solarStar"
-                className="mytodo_day-dialog-solarSelect-icons"
+                className="addtaskdialog-dialog-solarSelect-icons"
                 onClick={() => {
                   solarSelected === "STAR"
                     ? setSolarSelected("NONE")
@@ -179,12 +179,12 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
         </DialogContent>
         {/* Dialog Interaction with Add Task and Cancel Button */}
         <DialogActions style={{ margin: "auto" }}>
-          <IonButton class="mytodo_day-dialog-add-button">Add Task</IonButton>
+          <IonButton class="addtaskdialog-dialog-add-button">Add Task</IonButton>
           <IonButton
             onClick={() => {
               setShowAddTask(false);
             }}
-            class="mytodo_day-dialog-cancel-button"
+            class="addtaskdialog-dialog-cancel-button"
           >
             Cancel
           </IonButton>

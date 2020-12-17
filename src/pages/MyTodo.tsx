@@ -4,7 +4,13 @@ Imports
 
 // React and Ionic
 import React, { useState } from "react";
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Link,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import {
   IonCol,
   IonContent,
@@ -68,9 +74,18 @@ const MyTodo: React.FC = () => {
       <IonReactRouter>
         <IonContent>
           <IonRouterOutlet>
-            <Route exact path="/mytodo/day" render={() => <MyTodo_Day />} />
-            <Route exact path="/mytodo/week" render={() => <MyTodo_Week />} />
-            <Route exact path="/mytodo/month" render={() => <MyTodo_Month />} />
+            <Switch>
+              <Route exact path="/mytodo/day" render={() => <MyTodo_Day />} />
+              <Route exact path="/mytodo/week" render={() => <MyTodo_Week />} />
+              <Route
+                exact
+                path="/mytodo/month"
+                render={() => <MyTodo_Month />}
+              />
+              <Route>
+                <Redirect to="/mytodo/day" />
+              </Route>
+            </Switch>
           </IonRouterOutlet>
           {/** Grid layout for top tab menu **/}
           <div className="mytodo-grid-wrapper">

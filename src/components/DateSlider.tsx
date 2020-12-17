@@ -14,8 +14,8 @@ import { DateTime } from "luxon";
 Design
 ----- */
 
-/* MyTodo design */
-import "../design/mytodo_day.scss";
+/* Dateslider design */
+import "../design/dateslider.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -39,58 +39,139 @@ DateSlider.tsx
 ----- */
 
 interface Props {
-    dateSlide: string,
-    setDateSlide: Function,
+  dateSlide: string;
+  setDateSlide: Function;
+  variant: string;
 }
 
-const DateSlider: React.FC<Props> = ({dateSlide, setDateSlide}) => {
-  /* variables */
-  var date = DateTime.local();
+const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
 
-  /* useEffect */
-  useEffect(() => {
-    setDateSlide(date.toISODate());
-  }, []);
 
-  /* return */
-  return (
-    <div className="mytodo_day-dateslider-wrapper">
-      <div className="mytodo_day-dateslider-arrow">
-        <IonIcon
-          icon={chevronBack}
-          class="mytodo_day-dateslider-arrow-icon"
-          onClick={() => {
-            setDateSlide(
-              DateTime.fromISO(dateSlide).minus({ days: 1 }).toISODate()
-            );
-          }}
-        />
+  //* Day DateSlider *//
+  if (variant === "day") {
+    return (
+      <div className="dateslider-dateslider-wrapper">
+        <div className="dateslider-dateslider-arrow">
+          <IonIcon
+            icon={chevronBack}
+            class="dateslider-dateslider-arrow-icon"
+            onClick={() => {
+              setDateSlide(
+                DateTime.fromISO(dateSlide).minus({ days: 1 }).toISODate()
+              );
+            }}
+          />
+        </div>
+
+        <div className="dateslider-dateslider-box">
+          <p className="dateslider-dateslider-box-text">Day of &nbsp;</p>
+          <p className="dateslider-dateslider-box-text-bold">
+            {DateTime.fromISO(dateSlide).toFormat("ccc") +
+              ", " +
+              DateTime.fromISO(dateSlide).toFormat("LLL") +
+              " " +
+              DateTime.fromISO(dateSlide).toFormat("dd")}
+          </p>
+        </div>
+
+        <div className="dateslider-dateslider-arrow">
+          <IonIcon
+            icon={chevronForward}
+            class="dateslider-dateslider-arrow-icon"
+            onClick={() => {
+              setDateSlide(
+                DateTime.fromISO(dateSlide).plus({ days: 1 }).toISODate()
+              );
+            }}
+          />
+        </div>
       </div>
+    );
+  } 
+  
+  //* Week DateSlider *//
+  else if (variant === "week") {
+    return (
+      <div className="dateslider-dateslider-wrapper">
+        <div className="dateslider-dateslider-arrow">
+          <IonIcon
+            icon={chevronBack}
+            class="dateslider-dateslider-arrow-icon"
+            onClick={() => {
+              setDateSlide(
+                DateTime.fromISO(dateSlide).minus({ weeks: 1 }).toISODate()
+              );
+            }}
+          />
+        </div>
 
-      <div className="mytodo_day-dateslider-box">
-        <p className="mytodo_day-dateslider-box-text">Day from &nbsp;</p>
-        <p className="mytodo_day-dateslider-box-text-bold">
-          {DateTime.fromISO(dateSlide).toFormat("ccc") +
-            ", " +
-            DateTime.fromISO(dateSlide).toFormat("LLL") +
-            " " +
-            DateTime.fromISO(dateSlide).toFormat("dd")}
-        </p>
-      </div>
+        <div className="dateslider-dateslider-box">
+          <p className="dateslider-dateslider-box-text">Week of &nbsp;</p>
+          <p className="dateslider-dateslider-box-text-bold">
+            {DateTime.fromISO(dateSlide).toFormat("ccc") +
+              ", " +
+              DateTime.fromISO(dateSlide).toFormat("LLL") +
+              " " +
+              DateTime.fromISO(dateSlide).toFormat("dd")}
+          </p>
+        </div>
 
-      <div className="mytodo_day-dateslider-arrow">
-        <IonIcon
-          icon={chevronForward}
-          class="mytodo_day-dateslider-arrow-icon"
-          onClick={() => {
-            setDateSlide(
-              DateTime.fromISO(dateSlide).plus({ days: 1 }).toISODate()
-            );
-          }}
-        />
+        <div className="dateslider-dateslider-arrow">
+          <IonIcon
+            icon={chevronForward}
+            class="dateslider-dateslider-arrow-icon"
+            onClick={() => {
+              setDateSlide(
+                DateTime.fromISO(dateSlide).plus({ weeks: 1 }).toISODate()
+              );
+            }}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  } 
+
+  //* Month DateSlider *//
+  else if (variant === "month") {
+    return (
+      <div className="dateslider-dateslider-wrapper">
+        <div className="dateslider-dateslider-arrow">
+          <IonIcon
+            icon={chevronBack}
+            class="dateslider-dateslider-arrow-icon"
+            onClick={() => {
+              setDateSlide(
+                DateTime.fromISO(dateSlide).minus({ month: 1 }).toISODate()
+              );
+            }}
+          />
+        </div>
+
+        <div className="dateslider-dateslider-box">
+          <p className="dateslider-dateslider-box-text-bold">
+            {DateTime.fromISO(dateSlide).toFormat("LLLL")}
+          </p>
+          <p className="dateslider-dateslider-box-text">
+            &nbsp; of {DateTime.fromISO(dateSlide).toFormat("y")}
+          </p>
+        </div>
+
+        <div className="dateslider-dateslider-arrow">
+          <IonIcon
+            icon={chevronForward}
+            class="dateslider-dateslider-arrow-icon"
+            onClick={() => {
+              setDateSlide(
+                DateTime.fromISO(dateSlide).plus({ month: 1 }).toISODate()
+              );
+            }}
+          />
+        </div>
+      </div>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default DateSlider;

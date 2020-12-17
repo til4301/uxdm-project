@@ -69,7 +69,7 @@ const MyTodo_Day: React.FC = () => {
           {
             //* DateSlider *//
           }
-          <DateSlider dateSlide={dateSlide} setDateSlide={setDateSlide} />
+          <DateSlider dateSlide={dateSlide} setDateSlide={setDateSlide} variant="day"/>
 
           {
             //* Listing all Todos *//
