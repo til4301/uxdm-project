@@ -62,44 +62,40 @@ const AddTodoSelectDate: React.FC<Props> = ({
 
   /* return */
   return (
-    <IonPage>
-      <IonContent>
-        <IonAlert
-          isOpen={showSelectDate}
-          onDidDismiss={() => {
-            setShowAddTask(true);
-            setShowSelectDate(false);
-          }}
-          cssClass="mytodo_day-selectDate-alert"
-          header={"Prompt!"}
-          inputs={[
-            // input date with min & max
-            {
-              name: "SelectDate",
-              type: "date",
-              min: "2017-03-01",
-              max: "2018-01-12",
-            },
-          ]}
-          buttons={[
-            {
-              text: "Cancel",
-              role: "cancel",
-              cssClass: "secondary",
-              handler: () => {
-                console.log("Confirm Cancel");
-              },
-            },
-            {
-              text: "Ok",
-              handler: (alertData) => {
-                setSelectedDate(alertData.SelectDate);
-              },
-            },
-          ]}
-        />
-      </IonContent>
-    </IonPage>
+    <IonAlert
+      isOpen={showSelectDate}
+      onDidDismiss={() => {
+        setShowAddTask(true);
+        setShowSelectDate(false);
+      }}
+      cssClass="mytodo_day-selectDate-alert"
+      header={"Prompt!"}
+      inputs={[
+        // input date with min & max
+        {
+          name: "SelectDate",
+          type: "date",
+          min: "2017-03-01",
+          max: "2018-01-12",
+        },
+      ]}
+      buttons={[
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
+          handler: () => {
+            console.log("Confirm Cancel");
+          },
+        },
+        {
+          text: "Ok",
+          handler: (alertData) => {
+            setSelectedDate(alertData.SelectDate);
+          },
+        },
+      ]}
+    />
   );
 };
 

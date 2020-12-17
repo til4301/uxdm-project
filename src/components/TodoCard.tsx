@@ -66,6 +66,7 @@ interface Props {
   checked: boolean;
   id: number;
   tags: string[];
+  isLast: boolean;
 }
 
 const TodoCard: React.FC<Props> = ({
@@ -75,11 +76,14 @@ const TodoCard: React.FC<Props> = ({
   checked,
   id,
   tags,
+  isLast,
 }) => {
   /* states */
   const [expanded, setExpanded] = useState(false);
   const [numberSubtask, setNumberSubtask] = useState(3);
   const [numberCheckedTasks, setNumberCheckedTasks] = useState(0);
+
+  let isItLast = isLast;
 
   const changeCheckedNumber = (value: number) => {
     setNumberCheckedTasks(numberCheckedTasks + value);
@@ -97,7 +101,9 @@ const TodoCard: React.FC<Props> = ({
             <IonCheckbox checked={checked} class="todo-card-checkbox" />
           </IonCol>
           <IonCol size="7" onClick={() => setExpanded(!expanded)}>
-            <p className="todo-header">{task}</p>
+            <p className={checked ? "todo-header-checked" : "todo-header"}>
+              {task}
+            </p>
           </IonCol>
           <IonCol
             size="3"
@@ -134,6 +140,7 @@ const TodoCard: React.FC<Props> = ({
           );
         })}
       </div>
+      {isItLast && expanded ? <div style={{ width: "100vw", height: "60px" }} /> : null}
     </div>
   );
 };

@@ -1,101 +1,82 @@
 {
   "tasks_day": [
     {
-      "task": "Weihnachtseinkäufe erledigen",
+      "task": "Project UXD Meeting",
+      "date": "2020-12-17",
       "subTasks": [
-        { "subtask": "Kartoffeln", "checked": true, "id": 1 },
+        { "subtask": "Organization", "checked": true, "id": 1 },
         {
-          "subtask": "Fleisch",
+          "subtask": "Implementation",
           "checked": false,
           "id": 2
         },
-        { "subtask": "Bier", "checked": false, "id": 3 }
+        { "subtask": "Presentation", "checked": false, "id": 3 }
       ],
       "solar": "Star",
-      "tags": ["Home", "Holiday"],
+      "tags": ["University", "Meeting"],
       "checked": false,
       "id": 1
     },
     {
-      "task": "Mandant treffen",
+      "task": "Design Management",
+      "date": "2020-12-24",
       "subTasks": [
-        { "subtask": "Verhandlung besprechen", "checked": false, "id": 1 },
+        { "subtask": "Design Brief", "checked": true, "id": 1 },
         {
-          "subtask": "Zeugen suchen",
-          "checked": false,
+          "subtask": "Summary for exam",
+          "checked": true,
           "id": 2
         }
       ],
       "solar": "Planet",
-      "tags": ["Work", "Next One", "Dodo"],
+      "tags": ["University", "Lecture"],
       "checked": true,
       "id": 2
     },
     {
-      "task": "Mandant treffen",
+      "task": "Christmas Dinner",
+      "date": "2020-12-24",
       "subTasks": [
-        { "subtask": "Verhandlung besprechen", "checked": true, "id": 1 },
         {
-          "subtask": "Zeugen suchen",
+          "subtask": "Food and beverage shopping",
           "checked": true,
-          "id": 2
+          "id": 1
         },
         {
-          "subtask": "Zeugen suchen",
+          "subtask": "Get Christmas Gifts",
           "checked": false,
           "id": 2
         },
         {
-          "subtask": "Zeugen suchen",
+          "subtask": "Decorate table",
           "checked": true,
-          "id": 2
+          "id": 3
         },
         {
-          "subtask": "Zeugen suchen",
+          "subtask": "Get Christmas tree",
           "checked": false,
-          "id": 2
-        }
-        ,
-        {
-          "subtask": "Zeugen suchen",
-          "checked": false,
-          "id": 2
+          "id": 4
         },
         {
-          "subtask": "Zeugen suchen",
+          "subtask": "Prepare guest room",
+          "checked": false,
+          "id": 5
+        },
+        {
+          "subtask": "Attach fairy lights",
           "checked": true,
-          "id": 2
+          "id": 6
         },
         {
-          "subtask": "Zeugen suchen",
+          "subtask": "Create playlist for Christmas Eve",
           "checked": true,
-          "id": 2
-        },
-        {
-          "subtask": "Zeugen suchen",
-          "checked": false,
-          "id": 2
+          "id": 7
         }
       ],
       "solar": "Moon",
-      "tags": ["Work", "Next One", "Dodo"],
-      "checked": true,
-      "id": 2
-    },
-    {
-      "task": "Mandant treffen",
-      "subTasks": [
-        { "subtask": "Verhandlung besprechen", "checked": true, "id": 1 },
-        {
-          "subtask": "Zeugen suchen",
-          "checked": false,
-          "id": 2
-        }
-      ],
-      "solar": "",
-      "tags": ["Work", "Next One", "Dodo"],
-      "checked": true,
-      "id": 2
+      "tags": ["Private", "Christmas 2020"],
+      "checked": false,
+      "id": 3
     }
   ]
 }

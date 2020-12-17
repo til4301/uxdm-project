@@ -62,43 +62,38 @@ const AddTodoSelectTaskName: React.FC<Props> = ({
 
   /* return */
   return (
-    <IonPage>
-      <IonContent>
-        <IonAlert
-          isOpen={showSelectedTaskName}
-          onDidDismiss={() => {
-            setShowAddTask(true);
-            setShowSelectedTaskName(false);
-          }}
-          cssClass="mytodo_day-alert"
-          header={"Prompt!"}
-          inputs={[
-            // input date with min & max
-            {
-              name: "TaskName",
-              type: "text",
-            },
-          ]}
-          buttons={[
-            {
-              text: "Cancel",
-              role: "cancel",
-              cssClass: "secondary",
-              handler: () => {
-                console.log("Confirm Cancel");
-              },
-            },
-            {
-              text: "Ok",
-              handler: (alertData) => {
-                setSelectedTaskName(alertData.TaskName);
-                console.log(alertData.TaskName)
-              },
-            },
-          ]}
-        />
-      </IonContent>
-    </IonPage>
+    <IonAlert
+      isOpen={showSelectedTaskName}
+      onDidDismiss={() => {
+        setShowAddTask(true);
+        setShowSelectedTaskName(false);
+      }}
+      cssClass="mytodo_day-alert"
+      header={"Prompt!"}
+      inputs={[
+        // input date with min & max
+        {
+          name: "TaskName",
+          type: "text",
+        },
+      ]}
+      buttons={[
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
+          handler: () => {
+            console.log("Confirm Cancel");
+          },
+        },
+        {
+          text: "Ok",
+          handler: (alertData) => {
+            setSelectedTaskName(alertData.TaskName);
+          },
+        },
+      ]}
+    />
   );
 };
 

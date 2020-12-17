@@ -76,7 +76,7 @@ const TodoSubtask: React.FC<Props> = ({
       <IonGrid>
         <IonRow style={{ display: "flex", alignItems: "center" }}>
           <IonCol size="3" />
-          <IonCol size="1">
+          <IonCol size="1"> 
             <IonCheckbox
               checked={checked}
               onIonChange={() => {
