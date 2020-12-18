@@ -11,6 +11,7 @@ import {
   playSharp,
   removeCircle,
   removeCircleOutline,
+  timer,
 } from "ionicons/icons";
 import {
   IonButton,
@@ -72,6 +73,10 @@ const DeepFocus: React.FC = () => {
   //   setActive(false);
   // }
 
+  /* Here I manage what happens with the timer
+when the timer is stopped or the time is 
+modificated*/
+
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> = setInterval(() => "", 1000);
     if (active && sec > 0) {
@@ -93,6 +98,7 @@ const DeepFocus: React.FC = () => {
     return () => clearInterval(interval);
   }, [active, sec]);
 
+  // test functions -- prea and pre
   function pre() {
     console.log("im Betrieb");
     setProgress(progress + 10);
@@ -101,29 +107,44 @@ const DeepFocus: React.FC = () => {
     console.log("im anderen Betrieb");
   }
   return (
-    <IonPage className="drea">
-      <IonContent>
-        <div>
-          <h3 className="rounded">Break time</h3>
-          <IonProgressBar value={progress}></IonProgressBar>
-        </div>
-        <div>
-          <h3 className="rounded">
-            <IonButton onClick={() => setSession(session - 1)}>
-              <IonIcon icon={removeCircle} />
-            </IonButton>
-            Sessions: {session < 0 ? setSession(0) : session}
-            <IonButton onClick={() => setSession(session + 1)}>
-              <IonIcon icon={addCircle} />
-            </IonButton>
-          </h3>
-        </div>
+    <IonPage>
+      <IonContent className="deepfocus-background">
         <IonGrid>
           <IonRow>
-            <IonCol className="pos-timer">
+            <IonCol>Long/ Short session</IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol className="deepfocus-rounded">
+              <IonButton
+                className="deepfocus-move-session-left"
+                onClick={() => setSession(session - 1)}
+              >
+                <IonIcon icon={removeCircle} />
+              </IonButton>
+              {session < 0 ? setSession(0) : session}
+              <IonButton
+                className="deepfocus-move-session-right"
+                onClick={() => setSession(session + 1)}
+              >
+                <IonIcon icon={addCircle} />
+              </IonButton>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <h2 className="deepfocus-fonts">Sessions</h2>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            {/* <IonCol className="deepfocus-pos-timer">
               <h1>
                 {min < 10 ? `0${min}` : min} : {sec < 10 ? `0${sec}` : sec}
               </h1>
+            </IonCol> */}
+          </IonRow>
+          <IonRow>
+            <IonCol className="deepfocus-pose">
+              <p className="deepfocus-pose">Break time</p>
             </IonCol>
           </IonRow>
           <IonRow>
@@ -131,24 +152,29 @@ const DeepFocus: React.FC = () => {
               <IonInput
                 onInput={(ev) => setMin(+(ev.target as HTMLInputElement).value)}
                 onClick={touch}
-                value={min < 10 ? `0${min}` : min}
-                className="move-right"
+                value={min < 10 ? `0${min}:` : min}
+                className="deepfocus-move-right"
               ></IonInput>
             </IonCol>
             <IonCol>
               <IonInput
                 onInput={(ev) => setSec(+(ev.target as HTMLInputElement).value)}
                 onClick={touch}
-                type="number"
                 value={sec < 10 ? `0${sec}` : sec}
-                className="move-left"
+                className="deepfocus-move-left"
               ></IonInput>
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol className="pos-timer">
+            <IonCol className="deepfocus-break">
+              <p>Minutes left</p>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol className="deepfocus-pos-timer">
               <IonButton
-                className={` button-primary-${active ? "active" : "inactive"}`}
+                // className={` button-primary-${active ? "active" : "inactive"}`}
+                className="deepfocus-pos-timer"
                 onClick={touch}
               >
                 {active ? (
@@ -164,10 +190,17 @@ const DeepFocus: React.FC = () => {
               </IonCol> */}
             </IonCol>
           </IonRow>
+
           <IonRow>
-            <IonCol>
-              <IonInput onInput={pre} onClick={prea}></IonInput>
+            <IonCol size="2"></IonCol>
+            <IonCol justify-content-center>
+              <IonProgressBar
+                color="primary"
+                className="deepfocus-progress"
+                value={progress}
+              ></IonProgressBar>
             </IonCol>
+            <IonCol size="2"></IonCol>
           </IonRow>
         </IonGrid>
       </IonContent>

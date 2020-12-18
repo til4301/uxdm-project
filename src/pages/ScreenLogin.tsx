@@ -49,16 +49,11 @@ const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
 
   return (
     <IonPage>
-      <IonContent>
+      <IonContent className="screenlogin-background">
         <IonGrid>
           <IonRow>
-            <IonCol>
-              <h1> Logo.jpg </h1>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol className="font-color">
-              <h3>Welcome back!</h3>
+            <IonCol className="screenlogin-font-color">
+              <h4>Welcome back!</h4>
             </IonCol>
           </IonRow>
           <IonRow>
@@ -88,12 +83,12 @@ const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
           </IonRow>
 
           <IonRow>
-            <IonCol>
+            <IonCol className="screenlogin-col-button">
               <IonButton
                 onClick={handleLogin}
                 expand="block"
                 fill="solid"
-                className="button-des"
+                class="screenlogin-button-des"
               >
                 Sign in
               </IonButton>
