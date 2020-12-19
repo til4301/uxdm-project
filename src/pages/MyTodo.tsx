@@ -3,8 +3,14 @@ Imports
 ----- */
 
 // React and Ionic
-import React from "react";
-import { Route } from "react-router";
+import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Link,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 import {
   IonCol,
   IonContent,
@@ -21,8 +27,12 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import { IonReactRouter } from "@ionic/react-router";
 
 // Pages
+import MyTodo_Day from "./MyTodo_Day";
+import MyTodo_Week from "./MyTodo_Week";
+import MyTodo_Month from "./MyTodo_Month";
 
 /* -----
 Design
@@ -47,43 +57,122 @@ import "@ionic/react/css/display.css";
 
 /* Global Theme */
 import "../theme/variables.scss";
-import { Link } from "react-router-dom";
 
 /* -----
 MyTodo.tsx
 ----- */
 
 const MyTodo: React.FC = () => {
+  /* states */
+  const [selected, setSelected] = useState("Day");
+
+  /* handle methods */
+
+  /* return */
   return (
     <IonPage>
-      <IonContent>
-        {/** Grid layout for top menu **/}
-        <IonGrid class="mytodo-grid">
-          <IonRow class="mytodo-tab">
-            {/** Grid column for day **/}
-            <IonCol size="4" class="mytodo-tab-col">
-              <p className="mytodo-tab-text-selected">Day</p>
-              <div
-                className="mytodo-tab-underline-selected"
-                style={{ borderRadius: "20px 0px 0px 20px" }}
+      <IonReactRouter>
+        <IonContent>
+          <IonRouterOutlet>
+            <Switch>
+              <Route exact path="/mytodo/day" render={() => <MyTodo_Day />} />
+              <Route exact path="/mytodo/week" render={() => <MyTodo_Week />} />
+              <Route
+                exact
+                path="/mytodo/month"
+                render={() => <MyTodo_Month />}
               />
-            </IonCol>
-            {/** Grid column for week **/}
-            <IonCol size="4" class="mytodo-tab-col">
-              <p className="mytodo-tab-text">Week</p>
-              <div className="mytodo-tab-underline" />
-            </IonCol>
-            {/** Grid column for month **/}
-            <IonCol size="4" class="mytodo-tab-col">
-              <p className="mytodo-tab-text">Month</p>
-              <div
-                className="mytodo-tab-underline"
-                style={{ borderRadius: "0px 20px 20px 0px" }}
-              />
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </IonContent>
+              <Route>
+                <Redirect to="/mytodo/day" />
+              </Route>
+            </Switch>
+          </IonRouterOutlet>
+          {/** Grid layout for top tab menu **/}
+          <div className="mytodo-grid-wrapper">
+            <IonGrid class="mytodo-grid">
+              <IonRow class="mytodo-tab">
+                {/** Tab for day **/}
+                <IonCol size="4" class="mytodo-tab-col">
+                  <Link
+                    to="/mytodo/day"
+                    style={{ textDecoration: "none" }}
+                    onClick={() => setSelected("Day")}
+                  >
+                    <p
+                      className={
+                        selected === "Day"
+                          ? "mytodo-tab-text-selected"
+                          : "mytodo-tab-text"
+                      }
+                    >
+                      Day
+                    </p>
+                    <div
+                      className={
+                        selected === "Day"
+                          ? "mytodo-tab-underline-selected"
+                          : "mytodo-tab-underline"
+                      }
+                      style={{ borderRadius: "20px 0px 0px 20px" }}
+                    />
+                  </Link>
+                </IonCol>
+                {/** Tab for week **/}
+                <IonCol size="4" class="mytodo-tab-col">
+                  <Link
+                    to="/mytodo/week"
+                    style={{ textDecoration: "none" }}
+                    onClick={() => setSelected("Week")}
+                  >
+                    <p
+                      className={
+                        selected === "Week"
+                          ? "mytodo-tab-text-selected"
+                          : "mytodo-tab-text"
+                      }
+                    >
+                      Week
+                    </p>
+                    <div
+                      className={
+                        selected === "Week"
+                          ? "mytodo-tab-underline-selected"
+                          : "mytodo-tab-underline"
+                      }
+                    />
+                  </Link>
+                </IonCol>
+                {/** Tab for month **/}
+                <IonCol size="4" class="mytodo-tab-col">
+                  <Link
+                    to="/mytodo/month"
+                    style={{ textDecoration: "none" }}
+                    onClick={() => setSelected("Month")}
+                  >
+                    <p
+                      className={
+                        selected === "Month"
+                          ? "mytodo-tab-text-selected"
+                          : "mytodo-tab-text"
+                      }
+                    >
+                      Month
+                    </p>
+                    <div
+                      className={
+                        selected === "Month"
+                          ? "mytodo-tab-underline-selected"
+                          : "mytodo-tab-underline"
+                      }
+                      style={{ borderRadius: "0px 20px 20px 0px" }}
+                    />
+                  </Link>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
+          </div>
+        </IonContent>
+      </IonReactRouter>
     </IonPage>
   );
 };
