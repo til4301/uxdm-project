@@ -110,10 +110,25 @@ modificated*/
     <IonPage>
       <IonContent className="deepfocus-background">
         <IonGrid>
-          <IonRow>
-            <IonCol>Long/ Short session</IonCol>
+          <IonRow className="deepfocus-nav">
+            {/** Grid column for number of Sessions **/}
+            <IonCol size="6" className="deepfocus-nav-col">
+              <p className="deepfocus-tab-text-selected">Short session</p>
+              <div
+                className="deepfocus-tab-underline-selected"
+                style={{ borderRadius: "20px 0px 0px 20px" }}
+              />
+            </IonCol>
+            <IonCol size="6" className="deepfocus-nav-col">
+              <p className="deepfocus-tab-text-selected">Long Session</p>
+              <div
+                className="deepfocus-tab-underline"
+                style={{ borderRadius: "20px 0px 0px 20px" }}
+              />
+            </IonCol>
           </IonRow>
           <IonRow>
+            {/** Grid column for the buttons **/}
             <IonCol className="deepfocus-rounded">
               <IonButton
                 className="deepfocus-move-session-left"
