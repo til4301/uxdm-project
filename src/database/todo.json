@@ -1,8 +1,8 @@
 {
-  "tasks_day": [
+  "ToDos": [
     {
       "task": "Project UXD Meeting",
-      "date": "2020-12-18",
+      "date": "2020-12-25T09:24",
       "subTasks": [
         { "subtask": "Organization", "checked": true, "id": 1 },
         {
@@ -13,13 +13,14 @@
         { "subtask": "Presentation", "checked": false, "id": 3 }
       ],
       "solar": "Star",
-      "tags": ["University", "Meeting"],
+      "projects": ["University", "Meeting"],
       "checked": false,
-      "id": 1
+      "id": 1,
+      "reminder": false
     },
     {
       "task": "Project UXD Meeting",
-      "date": "2021-12-17",
+      "date": "2020-12-25T09:24",
       "subTasks": [
         { "subtask": "Organization", "checked": true, "id": 1 },
         {
@@ -30,13 +31,14 @@
         { "subtask": "Presentation", "checked": false, "id": 3 }
       ],
       "solar": "Star",
-      "tags": ["University", "Meeting"],
+      "projects": ["University", "Meeting"],
       "checked": false,
-      "id": 1
+      "id": 1,
+      "reminder": false
     },
     {
       "task": "Design Management",
-      "date": "2020-12-24",
+      "date": "2020-12-25T09:24",
       "subTasks": [
         { "subtask": "Design Brief", "checked": true, "id": 1 },
         {
@@ -46,9 +48,10 @@
         }
       ],
       "solar": "Planet",
-      "tags": ["University", "Lecture"],
+      "projects": ["University", "Lecture"],
       "checked": true,
-      "id": 2
+      "id": 2,
+      "reminder": true
     },
     {
       "task": "Christmas Dinner",
@@ -91,9 +94,12 @@
         }
       ],
       "solar": "Moon",
-      "tags": ["Private", "Christmas 2020"],
+      "projects": ["Private", "Christmas 2020"],
       "checked": false,
-      "id": 3
+      "id": 3,
+      "reminder": false
     }
-  ]
+  ],
+
+  "Projects": ["Private", "Christmas 2020", "University", "Meeting", "Lecture"]
 }

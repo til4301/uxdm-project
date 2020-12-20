@@ -15,6 +15,22 @@
 .addtaskdialog-dialog-wrapper {
 }
 
+.addtaskdialog-dialog-input-text {
+  color: #ffffff;
+  display: inline;
+  font-weight: 600;
+  font-size: 11px;
+  padding-left: 10px;
+}
+
+.addtaskdialog-dialog-input-text-default {
+  color: #696e7f;
+  display: inline;
+  font-weight: 600;
+  font-size: 11px;
+  padding-left: 10px;
+}
+
 /* Add Task input section */
 
 .addtaskdialog-dialog-addtask-input {
@@ -23,14 +39,6 @@
   border-bottom-color: #696e7f;
   display: flex;
   align-items: center;
-}
-
-.addtaskdialog-dialog-addtask-input-text {
-  color: #ffffff;
-  display: inline;
-  font-weight: 600;
-  font-size: 11px;
-  padding-left: 10px;
 }
 
 /* Select Date input section */
@@ -44,16 +52,8 @@
   border-bottom-color: #696e7f;
 }
 
-.addtaskdialog-dialog-selectdate-input-text {
-  color: #ffffff;
-  display: inline;
-  font-weight: 600;
-  font-size: 11px;
-  padding-left: 10px;
-}
-
 /* Select Group input section */
-.addtaskdialog-dialog-selectgroup-input {
+.addtaskdialog-dialog-selectProject-input {
   display: inline-flex;
   align-items: center;
   width: 45%;
@@ -63,13 +63,7 @@
   border-bottom-color: #696e7f;
 }
 
-.addtaskdialog-dialog-selectgroup-input-text {
-  color: #ffffff;
-  display: inline;
-  font-weight: 600;
-  font-size: 11px;
-  padding-left: 10px;
-}
+
 
 /* Solar Select */
 
@@ -86,6 +80,7 @@
 
 .addtaskdialog-dialog-add-button {
   --background: #00ffe2;
+  --background-activated: #696e7f;
   --color: #1e2662;
   --border-radius: 4px;
   font-size: 12px;
@@ -96,6 +91,7 @@
 
 .addtaskdialog-dialog-cancel-button {
   --background: rgba(0, 0, 0, 0);
+  --background-activated: #696e7f;
   --color: #00ffe2;
   --border-radius: 4px;
   font-size: 12px;

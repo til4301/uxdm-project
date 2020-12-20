@@ -22,7 +22,7 @@ import {
 
 // Components
 import TodoSubtask from "./TodoSubtask";
-import TodoTag from "../components/TodoTag";
+import ProjectTag from "../components/ProjectTag";
 import TodoSolar from "./TodoSolar";
 
 /* -----
@@ -65,7 +65,7 @@ interface Props {
   solar: string;
   checked: boolean;
   id: number;
-  tags: string[];
+  projects: string[];
   isLast: boolean;
 }
 
@@ -75,7 +75,7 @@ const TodoCard: React.FC<Props> = ({
   solar,
   checked,
   id,
-  tags,
+  projects,
   isLast,
 }) => {
   /* states */
@@ -90,7 +90,6 @@ const TodoCard: React.FC<Props> = ({
   };
 
   function showSolar(solar: string) {
-    console.log(solar);
   }
 
   return (
@@ -121,8 +120,8 @@ const TodoCard: React.FC<Props> = ({
           <IonRow style={{ display: "flex", alignItems: "center" }}>
             <IonCol size="2"></IonCol>
             <IonCol size="10">
-              {tags.map((tag) => (
-                <TodoTag tag={tag} />
+              {projects.map((project) => (
+                <ProjectTag project={project} />
               ))}
               <TodoSolar solar={solar} />
             </IonCol>

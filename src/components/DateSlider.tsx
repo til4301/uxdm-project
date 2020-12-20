@@ -45,8 +45,6 @@ interface Props {
 }
 
 const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
-
-
   //* Day DateSlider *//
   if (variant === "day") {
     return (
@@ -87,10 +85,14 @@ const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
         </div>
       </div>
     );
-  } 
-  
+  }
+
   //* Week DateSlider *//
   else if (variant === "week") {
+    console.log(
+      "Here: " + DateTime.local().setLocale("fr-CA").endOf("week").toISO()
+    );
+
     return (
       <div className="dateslider-dateslider-wrapper">
         <div className="dateslider-dateslider-arrow">
@@ -108,11 +110,13 @@ const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
         <div className="dateslider-dateslider-box">
           <p className="dateslider-dateslider-box-text">Week of &nbsp;</p>
           <p className="dateslider-dateslider-box-text-bold">
-            {DateTime.fromISO(dateSlide).toFormat("ccc") +
-              ", " +
-              DateTime.fromISO(dateSlide).toFormat("LLL") +
+            {DateTime.fromISO(dateSlide).startOf("week").toFormat("LLL") +
               " " +
-              DateTime.fromISO(dateSlide).toFormat("dd")}
+              DateTime.fromISO(dateSlide).startOf("week").toFormat("dd") +
+              " - " +
+              DateTime.fromISO(dateSlide).endOf("week").toFormat("LLL") +
+              " " +
+              DateTime.fromISO(dateSlide).endOf("week").toFormat("dd")}
           </p>
         </div>
 
@@ -129,7 +133,7 @@ const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
         </div>
       </div>
     );
-  } 
+  }
 
   //* Month DateSlider *//
   else if (variant === "month") {

@@ -13,7 +13,7 @@ import { DateTime } from "luxon";
 // Components
 import DateSlider from "../components/DateSlider";
 import TodoCard from "../components/TodoCard";
-import AddTaskDialog from "../components/AddTaskDialog";
+import AddTaskDialog from "../components/AddTask/AddTaskDialog";
 
 //! just for testing a database of Tasks of a day
 // Database
@@ -50,6 +50,7 @@ MyTodo.tsx
 const MyTodo_Week: React.FC = () => {
   /* variables */
   var date = DateTime.local();
+  let countTodo = 0;
 
   /* states */
   const [dateSlide, setDateSlide] = useState("");
@@ -69,13 +70,23 @@ const MyTodo_Week: React.FC = () => {
           {
             //* DateSlider *//
           }
-          <DateSlider dateSlide={dateSlide} setDateSlide={setDateSlide} variant="week"/>
+          <DateSlider
+            dateSlide={dateSlide}
+            setDateSlide={setDateSlide}
+            variant="week"
+          />
 
           {
             //* Listing all Todos *//
           }
-          {Data.tasks_day.map((Task, i) => {
-            if (Task.date === dateSlide) {
+          {Data.ToDos.map((Task, i) => {
+            if (
+              DateTime.fromISO(Task.date)
+                .startOf("week")
+                .equals(DateTime.fromISO(dateSlide).startOf("week"))
+            ) {
+              countTodo = countTodo + 1;
+
               return (
                 <TodoCard
                   id={Task.id}
@@ -83,12 +94,26 @@ const MyTodo_Week: React.FC = () => {
                   subTasks={Task.subTasks}
                   checked={Task.checked}
                   solar={Task.solar}
-                  tags={Task.tags}
+                  projects={Task.projects}
                   isLast={false}
                 />
               );
             }
           })}
+
+          {countTodo === 0 ? (
+            <div
+              style={{
+                width: "100%",
+                height: "80%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <p style={{ color: "#696e7f" }}>No ToDos</p>
+            </div>
+          ) : null}
         </div>
       </IonContent>
 

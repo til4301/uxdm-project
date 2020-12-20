@@ -21,7 +21,6 @@ import {
 } from "@ionic/react";
 
 // Components
-import TodoTag from "../components/TodoTag";
 
 // Database
 import Data from "../database/todo.json";

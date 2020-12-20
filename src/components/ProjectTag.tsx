@@ -10,7 +10,7 @@ Design
 ----- */
 
 /* MyTodo design */
-import "../design/todotag.scss";
+import "../design/projecttag.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -30,16 +30,16 @@ import "@ionic/react/css/display.css";
 import "../theme/variables.scss";
 
 /* -----
-.TodoTag.tsx
+.ProjectTag.tsx
 ----- */
 
 /* Props */
-interface TodoProps {
-  tag: String;
+interface Props {
+  project: String;
 }
 
-const TodoTag: React.FC<TodoProps> = ({ tag }) => {
-  return <div className="todo-tag">{tag}</div>;
+const ProjectTag: React.FC<Props> = ({ project }) => {
+  return <div className="project-tag">{project}</div>;
 };
 
-export default TodoTag;
+export default ProjectTag;

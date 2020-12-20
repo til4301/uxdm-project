@@ -68,20 +68,21 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonContent>
             <IonTabs>
-              
               {/* 
         //* Ionic router
         Here are the routes for the TabBar at the bottom defined
         At the end a redirect for the root path is defined
               */}
-             <IonRouterOutlet>
+              <IonRouterOutlet>
                 <Switch>
                   <Route exact path="/mytodo" render={() => <MyTodo />} />
                   <Route exact path="/deepfocus" render={() => <DeepFocus />} />
                   <Route exact path="/progress" render={() => <Progress />} />
                   <Route exact path="/remindme" render={() => <RemindMe />} />
                   <Route exact path="/solar" render={() => <SolarSystem />} />
-                  <Route render={() => <MyTodo />} />
+                  <Route exact path="/">
+                    <Redirect to="/mytodo" />
+                  </Route>
                 </Switch>
               </IonRouterOutlet>
 

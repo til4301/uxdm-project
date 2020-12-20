@@ -6,33 +6,37 @@ Imports
 import React, { useState } from "react";
 import { IonButton } from "@ionic/react";
 
-
 // Material UI
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 
+//  Luxon
+import { DateTime } from "luxon";
+
+
 // Components
-import AddTodoSelectDate from "../components/AddTodoSelectDate";
-import AddTodoSelectTaskName from "../components/AddTodoSelectTaskName";
+import AddTodoSelectDate from "./AddTodoSelectDate";
+import AddTodoSelectTaskName from "./AddTodoSelectTaskName";
+import AddTodoSelectProject from "./AddTodoSelectProject";
 
 // Resources
-import addTaskIcon from "../resources/addTask_icon.svg";
-import selectDateIcon from "../resources/selectDate_icon.svg";
-import selectGroupIcon from "../resources/selectGroup_icon.svg";
-import solarStarIcon from "../resources/solarStar_icon.svg";
-import solarMoonIcon from "../resources/solarMoon_icon.svg";
-import solarPlanetIcon from "../resources/solarPlanet_icon.svg";
-import solarStarIconDisabled from "../resources/solarStar-disabled_icon.svg";
-import solarMoonIconDisabled from "../resources/solarMoon-disabled_icon.svg";
-import solarPlanetIconDisabled from "../resources/solarPlanet-disabled_icon.svg";
+import addTaskIcon from "../../resources/addTask_icon.svg";
+import selectDateIcon from "../../resources/selectDate_icon.svg";
+import selectGroupIcon from "../../resources/selectGroup_icon.svg";
+import solarStarIcon from "../../resources/solarStar_icon.svg";
+import solarMoonIcon from "../../resources/solarMoon_icon.svg";
+import solarPlanetIcon from "../../resources/solarPlanet_icon.svg";
+import solarStarIconDisabled from "../../resources/solarStar-disabled_icon.svg";
+import solarMoonIconDisabled from "../../resources/solarMoon-disabled_icon.svg";
+import solarPlanetIconDisabled from "../../resources/solarPlanet-disabled_icon.svg";
 
 /* ----- 
 Design
 ----- */
 
 /* AddTaskDialog design */
-import "../design/addtaskdialog.scss";
+import "../../design/addtaskdialog.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -49,7 +53,7 @@ import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
 
 /* -----
 AddTaskDialog.tsx
@@ -65,11 +69,13 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
 
   const [showSelectDate, setShowSelectDate] = useState(false);
   const [showSelectedTaskName, setShowSelectTaskName] = useState(false);
+  const [showSelectedProject, setShowSelectedProject] = useState(false);
 
   const [solarSelected, setSolarSelected] = useState("NONE");
 
-  const [selectedTaskName, setSelectedTaskName] = useState("New Task");
-  const [selectedDate, setSelectedDate] = useState("2020-12-17");
+  const [selectedTaskName, setSelectedTaskName] = useState("");
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedProject, setSelectedProject] = useState("");
 
   /* return */
   return (
@@ -103,9 +109,15 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
               }}
             >
               <img src={addTaskIcon} alt="addTask" />
-              <p className="addtaskdialog-dialog-addtask-input-text">
-                {selectedTaskName}
-              </p>
+              {selectedTaskName === "" ? (
+                <p className="addtaskdialog-dialog-input-text-default">
+                  Enter Task Name
+                </p>
+              ) : (
+                <p className="addtaskdialog-dialog-input-text">
+                  {selectedTaskName}
+                </p>
+              )}
             </div>
 
             {/* Select Date input field */}
@@ -117,17 +129,35 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
               className="addtaskdialog-dialog-selectdate-input"
             >
               <img src={selectDateIcon} alt="selectDate" />
-              <p className="addtaskdialog-dialog-selectdate-input-text">
-                {selectedDate}
-              </p>
+              {selectedDate === "" ? (
+                <p className="addtaskdialog-dialog-input-text-default">
+                  Select Date
+                </p>
+              ) : (
+                <p className="addtaskdialog-dialog-input-text">
+                  {DateTime.fromISO(selectedDate).toFormat("d")+"."+DateTime.fromISO(selectedDate).toFormat("L")+"."+DateTime.fromISO(selectedDate).toFormat("yy")+" at "+DateTime.fromISO(selectedDate).toFormat("T")}
+                </p>
+              )}
             </div>
 
-            {/* Select Group input field */}
-            <div className="addtaskdialog-dialog-selectgroup-input">
-              <img src={selectGroupIcon} alt="selectGroup" />
-              <p className="addtaskdialog-dialog-selectgroup-input-text">
-                UXD Project
-              </p>
+            {/* Select Project input field */}
+            <div
+              onClick={() => {
+                setShowSelectedProject(true);
+                setShowAddTask(false);
+              }}
+              className="addtaskdialog-dialog-selectProject-input"
+            >
+              <img src={selectGroupIcon} alt="selectProject" />
+              {selectedProject === "" ? (
+                <p className="addtaskdialog-dialog-input-text-default">
+                  Assing Project
+                </p>
+              ) : (
+                <p className="addtaskdialog-dialog-input-text">
+                  {selectedProject}
+                </p>
+              )}
             </div>
 
             {/* Solar selection field */}
@@ -179,7 +209,9 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
         </DialogContent>
         {/* Dialog Interaction with Add Task and Cancel Button */}
         <DialogActions style={{ margin: "auto" }}>
-          <IonButton class="addtaskdialog-dialog-add-button">Add Task</IonButton>
+          <IonButton class="addtaskdialog-dialog-add-button">
+            Add Task
+          </IonButton>
           <IonButton
             onClick={() => {
               setShowAddTask(false);
@@ -207,6 +239,16 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
         showSelectDate={showSelectDate}
         setShowSelectDate={setShowSelectDate}
         setSelectedDate={setSelectedDate}
+        setShowAddTask={setShowAddTask}
+      />
+
+      {
+        //* Alert for Project selection (opened after click on project window in dialog) *//
+      }
+      <AddTodoSelectProject
+        showSelectedProject={showSelectedProject}
+        setShowSelectedProject={setShowSelectedProject}
+        setSelectedProject={setSelectedProject}
         setShowAddTask={setShowAddTask}
       />
     </div>

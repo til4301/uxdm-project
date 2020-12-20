@@ -12,8 +12,8 @@ import { DateTime } from "luxon";
 
 // Components
 import DateSlider from "../components/DateSlider";
-import TodoCard from "../components/TodoCard";
 import AddTaskDialog from "../components/AddTask/AddTaskDialog";
+import RemindMeCard from "../components/RemindMeCard";
 
 //! just for testing a database of Tasks of a day
 // Database
@@ -24,7 +24,7 @@ Design
 ----- */
 
 /* MyTodo design */
-import "../design/mytodo_day.scss";
+import "../design/remindme_month.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -42,13 +42,12 @@ import "@ionic/react/css/display.css";
 
 /* Global Theme */
 import "../theme/variables.scss";
-import { count } from "console";
 
 /* -----
-MyTodo.tsx
+RemindMe_Month.tsx
 ----- */
 
-const MyTodo_Day: React.FC = () => {
+const RemindMe_Month: React.FC = () => {
   /* variables */
   var date = DateTime.local();
   let countTodo = 0;
@@ -67,36 +66,36 @@ const MyTodo_Day: React.FC = () => {
   return (
     <IonPage>
       <IonContent>
-        <div className="mytodo_day-wrapper">
+        <div className="remindme_month-wrapper">
           {
             //* DateSlider *//
           }
           <DateSlider
             dateSlide={dateSlide}
             setDateSlide={setDateSlide}
-            variant="day"
+            variant="month"
           />
 
           {
             //* Listing all Todos *//
           }
           {Data.ToDos.map((Task, i) => {
-            if (DateTime.fromISO(Task.date).toISODate() === dateSlide) {
+            if (
+              DateTime.fromISO(Task.date).toFormat("y" + "-" + "LL") ===
+              DateTime.fromISO(dateSlide).toFormat("y" + "-" + "LL")
+            ) {
               countTodo = countTodo + 1;
+
               return (
-                <TodoCard
-                  id={Task.id}
+                <RemindMeCard
                   task={Task.task}
-                  subTasks={Task.subTasks}
-                  checked={Task.checked}
-                  solar={Task.solar}
-                  projects={Task.projects}
-                  isLast={false}
+                  id={Task.id}
+                  date={Task.date}
+                  isActive={Task.reminder}
                 />
               );
             }
           })}
-
           {countTodo === 0 ? (
             <div
               style={{
@@ -107,11 +106,9 @@ const MyTodo_Day: React.FC = () => {
                 justifyContent: "center",
               }}
             >
-              <p style={{ color: "#696e7f" }}>No ToDos</p>
+              <p style={{ color: "#696e7f" }}>No Reminders</p>
             </div>
           ) : null}
-
-          
         </div>
       </IonContent>
 
@@ -127,16 +124,19 @@ const MyTodo_Day: React.FC = () => {
       {
         //* Add Task button *//
       }
-      <div className="mytodo_day-addtask-button-wrapper">
+      <div className="remindme_month-addtask-button-wrapper">
         <IonButton
-          class="mytodo_day-addtask-button"
+          class="remindme_month-addtask-button"
           onClick={() => setShowAddTask(true)}
         >
-          <IonIcon icon={add} class="mytodo_day-addtask-button-icon"></IonIcon>
+          <IonIcon
+            icon={add}
+            class="remindme_month-addtask-button-icon"
+          ></IonIcon>
         </IonButton>
       </div>
     </IonPage>
   );
 };
 
-export default MyTodo_Day;
+export default RemindMe_Month;

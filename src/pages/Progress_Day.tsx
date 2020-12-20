@@ -12,7 +12,7 @@ import { DateTime } from "luxon";
 
 // Components
 import DateSlider from "../components/DateSlider";
-import TodoCard from "../components/TodoCard";
+import ProgressCard from "../components/ProgressCard";
 import AddTaskDialog from "../components/AddTask/AddTaskDialog";
 
 //! just for testing a database of Tasks of a day
@@ -24,7 +24,7 @@ Design
 ----- */
 
 /* MyTodo design */
-import "../design/mytodo_day.scss";
+import "../design/progress_day.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -42,16 +42,19 @@ import "@ionic/react/css/display.css";
 
 /* Global Theme */
 import "../theme/variables.scss";
-import { count } from "console";
 
 /* -----
-MyTodo.tsx
+Progress_Day.tsx
 ----- */
 
-const MyTodo_Day: React.FC = () => {
+const Progress_Day: React.FC = () => {
   /* variables */
   var date = DateTime.local();
-  let countTodo = 0;
+  var numberCheckedSubTasks = 0;
+  var tempNumberCheckedSubTasks = 0;
+
+  var allTasks = 0;
+  var allCheckedTasks = 0;
 
   /* states */
   const [dateSlide, setDateSlide] = useState("");
@@ -67,7 +70,7 @@ const MyTodo_Day: React.FC = () => {
   return (
     <IonPage>
       <IonContent>
-        <div className="mytodo_day-wrapper">
+        <div className="progress_day-wrapper">
           {
             //* DateSlider *//
           }
@@ -78,40 +81,50 @@ const MyTodo_Day: React.FC = () => {
           />
 
           {
-            //* Listing all Todos *//
+            //* Listing one overall ProgressCard *//
           }
           {Data.ToDos.map((Task, i) => {
             if (DateTime.fromISO(Task.date).toISODate() === dateSlide) {
-              countTodo = countTodo + 1;
+              Task.subTasks.map((subTask) => {
+                allTasks = allTasks + 1;
+                if (subTask.checked) {
+                  allCheckedTasks = allCheckedTasks + 1;
+                }
+              });
+            }
+          })}
+
+          <ProgressCard
+            task="All Tasks"
+            count={7}
+            numberSubTasks={allTasks}
+            numberCheckedSubTasks={allCheckedTasks}
+            variant="normal"
+          />
+
+          {
+            //* Listing all Progresses *//
+          }
+          {Data.ToDos.map((Task, i) => {
+            if (DateTime.fromISO(Task.date).toISODate() === dateSlide) {
+              Task.subTasks.map((subTask) => {
+                if (subTask.checked) {
+                  tempNumberCheckedSubTasks = tempNumberCheckedSubTasks + 1;
+                }
+              });
+              numberCheckedSubTasks = tempNumberCheckedSubTasks;
+              tempNumberCheckedSubTasks = 0;
               return (
-                <TodoCard
-                  id={Task.id}
+                <ProgressCard
                   task={Task.task}
-                  subTasks={Task.subTasks}
-                  checked={Task.checked}
-                  solar={Task.solar}
-                  projects={Task.projects}
-                  isLast={false}
+                  count={i + 1}
+                  numberSubTasks={Task.subTasks.length}
+                  numberCheckedSubTasks={numberCheckedSubTasks}
+                  variant="normal"
                 />
               );
             }
           })}
-
-          {countTodo === 0 ? (
-            <div
-              style={{
-                width: "100%",
-                height: "80%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <p style={{ color: "#696e7f" }}>No ToDos</p>
-            </div>
-          ) : null}
-
-          
         </div>
       </IonContent>
 
@@ -127,16 +140,19 @@ const MyTodo_Day: React.FC = () => {
       {
         //* Add Task button *//
       }
-      <div className="mytodo_day-addtask-button-wrapper">
+      <div className="progress_day-addtask-button-wrapper">
         <IonButton
-          class="mytodo_day-addtask-button"
+          class="progress_day-addtask-button"
           onClick={() => setShowAddTask(true)}
         >
-          <IonIcon icon={add} class="mytodo_day-addtask-button-icon"></IonIcon>
+          <IonIcon
+            icon={add}
+            class="progress_day-addtask-button-icon"
+          ></IonIcon>
         </IonButton>
       </div>
     </IonPage>
   );
 };
 
-export default MyTodo_Day;
+export default Progress_Day;

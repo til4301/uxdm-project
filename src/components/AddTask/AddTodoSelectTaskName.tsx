@@ -9,11 +9,11 @@ import { IonContent, IonPage, IonButton, IonAlert } from "@ionic/react";
 // Material UI
 
 // Components
-import TodoCard from "../components/TodoCard";
+import TodoCard from "../TodoCard";
 
 //! just for testing a database of Tasks of a day
 // Database
-import Data from "../database/todo.json";
+import Data from "../../database/todo.json";
 
 // Resources
 
@@ -22,7 +22,7 @@ Design
 ----- */
 
 /* MyTodo design */
-import "../design/addtodoalert.scss";
+import "../../design/addtodoalert.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -39,7 +39,7 @@ import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
 
 /* -----
 AddTodoSelectTaskName.tsx
@@ -69,7 +69,8 @@ const AddTodoSelectTaskName: React.FC<Props> = ({
         setShowSelectedTaskName(false);
       }}
       cssClass="mytodo_day-alert"
-      header={"Prompt!"}
+      header={"Taskname"}
+      subHeader={"Please enter a valid name for your task."}
       inputs={[
         // input date with min & max
         {
@@ -82,9 +83,6 @@ const AddTodoSelectTaskName: React.FC<Props> = ({
           text: "Cancel",
           role: "cancel",
           cssClass: "secondary",
-          handler: () => {
-            console.log("Confirm Cancel");
-          },
         },
         {
           text: "Ok",

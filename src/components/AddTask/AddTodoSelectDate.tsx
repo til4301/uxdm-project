@@ -6,14 +6,17 @@ Imports
 import React, { useState } from "react";
 import { IonContent, IonPage, IonButton, IonAlert } from "@ionic/react";
 
+// Luxon
+import { DateTime } from "luxon";
+
 // Material UI
 
 // Components
-import TodoCard from "../components/TodoCard";
+import TodoCard from "../TodoCard";
 
 //! just for testing a database of Tasks of a day
 // Database
-import Data from "../database/todo.json";
+import Data from "../../database/todo.json";
 
 // Resources
 
@@ -22,7 +25,7 @@ Design
 ----- */
 
 /* MyTodo design */
-import "../design/addtodoalert.scss";
+import "../../design/addtodoalert.scss";
 
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
@@ -39,7 +42,7 @@ import "@ionic/react/css/flex-utils.css";
 import "@ionic/react/css/display.css";
 
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
 
 /* -----
 AddTodoSelectDate.tsx
@@ -60,6 +63,10 @@ const AddTodoSelectDate: React.FC<Props> = ({
 }) => {
   /* states */
 
+  /* variables */
+  const min = "2000-01-01";
+  const max = "2049-12-31";
+
   /* return */
   return (
     <IonAlert
@@ -69,14 +76,13 @@ const AddTodoSelectDate: React.FC<Props> = ({
         setShowSelectDate(false);
       }}
       cssClass="mytodo_day-selectDate-alert"
-      header={"Prompt!"}
+      header={"Date & Time"}
+      subHeader={"Please select a valid date and time."}
       inputs={[
         // input date with min & max
         {
           name: "SelectDate",
-          type: "date",
-          min: "2017-03-01",
-          max: "2018-01-12",
+          type: "datetime-local",
         },
       ]}
       buttons={[
@@ -84,14 +90,16 @@ const AddTodoSelectDate: React.FC<Props> = ({
           text: "Cancel",
           role: "cancel",
           cssClass: "secondary",
-          handler: () => {
-            console.log("Confirm Cancel");
-          },
         },
         {
           text: "Ok",
           handler: (alertData) => {
-            setSelectedDate(alertData.SelectDate);
+            if (
+              DateTime.fromISO(min) < DateTime.fromISO(alertData.SelectDate) &&
+              DateTime.fromISO(max) > DateTime.fromISO(alertData.SelectDate)
+            ) {
+              setSelectedDate(alertData.SelectDate);
+            }
           },
         },
       ]}

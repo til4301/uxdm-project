@@ -1,0 +1,45 @@
+.remindme-card {
+  width: 100%;
+  background-color: #1e2662;
+  margin: 5px 0px 5px 0px;
+}
+
+.remindme-card-header {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
+.remindme-card-subheader {
+  font-size: 11px;
+  font-weight: 400;
+
+  color: rgba($color: #ffffff, $alpha: 0.7);
+
+  margin-top: 2px;
+}
+
+.remindme-card-grid-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.remindme-card-toggle {
+  --background: #4e5a97;
+  --background-checked: #00ffe2;
+  --handle-background: #fff;
+  --handle-background-checked: #fff;
+  --handle-spacing: 0px;
+}
+
+.ios .remindme-card-toggle {
+    padding-left: 10px;
+  padding-right: 15px;
+}
+
+.remindme-card-active {
+  font-size: 12px;
+  font-weight: 600;
+  padding-left: 0px;
+}
