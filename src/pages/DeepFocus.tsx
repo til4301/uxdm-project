@@ -127,7 +127,7 @@ modificated*/
               />
             </IonCol>
           </IonRow>
-          <IonRow>
+          <IonRow style={{ margin: "-5px" }}>
             {/** Grid column for the buttons **/}
             <IonCol className="deepfocus-rounded">
               <IonButton
@@ -147,7 +147,7 @@ modificated*/
           </IonRow>
           <IonRow>
             <IonCol>
-              <h2 className="deepfocus-fonts">Sessions</h2>
+              <p className="deepfocus-fonts">Sessions</p>
             </IonCol>
           </IonRow>
           <IonRow>
@@ -163,15 +163,16 @@ modificated*/
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol>
+            <IonCol size="4"></IonCol>
+            <IonCol size="2">
               <IonInput
                 onInput={(ev) => setMin(+(ev.target as HTMLInputElement).value)}
                 onClick={touch}
-                value={min < 10 ? `0${min}:` : min}
+                value={min + ":"}
                 className="deepfocus-move-right"
               ></IonInput>
             </IonCol>
-            <IonCol>
+            <IonCol size="3">
               <IonInput
                 onInput={(ev) => setSec(+(ev.target as HTMLInputElement).value)}
                 onClick={touch}
@@ -179,12 +180,14 @@ modificated*/
                 className="deepfocus-move-left"
               ></IonInput>
             </IonCol>
+            <IonCol size="3"></IonCol>
           </IonRow>
           <IonRow>
             <IonCol className="deepfocus-break">
               <p>Minutes left</p>
             </IonCol>
           </IonRow>
+
           <IonRow>
             <IonCol className="deepfocus-pos-timer">
               <IonButton
@@ -199,7 +202,7 @@ modificated*/
                 )}
               </IonButton>
               {/* <IonCol>
-                <IonButton className="rounded" onClick={restart}>
+                <IonButton className="rounded" onClick={touch}>
                   restart
                 </IonButton>
               </IonCol> */}
@@ -207,15 +210,16 @@ modificated*/
           </IonRow>
 
           <IonRow>
-            <IonCol size="2"></IonCol>
-            <IonCol justify-content-center>
-              <IonProgressBar
-                color="primary"
-                className="deepfocus-progress"
-                value={progress}
-              ></IonProgressBar>
+            <IonCol size="3"></IonCol>
+            <IonCol className="tres">
+              <div className="ttt">
+                <IonProgressBar
+                  className="deepfocus-progress"
+                  value={progress}
+                ></IonProgressBar>
+              </div>
             </IonCol>
-            <IonCol size="2"></IonCol>
+            <IonCol size="3"></IonCol>
           </IonRow>
         </IonGrid>
       </IonContent>

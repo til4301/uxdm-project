@@ -45,8 +45,6 @@ interface Props {
 }
 
 const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
-
-
   //* Day DateSlider *//
   if (variant === "day") {
     return (
@@ -87,8 +85,8 @@ const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
         </div>
       </div>
     );
-  } 
-  
+  }
+
   //* Week DateSlider *//
   else if (variant === "week") {
     return (
@@ -129,7 +127,7 @@ const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
         </div>
       </div>
     );
-  } 
+  }
 
   //* Month DateSlider *//
   else if (variant === "month") {

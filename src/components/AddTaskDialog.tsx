@@ -6,7 +6,6 @@ Imports
 import React, { useState } from "react";
 import { IonButton } from "@ionic/react";
 
-
 // Material UI
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -179,7 +178,9 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
         </DialogContent>
         {/* Dialog Interaction with Add Task and Cancel Button */}
         <DialogActions style={{ margin: "auto" }}>
-          <IonButton class="addtaskdialog-dialog-add-button">Add Task</IonButton>
+          <IonButton class="addtaskdialog-dialog-add-button">
+            Add Task
+          </IonButton>
           <IonButton
             onClick={() => {
               setShowAddTask(false);

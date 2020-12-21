@@ -1,9 +1,9 @@
 .deepfocus-pos-timer {
     text-align: center;
-    top: 55px;
+    top: 20px;
     --background: #00ffe2;
-    --border-radius: 45%;
-    --border-width: 40px;
+    --border-radius: 47%;
+    --border-width: 20%;
 }
 
 .deepfocus-but-left {
@@ -18,23 +18,24 @@
 
 .deepfocus-break {
     text-align: center;
-    font-weight: bold;
+    font-weight: lighter;
     font-size: small;
-    top: 20px;
+    top: 10px;
 }
 
 ion-input {
     text-align: center;
-    top: 55px;
+    top: 35px;
     color: white;
     font-size: 60px;
     font-weight: bold;
-    font-family: Monserrat;
+    font-family: monse;
 }
 
 .deepfocus-move-right {
     text-align: right;
-    font-size: xx-large;
+    font-size: 25pt;
+    font-family: Monserrat;
 }
 
 .deepfocus-move-session-left {
@@ -52,37 +53,47 @@ ion-input {
 .deepfocus-move-left {
     //   --background: #ffffff;
     text-align: left;
-    font-size: xx-large;
+    font-size: 25pt;
+    font-family: Monserrat;
 }
 
 .deepfocus-rounded {
     text-align: center;
     border-radius: 100px;
     top: 10px;
+    font-family: Monserrat;
 }
 
 .deepfocus-pose {
-    top: 55px;
+    top: 10px;
     text-align: center;
     font-size: small;
+    font-family: Monserrat;
 }
 
 .deepfocus-progress {
     text-align: center;
-    top: 110px;
+    top: 20px;
     height: 20px;
+    --background: rgba(0, 0, 0, 0);
+    // --progress-background: Transparent;
 }
 
 .deepfocus-fonts {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
-    top: 15px;
+    font-family: Monserrat;
+    font-size: 8pt;
+    color: lightgray;
 }
 
 @font-face {
     font-family: "Monserrat";
     src: url("../assets/fonts/Montserrat-Bold.ttf");
+}
+
+.tryout {
+    font-family: Monserrat;
+    font-size: small;
 }
 
 .deepfocus-nav {
@@ -99,6 +110,17 @@ ion-input {
     color: #00ffe2;
     margin: 0px;
     font-weight: 700;
+}
+
+.ttt {
+    // width: 100%;
+    // height: 15px;
+    top: 50px;
+    //   background-color: lightgreen;
+}
+
+.tres {
+    top: 30px;
 }
 
 .deepfocus-tab-underline {

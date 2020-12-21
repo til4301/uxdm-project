@@ -47,6 +47,7 @@ import "@ionic/react/css/display.css";
 /* Global Theme */
 import "./theme/variables.scss";
 import ScreenLogin from "./pages/ScreenLogin";
+import Register from "./pages/Register";
 
 /* -----
 App.tsx
@@ -54,7 +55,7 @@ App.tsx
 
 const App: React.FC = () => {
   /* States */
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /* Handle methdods */
   const handleLogin = (value: boolean) => {
@@ -68,13 +69,12 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonContent>
             <IonTabs>
-              
               {/* 
         //* Ionic router
         Here are the routes for the TabBar at the bottom defined
         At the end a redirect for the root path is defined
               */}
-             <IonRouterOutlet>
+              <IonRouterOutlet>
                 <Switch>
                   <Route exact path="/mytodo" render={() => <MyTodo />} />
                   <Route exact path="/deepfocus" render={() => <DeepFocus />} />
@@ -111,6 +111,7 @@ const App: React.FC = () => {
           <IonContent>
             <IonRouterOutlet>
               <Route render={() => <ScreenLogin changeLogin={handleLogin} />} />
+              {/* <Route render={() => <Register />} /> */}
             </IonRouterOutlet>
           </IonContent>
         </IonReactRouter>

@@ -3,11 +3,11 @@
     src: url("../assets/fonts/Montserrat-Bold.ttf");
 }
 
-.screenlogin-background {
-    --background: url("../background/signin.jpg") 50% no-repeat;
+.register-background {
+    --background: url("../background/sign_up.jpg") 50% no-repeat;
 }
 
-.screenlogin-item {
+.register-item {
     //top: 220px;
     // left: 300px;
     // width: 300px;
@@ -21,40 +21,30 @@
     --background: Transparent;
 }
 
-.screenlogin-font-color {
-    text-align: center;
-    color: #00ffe2;
-    top: 250px;
-    font-family: Monserrat;
+.register-div-button {
+    top: 290px;
+    width: 40px;
 }
 
-.move-right {
-    color: #a9a9a9;
-    text-align: right;
-    font-size: medium;
-}
-
-.move-left {
-    color: #a9a9a9;
-    text-align: left;
-    font-size: medium;
-}
-
-.screenlogin-button-des {
+.register-button-des {
     --background: #00ffe2;
     border-radius: 10px;
     margin-top: 50px;
     margin-left: 15px;
     margin-right: 15px;
-    height: 70px;
+    position: relative;
+    height: 60px;
     color: black;
+    width: 320px;
+    top: 130px;
     font-family: Monserrat;
     font-size: 10pt;
 }
 
-.screenlogin-col-button {
-    top: 250px;
-    width: 40px;
+.register-message {
+    top: 245px;
+    position: relative;
+    text-align: center;
+    color: #00ffe2;
+    font-family: Monserrat;
 }
-
-.prueba {}
