@@ -3,45 +3,44 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useState, useEffect } from "react";
-import { IonContent, IonIcon, IonPage, IonButton } from "@ionic/react";
-import { add } from "ionicons/icons";
-
-// Luxon
-import { DateTime } from "luxon";
-
-// Components
-import DateSlider from "../components/DateSlider";
-import ProgressCard from "../components/ProgressCard";
-import AddTaskDialog from "../components/AddTask/AddTaskDialog";
-
-//! just for testing a database of Tasks of a day
-// Database
-import Data from "../database/todo.json";
-
-/* ----- 
-Design
------ */
-
-/* MyTodo design */
-import "../design/progress_month.scss";
-
+import { IonButton, IonContent, IonIcon, IonPage } from "@ionic/react";
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
 import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
 /* Optional CSS for Ionic */
 import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "@ionic/react/css/typography.css";
+import { add } from "ionicons/icons";
+// Luxon
+import { DateTime } from "luxon";
+import React, { useEffect, useState } from "react";
+import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
+// Components
+import DateSlider from "../../components/DateSlider";
+import ProgressCard from "../../components/Progress/ProgressCard";
+//! just for testing a database of Tasks of a day
+// Database
+import Data from "../../database/todo.json";
+/* -----
+Design
+----- */
+/* MyTodo design */
+import "../../design/Progress/progress_month.scss";
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
+
+
+
+
+
+
+
 
 /* -----
 Progress_Month.tsx
@@ -49,21 +48,19 @@ Progress_Month.tsx
 
 const Progress_Week: React.FC = () => {
   /* variables */
-  var date = DateTime.local();
-  var numberCheckedSubTasks = 0;
-  var tempNumberCheckedSubTasks = 0;
-
-  var allTasks = 0;
-  var allCheckedTasks = 0;
+  var date = DateTime.local(); //current local time
+  var numberCheckedSubTasks = 0; //number of checked subTasks
+  var tempNumberCheckedSubTasks = 0; //temporary storage for number of checked subTasks
+  var allTasks = 0; //number of all tasks
+  var allCheckedTasks = 0; //number of all checked tasks
 
   /* states */
-  const [dateSlide, setDateSlide] = useState("");
+  const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
+  const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
 
-  const [showAddTask, setShowAddTask] = useState(false);
-
-  /* useEffect */
+  /* useEffect - function is called once when component mounts*/
   useEffect(() => {
-    setDateSlide(date.toISODate());
+    setDateSlide(date.toISODate()); //current local time is set for the dateslider
   }, []);
 
   /* return */
@@ -71,18 +68,18 @@ const Progress_Week: React.FC = () => {
     <IonPage>
       <IonContent>
         <div className="progress_month-wrapper">
-          {
-            //* DateSlider *//
-          }
+          {/*
+            DateSlider for switching between dates
+          */}
           <DateSlider
             dateSlide={dateSlide}
             setDateSlide={setDateSlide}
             variant="month"
           />
 
-          {
-            //* Listing one overall ProgressCard *//
-          }
+          {/*
+            Showing one overall task progress card at the top    
+          */}
           {Data.ToDos.map((Task, i) => {
             if (
               DateTime.fromISO(Task.date).toFormat("y" + "-" + "LL") ===
@@ -105,9 +102,9 @@ const Progress_Week: React.FC = () => {
             variant="normal"
           />
 
-          {
-            //* Listing all Todos *//
-          }
+          {/*
+            Function for mapping all todos that fit to current selected date period
+          */}
           {Data.ToDos.map((Task, i) => {
             if (
               DateTime.fromISO(Task.date).toFormat("y" + "-" + "LL") ===
@@ -134,27 +131,23 @@ const Progress_Week: React.FC = () => {
         </div>
       </IonContent>
 
-      {
-        //* Dialog for Add Task (opened after click on Add Task button) *//
-      }
-
+      {/*
+        Dialog for Add Task (opened after click on Add Task button)
+      */}
       <AddTaskDialog
         showAddTask={showAddTask}
         setShowAddTask={setShowAddTask}
       />
 
-      {
-        //* Add Task button *//
-      }
-      <div className="progress_month-addtask-button-wrapper">
+      {/*
+        Add Task button (opens the dialog for Add Task)
+      */}
+      <div className="mytodo_day-addtask-button-wrapper">
         <IonButton
-          class="progress_month-addtask-button"
+          class="mytodo_day-addtask-button"
           onClick={() => setShowAddTask(true)}
         >
-          <IonIcon
-            icon={add}
-            class="progress_month-addtask-button-icon"
-          ></IonIcon>
+          <IonIcon icon={add} class="mytodo_day-addtask-button-icon"></IonIcon>
         </IonButton>
       </div>
     </IonPage>

@@ -65,7 +65,6 @@ const DeepFocus: React.FC = () => {
   const [progress, setProgress] = useState(0.01);
   function touch() {
     setActive(!active);
-    console.log(sec + " entre");
   }
   // function restart() {
   //   setSec(5);
@@ -100,11 +99,9 @@ modificated*/
 
   // test functions -- prea and pre
   function pre() {
-    console.log("im Betrieb");
     setProgress(progress + 10);
   }
   function prea() {
-    console.log("im anderen Betrieb");
   }
   return (
     <IonPage>

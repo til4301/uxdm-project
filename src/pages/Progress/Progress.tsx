@@ -3,107 +3,105 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Link,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
 import {
   IonCol,
   IonContent,
   IonGrid,
-  IonHeader,
-  IonLabel,
   IonPage,
   IonRouterOutlet,
-  IonRow,
-  IonTab,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
-  IonTitle,
-  IonToolbar,
+  IonRow
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-
-// Pages
-import RemindMe_Day from "./RemindMe_Day";
-import RemindMe_Week from "./RemindMe_Week";
-import RemindMe_Month from "./RemindMe_Month";
-
+/* Core CSS for Ionic */
+import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/normalize.css";
+/* Optional CSS for Ionic */
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/typography.css";
+import React, { useState } from "react";
+import { Link, Redirect, Route, Switch } from "react-router-dom";
 /* -----
 Design
 ----- */
-
-/* remindme design */
-import "../design/remindme.scss";
-
-/* Core CSS for Ionic */
-import "@ionic/react/css/core.css";
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
-/* Optional CSS for Ionic */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+/* Progress design */
+import "../../design/Progress/progress.scss";
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
+// Pages
+import Progress_Day from "./Progress_Day";
+import Progress_Month from "./Progress_Month";
+import Progress_Week from "./Progress_Week";
+
+
+
+
 
 
 /* -----
-RemindMe.tsx
+Progress.tsx
 ----- */
 
-const RemindMe: React.FC = () => {
+const Progress: React.FC = () => {
   /* states */
   const [selected, setSelected] = useState("Day");
-
-  /* handle methods */
 
   /* return */
   return (
     <IonPage>
       <IonReactRouter>
         <IonContent>
+          {/*
+          Router for top navigation
+          */}
           <IonRouterOutlet>
             <Switch>
-              <Route exact path="/remindme/day" render={() => <RemindMe_Day />} />
-              <Route exact path="/remindme/week" render={() => <RemindMe_Week />} />
               <Route
                 exact
-                path="/remindme/month"
-                render={() => <RemindMe_Month />}
+                path="/progress/day"
+                render={() => <Progress_Day />}
+              />
+              <Route
+                exact
+                path="/progress/week"
+                render={() => <Progress_Week />}
+              />
+              <Route
+                exact
+                path="/progress/month"
+                render={() => <Progress_Month />}
               />
               <Route>
-                <Redirect to="/remindme/day" />
+                <Redirect to="/progress/day" />
               </Route>
             </Switch>
           </IonRouterOutlet>
-          {/** Grid layout for top tab menu **/}
-          <div className="remindme-grid-wrapper">
-            <IonGrid class="remindme-grid">
-              <IonRow class="remindme-tab">
-                {/** Tab for day **/}
-                <IonCol size="4" class="remindme-tab-col">
+
+          {/*
+            Top navigation bar
+          */}
+          <div className="progress-grid-wrapper">
+            <IonGrid class="progress-grid">
+              <IonRow class="progress-tab">
+                {/*
+                  Tab for day
+                */}
+                <IonCol size="4" class="progress-tab-col">
                   <Link
-                    to="/remindme/day"
+                    to="/progress/day"
                     style={{ textDecoration: "none" }}
                     onClick={() => setSelected("Day")}
                   >
                     <p
                       className={
                         selected === "Day"
-                          ? "remindme-tab-text-selected"
-                          : "remindme-tab-text"
+                          ? "progress-tab-text-selected"
+                          : "progress-tab-text"
                       }
                     >
                       Day
@@ -111,25 +109,27 @@ const RemindMe: React.FC = () => {
                     <div
                       className={
                         selected === "Day"
-                          ? "remindme-tab-underline-selected"
-                          : "remindme-tab-underline"
+                          ? "progress-tab-underline-selected"
+                          : "progress-tab-underline"
                       }
                       style={{ borderRadius: "20px 0px 0px 20px" }}
                     />
                   </Link>
                 </IonCol>
-                {/** Tab for week **/}
-                <IonCol size="4" class="remindme-tab-col">
+                {/*
+                  Tab for Week
+                */}
+                <IonCol size="4" class="progress-tab-col">
                   <Link
-                    to="/remindme/week"
+                    to="/progress/week"
                     style={{ textDecoration: "none" }}
                     onClick={() => setSelected("Week")}
                   >
                     <p
                       className={
                         selected === "Week"
-                          ? "remindme-tab-text-selected"
-                          : "remindme-tab-text"
+                          ? "progress-tab-text-selected"
+                          : "progress-tab-text"
                       }
                     >
                       Week
@@ -137,24 +137,27 @@ const RemindMe: React.FC = () => {
                     <div
                       className={
                         selected === "Week"
-                          ? "remindme-tab-underline-selected"
-                          : "remindme-tab-underline"
+                          ? "progress-tab-underline-selected"
+                          : "progress-tab-underline"
                       }
                     />
                   </Link>
                 </IonCol>
-                {/** Tab for month **/}
-                <IonCol size="4" class="remindme-tab-col">
+                
+                {/*
+                  Tab for Month
+                */}
+                <IonCol size="4" class="progress-tab-col">
                   <Link
-                    to="/remindme/month"
+                    to="/progress/month"
                     style={{ textDecoration: "none" }}
                     onClick={() => setSelected("Month")}
                   >
                     <p
                       className={
                         selected === "Month"
-                          ? "remindme-tab-text-selected"
-                          : "remindme-tab-text"
+                          ? "progress-tab-text-selected"
+                          : "progress-tab-text"
                       }
                     >
                       Month
@@ -162,8 +165,8 @@ const RemindMe: React.FC = () => {
                     <div
                       className={
                         selected === "Month"
-                          ? "remindme-tab-underline-selected"
-                          : "remindme-tab-underline"
+                          ? "progress-tab-underline-selected"
+                          : "progress-tab-underline"
                       }
                       style={{ borderRadius: "0px 20px 20px 0px" }}
                     />
@@ -178,4 +181,4 @@ const RemindMe: React.FC = () => {
   );
 };
 
-export default RemindMe;
+export default Progress;

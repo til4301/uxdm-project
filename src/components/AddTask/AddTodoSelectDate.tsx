@@ -3,51 +3,40 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useState } from "react";
-import { IonContent, IonPage, IonButton, IonAlert } from "@ionic/react";
-
-// Luxon
-import { DateTime } from "luxon";
-
-// Material UI
-
-// Components
-import TodoCard from "../TodoCard";
-
-//! just for testing a database of Tasks of a day
-// Database
-import Data from "../../database/todo.json";
-
-// Resources
-
-/* ----- 
-Design
------ */
-
-/* MyTodo design */
-import "../../design/addtodoalert.scss";
-
+import { IonAlert } from "@ionic/react";
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
 import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
 /* Optional CSS for Ionic */
 import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "@ionic/react/css/typography.css";
+// Luxon
+import { DateTime } from "luxon";
+import React from "react";
+/* -----
+Design
+----- */
+/* MyTodo design */
+import "../../design/AddTask/addtodoalert.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
+
+
+
+
+
 
 /* -----
 AddTodoSelectDate.tsx
 ----- */
 
+//Props
 interface Props {
   showSelectDate: boolean;
   setShowSelectDate: Function;
@@ -55,17 +44,16 @@ interface Props {
   setSelectedDate: Function;
 }
 
+//Function
 const AddTodoSelectDate: React.FC<Props> = ({
   showSelectDate,
   setShowSelectDate,
   setShowAddTask,
   setSelectedDate,
 }) => {
-  /* states */
-
   /* variables */
-  const min = "2000-01-01";
-  const max = "2049-12-31";
+  const min = "2000-01-01"; //minimum for selected date
+  const max = "2049-12-31"; //maximum for selected date
 
   /* return */
   return (
@@ -93,6 +81,7 @@ const AddTodoSelectDate: React.FC<Props> = ({
         },
         {
           text: "Ok",
+          //checking if date is between min and max
           handler: (alertData) => {
             if (
               DateTime.fromISO(min) < DateTime.fromISO(alertData.SelectDate) &&

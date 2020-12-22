@@ -3,57 +3,38 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useEffect, useState } from "react";
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonCheckbox,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonItemDivider,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonToggle,
-} from "@ionic/react";
-
-// Luxon
-import { DateTime } from "luxon";
-
-// Components
-
+import { IonCol, IonGrid, IonRow } from "@ionic/react";
+/* Core CSS for Ionic */
+import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/normalize.css";
+/* Optional CSS for Ionic */
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/typography.css";
+import React from "react";
 /* -----
 Design
 ----- */
-
 /* MyTodo design */
-import "../design/progresscard.scss";
-
-/* Core CSS for Ionic */
-import "@ionic/react/css/core.css";
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
-/* Optional CSS for Ionic */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "../../design/Progress/progresscard.scss";
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
+
+
+
+
+
 
 /* -----
 .ProgressCard.tsx
 ----- */
 
+//Props
 interface Props {
   task: string;
   count: number;
@@ -62,6 +43,7 @@ interface Props {
   variant: string;
 }
 
+//Function
 const ProgressCard: React.FC<Props> = ({
   task,
   count,

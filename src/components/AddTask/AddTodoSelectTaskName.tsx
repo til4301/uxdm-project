@@ -3,48 +3,37 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useState } from "react";
-import { IonContent, IonPage, IonButton, IonAlert } from "@ionic/react";
-
-// Material UI
-
-// Components
-import TodoCard from "../TodoCard";
-
-//! just for testing a database of Tasks of a day
-// Database
-import Data from "../../database/todo.json";
-
-// Resources
-
-/* ----- 
-Design
------ */
-
-/* MyTodo design */
-import "../../design/addtodoalert.scss";
-
+import { IonAlert } from "@ionic/react";
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
 import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
 /* Optional CSS for Ionic */
 import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "@ionic/react/css/typography.css";
+import React from "react";
+/* -----
+Design
+----- */
+/* MyTodo design */
+import "../../design/AddTask/addtodoalert.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
+
+
+
+
 
 /* -----
 AddTodoSelectTaskName.tsx
 ----- */
 
+//Props
 interface Props {
   showSelectedTaskName: boolean;
   setShowSelectedTaskName: Function;
@@ -52,14 +41,13 @@ interface Props {
   setShowAddTask: Function;
 }
 
+//Function
 const AddTodoSelectTaskName: React.FC<Props> = ({
   showSelectedTaskName,
   setShowSelectedTaskName,
   setSelectedTaskName,
   setShowAddTask,
 }) => {
-  /* states */
-
   /* return */
   return (
     <IonAlert
@@ -72,7 +60,6 @@ const AddTodoSelectTaskName: React.FC<Props> = ({
       header={"Taskname"}
       subHeader={"Please enter a valid name for your task."}
       inputs={[
-        // input date with min & max
         {
           name: "TaskName",
           type: "text",

@@ -3,48 +3,41 @@ Imports
 ----- */
 
 // React and Ionic
+import { IonAlert } from "@ionic/react";
+/* Core CSS for Ionic */
+import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/normalize.css";
+/* Optional CSS for Ionic */
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/typography.css";
 import React, { useEffect, useState } from "react";
-import { IonContent, IonPage, IonButton, IonAlert } from "@ionic/react";
-
-// Material UI
-
-// Components
-import TodoCard from "../TodoCard";
-
 //! just for testing a database of Tasks of a day
 // Database
 import Data from "../../database/todo.json";
-
-// Resources
-
-/* ----- 
+/* -----
 Design
 ----- */
-
 /* MyTodo design */
-import "../../design/addtodoalert.scss";
-
-/* Core CSS for Ionic */
-import "@ionic/react/css/core.css";
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
-/* Optional CSS for Ionic */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "../../design/AddTask/addtodoalert.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
+
+
+
+
+
 
 /* -----
 AddTodoSelectProject.tsx
 ----- */
 
+//Props
 interface Props {
   showSelectedProject: boolean;
   setShowSelectedProject: Function;
@@ -52,12 +45,14 @@ interface Props {
   setShowAddTask: Function;
 }
 
+//Function
 const AddTodoSelectProject: React.FC<Props> = ({
   showSelectedProject,
   setShowSelectedProject,
   setSelectedProject,
   setShowAddTask,
 }) => {
+
   /* states */
   const [projectList, setProjectList] = useState<Array<object>>([]);
 
@@ -71,7 +66,7 @@ const AddTodoSelectProject: React.FC<Props> = ({
     });
   };
 
-  /* useEffect */
+  /* useEffect - function is called once when component mounts*/
   useEffect(() => {
     collectProjects();
   }, []);
@@ -98,10 +93,8 @@ const AddTodoSelectProject: React.FC<Props> = ({
           text: "Ok",
           handler: (alertData) => {
             if (alertData === undefined) {
-              console.log("1");
             } else {
               setSelectedProject(alertData);
-              console.log(alertData);
             }
           },
         },

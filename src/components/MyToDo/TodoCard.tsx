@@ -3,62 +3,49 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useEffect, useState } from "react";
-import {
-  IonContent,
-  IonHeader,
-  IonPage,
-  IonTitle,
-  IonToolbar,
-  IonCheckbox,
-  IonList,
-  IonItem,
-  IonLabel,
-  IonItemDivider,
-  IonGrid,
-  IonRow,
-  IonCol,
-} from "@ionic/react";
-
-// Components
-import TodoSubtask from "./TodoSubtask";
-import ProjectTag from "../components/ProjectTag";
-import TodoSolar from "./TodoSolar";
-
+import { IonCheckbox, IonCol, IonGrid, IonRow } from "@ionic/react";
+/* Core CSS for Ionic */
+import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/normalize.css";
+/* Optional CSS for Ionic */
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/typography.css";
+import React, { useState } from "react";
 /* -----
 Design
 ----- */
-
 /* MyTodo design */
-import "../design/todocard.scss";
-
-/* Core CSS for Ionic */
-import "@ionic/react/css/core.css";
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
-/* Optional CSS for Ionic */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "../../design/MyTodo/todocard.scss";
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
+import ProjectTag from "./ProjectTag";
+import TodoSolar from "./TodoSolar";
+// Components
+import TodoSubtask from "./TodoSubtask";
+
+
+
+
+
 
 /* -----
 .TodoCard.tsx
 ----- */
 
+// sub Prop
 interface subTask {
   subtask: string;
   checked: boolean;
   id: number;
 }
 
+//Props
 interface Props {
   task: string;
   subTasks: subTask[];
@@ -66,9 +53,9 @@ interface Props {
   checked: boolean;
   id: number;
   projects: string[];
-  isLast: boolean;
 }
 
+//Function
 const TodoCard: React.FC<Props> = ({
   task,
   subTasks,
@@ -76,22 +63,15 @@ const TodoCard: React.FC<Props> = ({
   checked,
   id,
   projects,
-  isLast,
 }) => {
   /* states */
   const [expanded, setExpanded] = useState(false);
   const [numberSubtask, setNumberSubtask] = useState(3);
-  const [numberCheckedTasks, setNumberCheckedTasks] = useState(0);
 
-  let isItLast = isLast;
+  /* variables */
+  var numberCheckedTasks = 0;
 
-  const changeCheckedNumber = (value: number) => {
-    setNumberCheckedTasks(numberCheckedTasks + value);
-  };
-
-  function showSolar(solar: string) {
-  }
-
+  /* return */
   return (
     <div className={expanded ? "todo-card-expanded" : "todo-card"}>
       <IonGrid>
@@ -115,6 +95,9 @@ const TodoCard: React.FC<Props> = ({
           </IonCol>
         </IonRow>
       </IonGrid>
+      {/*
+        expanded content (with subtask, projects, solar etc.)
+      */}
       <div className={expanded ? "todo-expanded" : "todo"}>
         <IonGrid>
           <IonRow style={{ display: "flex", alignItems: "center" }}>
@@ -127,19 +110,24 @@ const TodoCard: React.FC<Props> = ({
             </IonCol>
           </IonRow>
         </IonGrid>
-        {subTasks.map((subTask) => {
+        {/*
+          mapping all subtasks
+        */}
+        {subTasks.map((subTask, i) => {
+          if (subTask.checked) {
+            numberCheckedTasks = numberCheckedTasks + 1;
+          }
+
           return (
             <TodoSubtask
               subtask={subTask.subtask}
               checked={subTask.checked}
-              changeCheckedNumber={changeCheckedNumber}
               parentId={id}
               id={subTask.id}
             />
           );
         })}
       </div>
-      {isItLast && expanded ? <div style={{ width: "100vw", height: "60px" }} /> : null}
     </div>
   );
 };

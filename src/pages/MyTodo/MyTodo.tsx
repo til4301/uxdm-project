@@ -3,98 +3,97 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Link,
-  Redirect,
-  Route,
-  Switch,
-} from "react-router-dom";
 import {
   IonCol,
   IonContent,
   IonGrid,
   IonPage,
   IonRouterOutlet,
-  IonRow,
+  IonRow
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-
-// Pages
-import Progress_Day from "./Progress_Day"
-import Progress_Week from "./Progress_Week"
-import Progress_Month from "./Progress_Month"
-
+/* Core CSS for Ionic */
+import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/normalize.css";
+/* Optional CSS for Ionic */
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/typography.css";
+import React, { useState } from "react";
+import { Link, Redirect, Route, Switch } from "react-router-dom";
 /* -----
 Design
 ----- */
-
-/* Progress design */
-import "../design/progress.scss";
-
-/* Core CSS for Ionic */
-import "@ionic/react/css/core.css";
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
-/* Optional CSS for Ionic */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+/* MyTodo design */
+import "../../design/MyTodo/mytodo.scss";
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
+// Pages
+import MyTodo_Day from "./MyTodo_Day";
+import MyTodo_Month from "./MyTodo_Month";
+import MyTodo_Week from "./MyTodo_Week";
+
+
+
+
+
 
 /* -----
-Progress.tsx
+MyTodo.tsx
 ----- */
 
-const Progress: React.FC = () => {
+const MyTodo: React.FC = () => {
   /* states */
   const [selected, setSelected] = useState("Day");
+  const [dateSlide, setDateSlide] = useState("");
 
-  /* handle methods */
-
-  /* return */
+  /* return for top navigation*/
   return (
     <IonPage>
       <IonReactRouter>
         <IonContent>
+          {/*
+          Router for top navigation
+          */}
           <IonRouterOutlet>
             <Switch>
-              <Route exact path="/progress/day" render={() => <Progress_Day />} />
-              <Route exact path="/progress/week" render={() => <Progress_Week />} />
+              <Route exact path="/mytodo/day" render={() => <MyTodo_Day />} />
+              <Route exact path="/mytodo/week" render={() => <MyTodo_Week />} />
               <Route
                 exact
-                path="/progress/month"
-                render={() => <Progress_Month />}
+                path="/mytodo/month"
+                render={() => <MyTodo_Month />}
               />
               <Route>
-                <Redirect to="/progress/day" />
+                <Redirect to="/mytodo/day" />
               </Route>
             </Switch>
           </IonRouterOutlet>
-          {/** Grid layout for top tab menu **/}
-          <div className="progress-grid-wrapper">
-            <IonGrid class="progress-grid">
-              <IonRow class="progress-tab">
-                {/** Tab for day **/}
-                <IonCol size="4" class="progress-tab-col">
+          {/*
+            Top navigation bar
+          */}
+          <div className="mytodo-grid-wrapper">
+            <IonGrid class="mytodo-grid">
+              <IonRow class="mytodo-tab">
+                {/*
+                  Tab for day
+                */}
+                <IonCol size="4" class="mytodo-tab-col">
                   <Link
-                    to="/progress/day"
+                    to="/mytodo/day"
                     style={{ textDecoration: "none" }}
                     onClick={() => setSelected("Day")}
                   >
                     <p
                       className={
                         selected === "Day"
-                          ? "progress-tab-text-selected"
-                          : "progress-tab-text"
+                          ? "mytodo-tab-text-selected"
+                          : "mytodo-tab-text"
                       }
                     >
                       Day
@@ -102,25 +101,27 @@ const Progress: React.FC = () => {
                     <div
                       className={
                         selected === "Day"
-                          ? "progress-tab-underline-selected"
-                          : "progress-tab-underline"
+                          ? "mytodo-tab-underline-selected"
+                          : "mytodo-tab-underline"
                       }
                       style={{ borderRadius: "20px 0px 0px 20px" }}
                     />
                   </Link>
                 </IonCol>
-                {/** Tab for week **/}
-                <IonCol size="4" class="progress-tab-col">
+                {/*
+                  Tab for week
+                */}
+                <IonCol size="4" class="mytodo-tab-col">
                   <Link
-                    to="/progress/week"
+                    to="/mytodo/week"
                     style={{ textDecoration: "none" }}
                     onClick={() => setSelected("Week")}
                   >
                     <p
                       className={
                         selected === "Week"
-                          ? "progress-tab-text-selected"
-                          : "progress-tab-text"
+                          ? "mytodo-tab-text-selected"
+                          : "mytodo-tab-text"
                       }
                     >
                       Week
@@ -128,24 +129,26 @@ const Progress: React.FC = () => {
                     <div
                       className={
                         selected === "Week"
-                          ? "progress-tab-underline-selected"
-                          : "progress-tab-underline"
+                          ? "mytodo-tab-underline-selected"
+                          : "mytodo-tab-underline"
                       }
                     />
                   </Link>
                 </IonCol>
-                {/** Tab for month **/}
-                <IonCol size="4" class="progress-tab-col">
+                {/*
+                  Tab for month
+                */}
+                <IonCol size="4" class="mytodo-tab-col">
                   <Link
-                    to="/progress/month"
+                    to="/mytodo/month"
                     style={{ textDecoration: "none" }}
                     onClick={() => setSelected("Month")}
                   >
                     <p
                       className={
                         selected === "Month"
-                          ? "progress-tab-text-selected"
-                          : "progress-tab-text"
+                          ? "mytodo-tab-text-selected"
+                          : "mytodo-tab-text"
                       }
                     >
                       Month
@@ -153,8 +156,8 @@ const Progress: React.FC = () => {
                     <div
                       className={
                         selected === "Month"
-                          ? "progress-tab-underline-selected"
-                          : "progress-tab-underline"
+                          ? "mytodo-tab-underline-selected"
+                          : "mytodo-tab-underline"
                       }
                       style={{ borderRadius: "0px 20px 20px 0px" }}
                     />
@@ -169,4 +172,4 @@ const Progress: React.FC = () => {
   );
 };
 
-export default Progress;
+export default MyTodo;

@@ -3,64 +3,61 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useState, useEffect } from "react";
-import { IonContent, IonIcon, IonPage, IonButton } from "@ionic/react";
-import { add } from "ionicons/icons";
-
-// Luxon
-import { DateTime } from "luxon";
-
-// Components
-import DateSlider from "../components/DateSlider";
-import TodoCard from "../components/TodoCard";
-import AddTaskDialog from "../components/AddTask/AddTaskDialog";
-
-//! just for testing a database of Tasks of a day
-// Database
-import Data from "../database/todo.json";
-
-/* ----- 
-Design
------ */
-
-/* MyTodo design */
-import "../design/mytodo_day.scss";
-
+import { IonButton, IonContent, IonIcon, IonPage } from "@ionic/react";
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
 import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
 /* Optional CSS for Ionic */
 import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "@ionic/react/css/typography.css";
+import { add } from "ionicons/icons";
+// Luxon
+import { DateTime } from "luxon";
+import React, { useEffect, useState } from "react";
+import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
+// Components
+import DateSlider from "../../components/DateSlider";
+import TodoCard from "../../components/MyToDo/TodoCard";
+//! just for testing a database of Tasks of a day
+// Database
+import Data from "../../database/todo.json";
+/* -----
+Design
+----- */
+/* MyTodo design */
+import "../../design/MyTodo/mytodo_day.scss";
 /* Global Theme */
-import "../theme/variables.scss";
-import { count } from "console";
+import "../../theme/variables.scss";
+
+
+
+
+
+
+
 
 /* -----
-MyTodo.tsx
+MyTodo_day.tsx
 ----- */
 
 const MyTodo_Day: React.FC = () => {
   /* variables */
-  var date = DateTime.local();
-  let countTodo = 0;
+  var date = DateTime.local(); //current local time
+  let countTodo = 0; //counter for todos und selected date period (when 0, blank screen will be shown)
 
   /* states */
-  const [dateSlide, setDateSlide] = useState("");
+  const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
+  const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
 
-  const [showAddTask, setShowAddTask] = useState(false);
-
-  /* useEffect */
+  /* useEffect - function is called once when component mounts*/
   useEffect(() => {
-    setDateSlide(date.toISODate());
+    setDateSlide(date.toISODate()); //current local time is set for the dateslider
   }, []);
 
   /* return */
@@ -68,18 +65,18 @@ const MyTodo_Day: React.FC = () => {
     <IonPage>
       <IonContent>
         <div className="mytodo_day-wrapper">
-          {
-            //* DateSlider *//
-          }
+          {/*
+            DateSlider for switching between dates
+          */}
           <DateSlider
             dateSlide={dateSlide}
             setDateSlide={setDateSlide}
             variant="day"
           />
 
-          {
-            //* Listing all Todos *//
-          }
+          {/*
+            Function for mapping all todos that fit to current selected date period
+          */}
           {Data.ToDos.map((Task, i) => {
             if (DateTime.fromISO(Task.date).toISODate() === dateSlide) {
               countTodo = countTodo + 1;
@@ -91,12 +88,14 @@ const MyTodo_Day: React.FC = () => {
                   checked={Task.checked}
                   solar={Task.solar}
                   projects={Task.projects}
-                  isLast={false}
                 />
               );
             }
           })}
 
+          {/*
+            Counter of shown ToDos. When 0, then the No ToDos page will be shown.
+          */}
           {countTodo === 0 ? (
             <div
               style={{
@@ -110,23 +109,20 @@ const MyTodo_Day: React.FC = () => {
               <p style={{ color: "#696e7f" }}>No ToDos</p>
             </div>
           ) : null}
-
-          
         </div>
       </IonContent>
 
-      {
-        //* Dialog for Add Task (opened after click on Add Task button) *//
-      }
-
+      {/*
+        Dialog for Add Task (opened after click on Add Task button)
+      */}
       <AddTaskDialog
         showAddTask={showAddTask}
         setShowAddTask={setShowAddTask}
       />
 
-      {
-        //* Add Task button *//
-      }
+      {/*
+        Add Task button (opens the dialog for Add Task)
+      */}
       <div className="mytodo_day-addtask-button-wrapper">
         <IonButton
           class="mytodo_day-addtask-button"

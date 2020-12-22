@@ -3,36 +3,35 @@ Imports
 ----- */
 
 // React and Ionic
-import React, { useState, useEffect } from "react";
 import { IonIcon } from "@ionic/react";
-import { chevronForward, chevronBack } from "ionicons/icons";
-
-// Luxon
-import { DateTime } from "luxon";
-
-/* ----- 
-Design
------ */
-
-/* Dateslider design */
-import "../design/dateslider.scss";
-
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
 import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
 /* Optional CSS for Ionic */
 import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "@ionic/react/css/typography.css";
+import { chevronBack, chevronForward } from "ionicons/icons";
+// Luxon
+import { DateTime } from "luxon";
+import React from "react";
+/* -----
+Design
+----- */
+/* Dateslider design */
+import "../design/dateslider.scss";
 /* Global Theme */
 import "../theme/variables.scss";
+
+
+
+
+
 
 /* -----
 DateSlider.tsx
@@ -89,9 +88,7 @@ const DateSlider: React.FC<Props> = ({ dateSlide, setDateSlide, variant }) => {
 
   //* Week DateSlider *//
   else if (variant === "week") {
-    console.log(
-      "Here: " + DateTime.local().setLocale("fr-CA").endOf("week").toISO()
-    );
+   
 
     return (
       <div className="dateslider-dateslider-wrapper">

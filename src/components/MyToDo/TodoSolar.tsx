@@ -3,42 +3,43 @@ Imports
 ----- */
 
 // React and Ionic
+/* Core CSS for Ionic */
+import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/normalize.css";
+/* Optional CSS for Ionic */
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/typography.css";
 import React from "react";
-
 /* -----
 Design
 ----- */
-
 /* MyTodo design */
-import "../design/todosolar.scss";
-
-/* Core CSS for Ionic */
-import "@ionic/react/css/core.css";
-import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
-/* Optional CSS for Ionic */
-import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
-import "@ionic/react/css/text-alignment.css";
-import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "../../design/MyTodo/todosolar.scss";
 /* Global Theme */
-import "../theme/variables.scss";
+import "../../theme/variables.scss";
+
+
+
+
 
 /* -----
 .TodoTag.tsx
 ----- */
 
-/* Props */
+//Props
 interface Props {
   solar: String;
 }
 
+//Function
 const TodoSolar: React.FC<Props> = ({ solar }) => {
+  // Planet icon
   if (solar === "Planet") {
     return (
       <div className="todosolar-icon-planet">
@@ -70,7 +71,10 @@ const TodoSolar: React.FC<Props> = ({ solar }) => {
         </svg>
       </div>
     );
-  } else if (solar === "Star") {
+  }
+
+  // Star icon
+  else if (solar === "Star") {
     return (
       <div className="todosolar-icon-star">
         <svg
@@ -89,7 +93,9 @@ const TodoSolar: React.FC<Props> = ({ solar }) => {
         </svg>
       </div>
     );
-  } else if (solar === "Moon") {
+  }
+  // Moon Icon
+  else if (solar === "Moon") {
     return (
       <div className="todosolar-icon-moon">
         <svg
