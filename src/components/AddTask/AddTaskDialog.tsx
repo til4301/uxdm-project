@@ -23,9 +23,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 //  Luxon
 import { DateTime } from "luxon";
 import React, { useState } from "react";
-/* -----
-Design
------ */
 /* AddTaskDialog design */
 import "../../design/AddTask/addtaskdialog.scss";
 // Resources
@@ -44,6 +41,7 @@ import "../../theme/variables.scss";
 import AddTodoSelectDate from "./AddTodoSelectDate";
 import AddTodoSelectProject from "./AddTodoSelectProject";
 import AddTodoSelectTaskName from "./AddTodoSelectTaskName";
+
 
 
 

@@ -45,7 +45,7 @@ const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
         <IonGrid>
           <IonRow>
             <IonCol className="screenlogin-font-color">
-              <h4>Welcome back!</h4>
+              <p className="screenlogin-font-color">Welcome back !</p>
             </IonCol>
           </IonRow>
           <IonRow>

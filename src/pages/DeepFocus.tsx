@@ -107,10 +107,25 @@ modificated*/
     <IonPage>
       <IonContent className="deepfocus-background">
         <IonGrid>
-          <IonRow>
-            <IonCol>Long/ Short session</IonCol>
+          <IonRow className="deepfocus-nav">
+            {/** Grid column for number of Sessions **/}
+            <IonCol size="6" className="deepfocus-nav-col">
+              <p className="deepfocus-tab-text-selected">Short session</p>
+              <div
+                className="deepfocus-tab-underline-selected"
+                style={{ borderRadius: "20px 0px 0px 20px" }}
+              />
+            </IonCol>
+            <IonCol size="6" className="deepfocus-nav-col">
+              <p className="deepfocus-tab-text-selected">Long Session</p>
+              <div
+                className="deepfocus-tab-underline"
+                style={{ borderRadius: "20px 0px 0px 20px" }}
+              />
+            </IonCol>
           </IonRow>
-          <IonRow>
+          <IonRow style={{ margin: "-5px" }}>
+            {/** Grid column for the buttons **/}
             <IonCol className="deepfocus-rounded">
               <IonButton
                 className="deepfocus-move-session-left"
@@ -129,7 +144,7 @@ modificated*/
           </IonRow>
           <IonRow>
             <IonCol>
-              <h2 className="deepfocus-fonts">Sessions</h2>
+              <p className="deepfocus-fonts">Sessions</p>
             </IonCol>
           </IonRow>
           <IonRow>
@@ -145,15 +160,16 @@ modificated*/
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol>
+            <IonCol size="4"></IonCol>
+            <IonCol size="2">
               <IonInput
                 onInput={(ev) => setMin(+(ev.target as HTMLInputElement).value)}
                 onClick={touch}
-                value={min < 10 ? `0${min}:` : min}
+                value={min + ":"}
                 className="deepfocus-move-right"
               ></IonInput>
             </IonCol>
-            <IonCol>
+            <IonCol size="3">
               <IonInput
                 onInput={(ev) => setSec(+(ev.target as HTMLInputElement).value)}
                 onClick={touch}
@@ -161,12 +177,14 @@ modificated*/
                 className="deepfocus-move-left"
               ></IonInput>
             </IonCol>
+            <IonCol size="3"></IonCol>
           </IonRow>
           <IonRow>
             <IonCol className="deepfocus-break">
               <p>Minutes left</p>
             </IonCol>
           </IonRow>
+
           <IonRow>
             <IonCol className="deepfocus-pos-timer">
               <IonButton
@@ -181,7 +199,7 @@ modificated*/
                 )}
               </IonButton>
               {/* <IonCol>
-                <IonButton className="rounded" onClick={restart}>
+                <IonButton className="rounded" onClick={touch}>
                   restart
                 </IonButton>
               </IonCol> */}
@@ -189,15 +207,16 @@ modificated*/
           </IonRow>
 
           <IonRow>
-            <IonCol size="2"></IonCol>
-            <IonCol justify-content-center>
-              <IonProgressBar
-                color="primary"
-                className="deepfocus-progress"
-                value={progress}
-              ></IonProgressBar>
+            <IonCol size="3"></IonCol>
+            <IonCol className="tres">
+              <div className="ttt">
+                <IonProgressBar
+                  className="deepfocus-progress"
+                  value={progress}
+                ></IonProgressBar>
+              </div>
             </IonCol>
-            <IonCol size="2"></IonCol>
+            <IonCol size="3"></IonCol>
           </IonRow>
         </IonGrid>
       </IonContent>

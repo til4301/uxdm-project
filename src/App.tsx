@@ -3,8 +3,6 @@ Imports
 ----- */
 
 /* React and Ionic */
-import React, { useState } from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
 import {
   IonApp,
   IonContent,
@@ -12,42 +10,41 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs,
+  IonTabs
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-
-/* Pages */
-import MyTodo from "./pages/MyTodo/MyTodo";
-import DeepFocus from "./pages/DeepFocus";
-import Progress from "./pages/Progress/Progress";
-import RemindMe from "./pages/RemindMe/RemindMe";
-
-/* Login & Register */
-import ScreenLogin from "./pages/ScreenLogin";
-
-/* -----
-Design
------ */
-
-/* App design */
-import "./design/app.scss";
-
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
 import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
 /* Optional CSS for Ionic */
 import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "@ionic/react/css/typography.css";
+import React, { useState } from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
+/* App design */
+import "./design/app.scss";
+import DeepFocus from "./pages/DeepFocus";
+/* Pages */
+import MyTodo from "./pages/MyTodo/MyTodo";
+import Progress from "./pages/Progress/Progress";
+import RemindMe from "./pages/RemindMe/RemindMe";
+/* Login & Register */
+import ScreenLogin from "./pages/ScreenLogin";
 /* Global Theme */
 import "./theme/variables.scss";
+
+
+
+
+
+
+
 
 /* -----
 App.tsx
@@ -55,7 +52,7 @@ App.tsx
 
 const App: React.FC = () => {
   /* States */
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /* Handle methdods */
   const handleLogin = (value: boolean) => {
@@ -114,6 +111,7 @@ const App: React.FC = () => {
           <IonContent>
             <IonRouterOutlet>
               <Route render={() => <ScreenLogin changeLogin={handleLogin} />} />
+              {/* <Route render={() => <Register />} /> */}
             </IonRouterOutlet>
           </IonContent>
         </IonReactRouter>
