@@ -59,7 +59,7 @@
       "subTasks": [
         {
           "subtask": "Food and beverage shopping",
-          "checked": true,
+          "checked": false,
           "id": 1
         },
         {
