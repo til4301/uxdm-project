@@ -84,7 +84,7 @@ const AddTodoSelectProject: React.FC<Props> = ({
         setShowAddTask(true);
         setShowSelectedProject(false);
       }}
-      cssClass="mytodo_day-alert"
+      cssClass="selectDate-alert"
       header={"Project"}
       subHeader={"Please choose a project to assign to your task."}
       inputs={projectList}

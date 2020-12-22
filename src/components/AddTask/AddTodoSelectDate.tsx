@@ -75,7 +75,7 @@ const AddTodoSelectDate: React.FC<Props> = ({
         setShowAddTask(true);
         setShowSelectDate(false);
       }}
-      cssClass="mytodo_day-selectDate-alert"
+      cssClass="selectDate-alert"
       header={"Date & Time"}
       subHeader={"Please select a valid date and time."}
       inputs={[

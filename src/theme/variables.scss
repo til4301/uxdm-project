@@ -5,9 +5,10 @@
 
 :root {
   /** Definition of default font Montserrat **/
-  * {
-    font-family: "Montserrat", sans-serif;
-    src: url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+  :root[mode=ios] .montserrat,
+  :root[mode=md] .montserrat{
+    --ion-font-family:  'Montserrat'!important;
+    font-family:  'Montserrat' !important;
   }
 
   /** primary adapted**/

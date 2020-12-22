@@ -54,7 +54,7 @@ App.tsx
 
 const App: React.FC = () => {
   /* States */
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /* Handle methdods */
   const handleLogin = (value: boolean) => {

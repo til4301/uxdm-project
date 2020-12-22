@@ -68,7 +68,7 @@ const AddTodoSelectTaskName: React.FC<Props> = ({
         setShowAddTask(true);
         setShowSelectedTaskName(false);
       }}
-      cssClass="mytodo_day-alert"
+      cssClass="selectDate-alert"
       header={"Taskname"}
       subHeader={"Please enter a valid name for your task."}
       inputs={[
