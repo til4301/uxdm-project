@@ -1,7 +1,6 @@
 /* Ionic imports */
 import {
   IonButton,
-  IonCheckbox,
   IonCol,
   IonContent,
   IonGrid,
@@ -11,17 +10,11 @@ import {
   IonPage,
   IonRow,
 } from "@ionic/react";
-
 /* React imports */
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-
-/* Component import */
-import App from "../App";
-
 /* ScreenLogin design */
 import "../design/screenlogin.scss";
-import MyTodo from "./MyTodo";
 
 /* Props */
 interface LoginProps {
@@ -39,7 +32,6 @@ const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
   // with this function I verify if the values of the inputs were updated correctly
   const handleLogin = () => {
     if (user == "Kevin" && pass == "Diaz") {
-      console.log("bien");
       changeLogin(true);
       history.push("/mytodo");
     } else {
