@@ -35,12 +35,7 @@ import "../../design/MyTodo/mytodo_day.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
 
-
-
-
-
-
-
+import { db } from "../../firebase";
 
 /* -----
 MyTodo_day.tsx
@@ -55,10 +50,41 @@ const MyTodo_Day: React.FC = () => {
   const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
   const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
 
+  const [data, setData] = useState([]);
+
   /* useEffect - function is called once when component mounts*/
   useEffect(() => {
     setDateSlide(date.toISODate()); //current local time is set for the dateslider
+    db.collection("user")
+      .doc("jGdXfe0OFdTzxMATHqH0")
+      .onSnapshot((result) => {
+        console.log(result.data());
+      });
+    db.collection("todo")
+      //.where("user", "==", "Tim")
+      .onSnapshot((snapshot) => {
+        let temp: any = [];
+        snapshot.forEach((item) => {
+          //temp.push(item.data());
+          console.log({ data: item.data(), id: item.id });
+        });
+        setData(temp);
+      });
+    set();
   }, []);
+
+  const set = () => {
+    db.collection("todo")
+      .doc("D2tkaSpIsrz1kKN2tVjM")
+      .set({
+        user: "Los Angeles",
+        task: "CA",
+        subtasks: {
+          taskname: "asdas",
+          id: 2,
+        },
+      });
+  };
 
   /* return */
   return (
@@ -74,6 +100,11 @@ const MyTodo_Day: React.FC = () => {
             variant="day"
           />
 
+          {data.length > 0 &&
+            data.map((Todo) => {
+              return <h1>{Todo["task"]}</h1>;
+            })}
+
           {/*
             Function for mapping all todos that fit to current selected date period
           */}
@@ -86,6 +117,7 @@ const MyTodo_Day: React.FC = () => {
                   task={Task.task}
                   subTasks={Task.subTasks}
                   checked={Task.checked}
+                  //checked={Task.data.checked}
                   solar={Task.solar}
                   projects={Task.projects}
                 />
