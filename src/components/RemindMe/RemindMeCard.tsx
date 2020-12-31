@@ -18,7 +18,7 @@ import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/typography.css";
 // Luxon
 import { DateTime } from "luxon";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // Components
 /* -----
 Design
@@ -28,10 +28,8 @@ import "../../design/RemindMe/remindmecard.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
 
-
-
-
-
+// Firebase
+import { db } from "../../firebase";
 
 /* -----
 .RemindMeCard.tsx
@@ -40,7 +38,7 @@ import "../../theme/variables.scss";
 //Props
 interface Props {
   task: string;
-  id: number;
+  id: string;
   date: string;
   isActive: boolean;
 }
@@ -49,6 +47,13 @@ interface Props {
 const RemindMeCard: React.FC<Props> = ({ task, id, date, isActive }) => {
   /* states */
   const [isOn, setIsOn] = useState(isActive);
+
+  /* useEffect */
+  useEffect(() => {
+    db.collection("todo")
+      .doc(id)
+      .update({ reminder: isOn });
+  }, [isOn]);
 
   return (
     <div className="remindme-card">

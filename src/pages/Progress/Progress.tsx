@@ -9,7 +9,7 @@ import {
   IonGrid,
   IonPage,
   IonRouterOutlet,
-  IonRow
+  IonRow,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 /* Core CSS for Ionic */
@@ -37,11 +37,6 @@ import "../../theme/variables.scss";
 import Progress_Day from "./Progress_Day";
 import Progress_Month from "./Progress_Month";
 import Progress_Week from "./Progress_Week";
-
-
-
-
-
 
 /* -----
 Progress.tsx
@@ -143,7 +138,7 @@ const Progress: React.FC = () => {
                     />
                   </Link>
                 </IonCol>
-                
+
                 {/*
                   Tab for Month
                 */}

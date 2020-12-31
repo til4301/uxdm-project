@@ -24,17 +24,13 @@ import "../../design/projecttag.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
 
-
-
-
-
 /* -----
 .ProjectTag.tsx
 ----- */
 
 /* Props */
 interface Props {
-  project: String;
+  project: string;
 }
 
 //Function

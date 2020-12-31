@@ -24,18 +24,13 @@ import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
 // Components
 import DateSlider from "../../components/DateSlider";
 import TodoCard from "../../components/MyToDo/TodoCard";
-//! just for testing a database of Tasks of a day
-// Database
-import Data from "../../database/todo.json";
-/* -----
-Design
------ */
 /* MyTodo design */
 import "../../design/MyTodo/mytodo_day.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
-
+// Database
 import { db } from "../../firebase";
+import AddTaskSuccess from "../../components/AddTask/AddTaskSuccess";
 
 /* -----
 MyTodo_day.tsx
@@ -49,28 +44,26 @@ const MyTodo_Day: React.FC = () => {
   /* states */
   const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
   const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
+  const [showSuccess, setShowSuccess] = useState(false); //defines if addtask success popup is shown or not
 
-  const [data, setData] = useState([]);
+
+  const [data, setData] = useState<any[]>([]);
 
   /* useEffect - function is called once when component mounts*/
   useEffect(() => {
     setDateSlide(date.toISODate()); //current local time is set for the dateslider
-    db.collection("user")
-      .doc("jGdXfe0OFdTzxMATHqH0")
-      .onSnapshot((result) => {
-        console.log(result.data());
-      });
+
+
     db.collection("todo")
       //.where("user", "==", "Tim")
       .onSnapshot((snapshot) => {
-        let temp: any = [];
+        let tempArray: any = [];
         snapshot.forEach((item) => {
-          //temp.push(item.data());
-          console.log({ data: item.data(), id: item.id });
+          let tempObject: any = { data: item.data(), id: item.id };
+          tempArray.push(tempObject);
         });
-        setData(temp);
+        setData(tempArray);
       });
-    set();
   }, []);
 
   const set = () => {
@@ -100,30 +93,23 @@ const MyTodo_Day: React.FC = () => {
             variant="day"
           />
 
-          {data.length > 0 &&
-            data.map((Todo) => {
-              return <h1>{Todo["task"]}</h1>;
-            })}
-
           {/*
             Function for mapping all todos that fit to current selected date period
           */}
-          {Data.ToDos.map((Task, i) => {
-            if (DateTime.fromISO(Task.date).toISODate() === dateSlide) {
-              countTodo = countTodo + 1;
-              return (
-                <TodoCard
-                  id={Task.id}
-                  task={Task.task}
-                  subTasks={Task.subTasks}
-                  checked={Task.checked}
-                  //checked={Task.data.checked}
-                  solar={Task.solar}
-                  projects={Task.projects}
-                />
-              );
-            }
-          })}
+          {data.length > 0 &&
+            data.map((Todo, i) => {
+              if (DateTime.fromISO(Todo.data.date).toISODate() === dateSlide) {
+                countTodo = countTodo + 1;
+                return (
+                  <TodoCard
+                    id={Todo.id}
+                    task={Todo.data.task}
+                    solar={Todo.data.solar}
+                    projects={Todo.data.projects}
+                  />
+                );
+              }
+            })}
 
           {/*
             Counter of shown ToDos. When 0, then the No ToDos page will be shown.
@@ -150,6 +136,15 @@ const MyTodo_Day: React.FC = () => {
       <AddTaskDialog
         showAddTask={showAddTask}
         setShowAddTask={setShowAddTask}
+        setShowSuccess={setShowSuccess}
+      />
+
+        {/*
+        Dialog for Success Add Task (opened after successful creating of task)
+      */}
+      <AddTaskSuccess
+        showSuccess={showSuccess}
+        setShowSuccess={setShowSuccess}
       />
 
       {/*

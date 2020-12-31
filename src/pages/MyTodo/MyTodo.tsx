@@ -35,9 +35,10 @@ import "../../design/MyTodo/mytodo.scss";
 import "../../theme/variables.scss";
 // Pages
 import MyTodo_Day from "./MyTodo_Day";
+/*
 import MyTodo_Month from "./MyTodo_Month";
 import MyTodo_Week from "./MyTodo_Week";
-
+*/
 
 
 
@@ -63,11 +64,11 @@ const MyTodo: React.FC = () => {
           <IonRouterOutlet>
             <Switch>
               <Route exact path="/mytodo/day" render={() => <MyTodo_Day />} />
-              <Route exact path="/mytodo/week" render={() => <MyTodo_Week />} />
+              <Route exact path="/mytodo/week" render={() => <MyTodo_Day />} />
               <Route
                 exact
                 path="/mytodo/month"
-                render={() => <MyTodo_Month />}
+                render={() => <MyTodo_Day />}
               />
               <Route>
                 <Redirect to="/mytodo/day" />

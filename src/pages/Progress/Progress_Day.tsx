@@ -24,23 +24,14 @@ import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
 // Components
 import DateSlider from "../../components/DateSlider";
 import ProgressCard from "../../components/Progress/ProgressCard";
-//! just for testing a database of Tasks of a day
 // Database
-import Data from "../../database/todo.json";
-/* -----
-Design
------ */
+import { db } from "../../firebase";
 /* MyTodo design */
 import "../../design/Progress/progress_day.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
-
-
-
-
-
-
-
+import ProgressCardAll from "../../components/Progress/ProgressCardAll";
+import AddTaskSuccess from "../../components/AddTask/AddTaskSuccess";
 
 /* -----
 Progress_Day.tsx
@@ -48,19 +39,32 @@ Progress_Day.tsx
 
 const Progress_Day: React.FC = () => {
   /* variables */
-  var date = DateTime.local(); //current local time
-  var numberCheckedSubTasks = 0; //number of checked subTasks
-  var tempNumberCheckedSubTasks = 0; //temporary storage for number of checked subTasks
-  var allTasks = 0; //number of all tasks
-  var allCheckedTasks = 0; //number of all checked tasks
+  let date = DateTime.local(); //current local time
+  let tempNumberCheckedSubTasks = 0; //temporary storage for number of checked subTasks
+  let allTasksNumber = 0;
+  let checkedAllTasksNumber = 0;
+  const [allTasks, setAllTasks] = useState(0); //number of all tasks
+  const [allCheckedTasks, setAllCheckedTasks] = useState(0); //number of all checked tasks
 
   /* states */
   const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
   const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
+  const [showSuccess, setShowSuccess] = useState(true); //defines if addtask success popup is shown or not
+
+  const [data, setData] = useState<any[]>([]);
 
   /* useEffect - function is called once when component mounts*/
   useEffect(() => {
     setDateSlide(date.toISODate()); //current local time is set for the dateslider
+
+    db.collection("todo").onSnapshot((snapshot) => {
+      let tempArray: any = [];
+      snapshot.forEach((item) => {
+        let tempObject: any = { data: item.data(), id: item.id };
+        tempArray.push(tempObject);
+      });
+      setData(tempArray);
+    });
   }, []);
 
   /* return */
@@ -80,48 +84,45 @@ const Progress_Day: React.FC = () => {
           {/*
             Showing one overall task progress card at the top    
           */}
-          {Data.ToDos.map((Task, i) => {
-            if (DateTime.fromISO(Task.date).toISODate() === dateSlide) {
-              Task.subTasks.map((subTask) => {
-                allTasks = allTasks + 1;
-                if (subTask.checked) {
-                  allCheckedTasks = allCheckedTasks + 1;
-                }
-              });
-            }
-          })}
-
-          <ProgressCard
-            task="All Tasks"
-            count={7}
-            numberSubTasks={allTasks}
+          {data.length > 0 &&
+            data.map((Todo, i) => {
+              if (DateTime.fromISO(Todo.data.date).toISODate() === dateSlide) {
+                // Fetching number of checked subtasks
+                db.collection("subtask")
+                  .where("parentId", "==", Todo.id)
+                  .where("checked", "==", true)
+                  .onSnapshot((snapshot) => {
+                    let tempArray: any = [];
+                    snapshot.forEach((item) => {
+                      tempArray.push(item);
+                    });
+                    setAllCheckedTasks(checkedAllTasksNumber);
+                  });
+              }
+            })}
+          <ProgressCardAll
+            numberSubTasks={12}
             numberCheckedSubTasks={allCheckedTasks}
-            variant="normal"
           />
 
           {/*
             Function for mapping all todos that fit to current selected date period
           */}
-          {Data.ToDos.map((Task, i) => {
-            if (DateTime.fromISO(Task.date).toISODate() === dateSlide) {
-              Task.subTasks.map((subTask) => {
-                if (subTask.checked) {
-                  tempNumberCheckedSubTasks = tempNumberCheckedSubTasks + 1;
-                }
-              });
-              numberCheckedSubTasks = tempNumberCheckedSubTasks;
-              tempNumberCheckedSubTasks = 0;
-              return (
-                <ProgressCard
-                  task={Task.task}
-                  count={i + 1}
-                  numberSubTasks={Task.subTasks.length}
-                  numberCheckedSubTasks={numberCheckedSubTasks}
-                  variant="normal"
-                />
-              );
-            }
-          })}
+          {data.length > 0 &&
+            data.map((Todo, i) => {
+              if (DateTime.fromISO(Todo.data.date).toISODate() === dateSlide) {
+                // Fetching total number of subtasks
+
+                return (
+                  <ProgressCard
+                    task={Todo.data.task}
+                    count={i + 1}
+                    variant="normal"
+                    parentId={Todo.id}
+                  />
+                );
+              }
+            })}
         </div>
       </IonContent>
 
@@ -131,6 +132,15 @@ const Progress_Day: React.FC = () => {
       <AddTaskDialog
         showAddTask={showAddTask}
         setShowAddTask={setShowAddTask}
+        setShowSuccess={setShowSuccess}
+      />
+
+      {/*
+        Dialog for Success Add Task (opened after successful creating of task)
+      */}
+      <AddTaskSuccess
+        showSuccess={showSuccess}
+        setShowSuccess={setShowSuccess}
       />
 
       {/*

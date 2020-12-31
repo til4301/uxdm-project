@@ -1,0 +1,42 @@
+/* General Design */
+
+#addtasksuccess-dialog {
+  backdrop-filter: blur(10px);
+}
+
+.addtasksuccess-dialog-wrapper {
+  text-align: center;
+}
+
+.addtasksuccess-dialog-header {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+}
+
+.addtasksuccess-dialog-pic {
+  width: 80%;
+  height: auto;
+  padding: 20px 0px 20px 0px;
+}
+
+.addtasksuccess-dialog-subtext {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Dialog Buttons (Add Task, Cancel */
+
+.addtasksuccess-dialog-button {
+  --background: #00ffe2;
+  --background-activated: #696e7f;
+  --color: #1e2662;
+  --border-radius: 4px;
+  font-size: 12px;
+  width: 35vw;
+  height: 40px;
+  font-weight: 700;
+}

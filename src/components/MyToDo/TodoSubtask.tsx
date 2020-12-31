@@ -16,18 +16,15 @@ import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/typography.css";
-import React from "react";
-/* -----
-Design
------ */
+import { type } from "os";
+import React, { useEffect, useState } from "react";
+
 /* MyTodo design */
 import "../../design/MyTodo/todosubtask.scss";
+/* Database */
+import { db } from "../../firebase";
 /* Global Theme */
 import "../../theme/variables.scss";
-
-
-
-
 
 /* -----
 .TodoSubtask.tsx
@@ -42,8 +39,17 @@ interface Props {
 }
 
 //Function
-const TodoSubtask: React.FC<Props> = ({ subtask, checked }) => {
-  /* useEffect */
+const TodoSubtask: React.FC<Props> = ({ subtask, checked, parentId, id }) => {
+  /* variables */
+  const parent = parentId.toString();
+  const subtaskId = id.toString();
+
+  /* functions */
+  const changeChecked = (checked: boolean) => {
+    db.collection("subtask")
+      .doc(subtaskId)
+      .update({ checked: checked });
+  };
 
   return (
     <div className="todo-subtask-wrapper">
@@ -51,14 +57,9 @@ const TodoSubtask: React.FC<Props> = ({ subtask, checked }) => {
         <IonRow style={{ display: "flex", alignItems: "center" }}>
           <IonCol size="3" />
           <IonCol size="1">
-            {
-              //! Change Handler needs to be integrated with database
-            }
             <IonCheckbox
               checked={checked}
-              onIonChange={() => {
-              //
-              }}
+              onIonChange={(e) => changeChecked(e.detail.checked)}
               class="todo-subtask-checkbox"
             />
           </IonCol>

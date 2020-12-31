@@ -81,7 +81,7 @@ const AddTodoSelectDate: React.FC<Props> = ({
         },
         {
           text: "Ok",
-          //checking if date is between min and max
+          //checking if date is between min and max 
           handler: (alertData) => {
             if (
               DateTime.fromISO(min) < DateTime.fromISO(alertData.SelectDate) &&
