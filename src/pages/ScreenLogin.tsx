@@ -5,12 +5,15 @@ import {
   IonCol,
   IonContent,
   IonGrid,
+  IonIcon,
   IonInput,
   IonItem,
   IonLabel,
   IonPage,
   IonRow,
 } from "@ionic/react";
+import { Checkbox } from "@material-ui/core";
+import { addCircle, arrowBackOutline } from "ionicons/icons";
 
 /* React imports */
 import React, { useState } from "react";
@@ -50,6 +53,11 @@ const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
   return (
     <IonPage>
       <IonContent className="screenlogin-background">
+        <div>
+          <IonButton className="screenlogin-button-back">
+            <IonIcon icon={arrowBackOutline} />
+          </IonButton>
+        </div>
         <IonGrid>
           <IonRow>
             <IonCol className="screenlogin-font-color">
@@ -81,7 +89,20 @@ const ScreenLogin: React.FC<LoginProps> = ({ changeLogin }) => {
               </IonItem>
             </IonCol>
           </IonRow>
-
+          <IonRow>
+            <IonCol>
+              <IonItem className="screenlogin-item-two">
+                <IonLabel> Remember me </IonLabel>
+                {/* <IonCheckbox slot="start"> </IonCheckbox> */}
+                <Checkbox slot="start" className="prueba"></Checkbox>
+              </IonItem>
+            </IonCol>
+            <IonCol className="screenlogin-label">
+              <IonLabel>Forgot Password?</IonLabel>
+              {/* <a href="">Forgot Password</a> */}
+            </IonCol>
+          </IonRow>
+          {/* Row for the Sign in button */}
           <IonRow>
             <IonCol className="screenlogin-col-button">
               <IonButton

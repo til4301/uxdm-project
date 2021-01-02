@@ -2,11 +2,13 @@ import {
   IonApp,
   IonButton,
   IonContent,
+  IonIcon,
   IonInput,
   IonItem,
   IonLabel,
   IonPage,
 } from "@ionic/react";
+import { arrowBackOutline } from "ionicons/icons";
 import React from "react";
 import "../design/register.scss";
 
@@ -14,6 +16,11 @@ const Register: React.FC = () => {
   return (
     <IonPage>
       <IonContent className="register-background">
+        <div>
+          <IonButton className="register-button-back">
+            <IonIcon icon={arrowBackOutline} />
+          </IonButton>
+        </div>
         <div>
           <p className="register-message">Welcome aboard ! </p>
         </div>
