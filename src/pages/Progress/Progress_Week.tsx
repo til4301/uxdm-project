@@ -28,7 +28,7 @@ import ProgressCard from "../../components/Progress/ProgressCard";
 /* MyTodo design */
 import "../../design/Progress/progress_week.scss";
 // Database
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 /* Global Theme */
 import "../../theme/variables.scss";
 

@@ -25,7 +25,7 @@ import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
 import DateSlider from "../../components/DateSlider";
 import ProgressCard from "../../components/Progress/ProgressCard";
 // Database
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 /* MyTodo design */
 import "../../design/Progress/progress_day.scss";
 /* Global Theme */

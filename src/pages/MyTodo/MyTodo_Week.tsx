@@ -25,7 +25,7 @@ import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
 import DateSlider from "../../components/DateSlider";
 import TodoCard from "../../components/MyToDo/TodoCard";
 /* Database */
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 /* MyTodo design */
 import "../../design/MyTodo/mytodo_week.scss";
 /* Global Theme */

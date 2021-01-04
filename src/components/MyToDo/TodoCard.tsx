@@ -27,7 +27,7 @@ import TodoAddSubtask from "./TodoAddSubtask";
 // Components
 import TodoSubtask from "./TodoSubtask";
 // Firebase
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 
 /* -----
 .TodoCard.tsx

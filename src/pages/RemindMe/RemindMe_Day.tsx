@@ -25,7 +25,7 @@ import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
 import DateSlider from "../../components/DateSlider";
 import RemindMeCard from "../../components/RemindMe/RemindMeCard";
 // Database
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 /* MyTodo design */
 import "../../design/RemindMe/remindme_day.scss";
 /* Global Theme */

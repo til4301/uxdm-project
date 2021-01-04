@@ -27,7 +27,7 @@ import "../../design/Login/register.scss";
 import "../../theme/variables.scss";
 import { Icon, InlineIcon } from "@iconify/react";
 import outlineArrowBack from "@iconify-icons/ic/outline-arrow-back";
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 
 /* -----
   Register.tsx
