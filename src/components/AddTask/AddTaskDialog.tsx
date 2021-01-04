@@ -25,6 +25,8 @@ import { DateTime } from "luxon";
 import React, { useState } from "react";
 /* AddTaskDialog design */
 import "../../design/AddTask/addtaskdialog.scss";
+// Firebase
+import { db } from "../../firebase";
 // Resources
 import addTaskIcon from "../../resources/addTask_icon.svg";
 import selectDateIcon from "../../resources/selectDate_icon.svg";
@@ -42,16 +44,6 @@ import AddTodoSelectDate from "./AddTodoSelectDate";
 import AddTodoSelectProject from "./AddTodoSelectProject";
 import AddTodoSelectTaskName from "./AddTodoSelectTaskName";
 
-
-
-
-
-
-
-
-
-
-
 /* -----
 AddTaskDialog.tsx
 ----- */
@@ -60,10 +52,14 @@ AddTaskDialog.tsx
 interface Props {
   showAddTask: boolean;
   setShowAddTask: Function;
+  setShowSuccess: Function;
 }
 //Function
-const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
- 
+const AddTaskDialog: React.FC<Props> = ({
+  showAddTask,
+  setShowAddTask,
+  setShowSuccess,
+}) => {
   /* states */
   //Alerts for user input
   const [showSelectedTaskName, setShowSelectTaskName] = useState(false); //boolean if task name input alert is active
@@ -72,12 +68,37 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
 
   //Variables for storing input values
   const [selectedTaskName, setSelectedTaskName] = useState(""); //variable for set task name
+
+  //variable for set sub task
   const [selectedDate, setSelectedDate] = useState(""); //variable for set date
   const [selectedProject, setSelectedProject] = useState(""); //variable for set project
- 
+
   // solar selection
   const [solarSelected, setSolarSelected] = useState("NONE"); //switch for selected solarIcon which has to be colored blue
 
+  /* functions */
+
+  const submitData = () => {
+    if (
+      selectedTaskName === "" ||
+      selectedDate === "" ||
+      selectedProject === "" ||
+      solarSelected === "NONE"
+    ) {
+      console.log("Not all data are filled out.");
+    } else {
+      db.collection("todo").doc().set({
+        task: selectedTaskName,
+        date: selectedDate,
+        projects: selectedProject,
+        solar: solarSelected,
+        checked: false,
+        reminder: false,
+      });
+      setShowSuccess(true);
+      setShowAddTask(false);
+    }
+  };
 
   /* return */
   return (
@@ -144,7 +165,13 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
                 </p>
               ) : (
                 <p className="addtaskdialog-dialog-input-text">
-                  {DateTime.fromISO(selectedDate).toFormat("d")+"."+DateTime.fromISO(selectedDate).toFormat("L")+"."+DateTime.fromISO(selectedDate).toFormat("yy")+" at "+DateTime.fromISO(selectedDate).toFormat("T")}
+                  {DateTime.fromISO(selectedDate).toFormat("d") +
+                    "." +
+                    DateTime.fromISO(selectedDate).toFormat("L") +
+                    "." +
+                    DateTime.fromISO(selectedDate).toFormat("yy") +
+                    " at " +
+                    DateTime.fromISO(selectedDate).toFormat("T")}
                 </p>
               )}
             </div>
@@ -177,44 +204,44 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
             <div className="addtaskdialog-dialog-solarSelect">
               <img
                 src={
-                  solarSelected === "MOON"
+                  solarSelected === "Moon"
                     ? solarMoonIcon
                     : solarMoonIconDisabled
                 }
                 alt="solarMoon"
                 className="addtaskdialog-dialog-solarSelect-icons"
                 onClick={() => {
-                  solarSelected === "MOON"
+                  solarSelected === "Moon"
                     ? setSolarSelected("NONE")
-                    : setSolarSelected("MOON");
+                    : setSolarSelected("Moon");
                 }}
               />
               <img
                 src={
-                  solarSelected === "PLANET"
+                  solarSelected === "Planet"
                     ? solarPlanetIcon
                     : solarPlanetIconDisabled
                 }
                 alt="solarPlanet"
                 className="addtaskdialog-dialog-solarSelect-icons"
                 onClick={() => {
-                  solarSelected === "PLANET"
+                  solarSelected === "Planet"
                     ? setSolarSelected("NONE")
-                    : setSolarSelected("PLANET");
+                    : setSolarSelected("Planet");
                 }}
               />
               <img
                 src={
-                  solarSelected === "STAR"
+                  solarSelected === "Star"
                     ? solarStarIcon
                     : solarStarIconDisabled
                 }
                 alt="solarStar"
                 className="addtaskdialog-dialog-solarSelect-icons"
                 onClick={() => {
-                  solarSelected === "STAR"
+                  solarSelected === "Star"
                     ? setSolarSelected("NONE")
-                    : setSolarSelected("STAR");
+                    : setSolarSelected("Star");
                 }}
               />
             </div>
@@ -225,7 +252,10 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
           Dialog Interaction with Add Task and Cancel Button 
         */}
         <DialogActions style={{ margin: "auto" }}>
-          <IonButton class="addtaskdialog-dialog-add-button">
+          <IonButton
+            class="addtaskdialog-dialog-add-button"
+            onClick={submitData}
+          >
             Add Task
           </IonButton>
           <IonButton
@@ -240,7 +270,7 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
       </Dialog>
 
       {/*
-        Alert for Task name inout (opened after click on task name window in dialog)
+        Alert for Task name input (opened after click on task name window in dialog)
       */}
       <AddTodoSelectTaskName
         showSelectedTaskName={showSelectedTaskName}
@@ -248,6 +278,7 @@ const AddTaskDialog: React.FC<Props> = ({ showAddTask, setShowAddTask }) => {
         setSelectedTaskName={setSelectedTaskName}
         setShowAddTask={setShowAddTask}
       />
+
       {/*
         Alert for date selection (opened after click on date window in dialog)
       */}

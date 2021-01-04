@@ -37,7 +37,10 @@ import "../../theme/variables.scss";
 import MyTodo_Day from "./MyTodo_Day";
 import MyTodo_Month from "./MyTodo_Month";
 import MyTodo_Week from "./MyTodo_Week";
-
+/*
+import MyTodo_Month from "./MyTodo_Month";
+import MyTodo_Week from "./MyTodo_Week";
+*/
 
 
 

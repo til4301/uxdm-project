@@ -21,46 +21,51 @@ import { add } from "ionicons/icons";
 import { DateTime } from "luxon";
 import React, { useEffect, useState } from "react";
 import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
+import AddTaskSuccess from "../../components/AddTask/AddTaskSuccess";
 // Components
 import DateSlider from "../../components/DateSlider";
 import ProgressCard from "../../components/Progress/ProgressCard";
-//! just for testing a database of Tasks of a day
-// Database
-import Data from "../../database/todo.json";
-/* -----
-Design
------ */
 /* MyTodo design */
 import "../../design/Progress/progress_month.scss";
+// Database
+import { db } from "../../firebase";
 /* Global Theme */
 import "../../theme/variables.scss";
-
-
-
-
-
-
-
 
 /* -----
 Progress_Month.tsx
 ----- */
 
 const Progress_Week: React.FC = () => {
-  /* variables */
-  var date = DateTime.local(); //current local time
-  var numberCheckedSubTasks = 0; //number of checked subTasks
-  var tempNumberCheckedSubTasks = 0; //temporary storage for number of checked subTasks
-  var allTasks = 0; //number of all tasks
-  var allCheckedTasks = 0; //number of all checked tasks
+/* variables */
+var date = DateTime.local(); //current local time
+var numberSubTasks = 0; //number of checked subTasks
+var numberCheckedSubTasks = 0; //number of checked subTasks
+var tempNumberCheckedSubTasks = 0; //temporary storage for number of checked subTasks
+var allTasks = 0; //number of all tasks
+var allCheckedTasks = 0; //number of all checked tasks
 
-  /* states */
-  const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
-  const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
+/* states */
+const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
+const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
+const [showSuccess, setShowSuccess] = useState(false); //defines if addtask success popup is shown or not
+
+
+const [data, setData] = useState<any[]>([]);
 
   /* useEffect - function is called once when component mounts*/
   useEffect(() => {
     setDateSlide(date.toISODate()); //current local time is set for the dateslider
+
+    db.collection("todo")
+      .onSnapshot((snapshot) => {
+        let tempArray: any = [];
+        snapshot.forEach((item) => {
+          let tempObject: any = { data: item.data(), id: item.id };
+          tempArray.push(tempObject);
+        });
+        setData(tempArray);
+      });
   }, []);
 
   /* return */
@@ -79,64 +84,83 @@ const Progress_Week: React.FC = () => {
 
           {/*
             Showing one overall task progress card at the top    
-          */}
-          {Data.ToDos.map((Task, i) => {
-            if (
-              DateTime.fromISO(Task.date).toFormat("y" + "-" + "LL") ===
-              DateTime.fromISO(dateSlide).toFormat("y" + "-" + "LL")
-            ) {
-              Task.subTasks.map((subTask) => {
-                allTasks = allTasks + 1;
-                if (subTask.checked) {
-                  allCheckedTasks = allCheckedTasks + 1;
-                }
-              });
-            }
-          })}
+          
+          {data.length > 0 &&
+            data.map((Todo, i) => {
+              if (
+                DateTime.fromISO(Todo.data.date).toFormat("y" + "-" + "LL") ===
+                DateTime.fromISO(dateSlide).toFormat("y" + "-" + "LL")
+              ) {
+                // Fetching total number of subtasks
+                db.collection("subtask")
+                  .where("parentId", "==", Todo.id)
+                  .onSnapshot((snapshot) => {
+                    let tempArray: any = [];
+                    snapshot.forEach((item) => {
+                      tempArray.push(item);
+                    });
+                    allTasks = allTasks + tempArray.length;
+                  });
 
-          <ProgressCard
-            task="All Tasks"
-            count={7}
-            numberSubTasks={allTasks}
-            numberCheckedSubTasks={allCheckedTasks}
-            variant="normal"
+                // Fetching number of checked subtasks
+                db.collection("subtask")
+                  .where("parentId", "==", Todo.id)
+                  .where("checked", "==", true)
+                  .onSnapshot((snapshot) => {
+                    let tempArray: any = [];
+                    snapshot.forEach((item) => {
+                      tempArray.push(item);
+                    });
+                    allCheckedTasks = allCheckedTasks + tempArray.length;
+                  });
+              }
+            })}
+
+<ProgressCard
+           task={"All Tasks"}
+           count={7}
+           numberSubTasks={allTasks}
+           numberCheckedSubTasks={allCheckedTasks}
+           variant="normal"
           />
-
+*/}
           {/*
             Function for mapping all todos that fit to current selected date period
           */}
-          {Data.ToDos.map((Task, i) => {
-            if (
-              DateTime.fromISO(Task.date).toFormat("y" + "-" + "LL") ===
-              DateTime.fromISO(dateSlide).toFormat("y" + "-" + "LL")
-            ) {
-              Task.subTasks.map((subTask) => {
-                if (subTask.checked) {
-                  tempNumberCheckedSubTasks = tempNumberCheckedSubTasks + 1;
-                }
-              });
-              numberCheckedSubTasks = tempNumberCheckedSubTasks;
-              tempNumberCheckedSubTasks = 0;
-              return (
-                <ProgressCard
-                  task={Task.task}
-                  count={i + 1}
-                  numberSubTasks={Task.subTasks.length}
-                  numberCheckedSubTasks={numberCheckedSubTasks}
-                  variant="normal"
-                />
-              );
-            }
-          })}
+          {data.length > 0 &&
+            data.map((Todo, i) => {
+              if (
+                DateTime.fromISO(Todo.data.date).toFormat("y" + "-" + "LL") ===
+                DateTime.fromISO(dateSlide).toFormat("y" + "-" + "LL")
+              ) {
+                return (
+                  <ProgressCard
+                    task={Todo.data.task}
+                    count={i + 1}
+                    variant="normal"
+                    parentId={Todo.id}
+                  />
+                );
+              }
+            })}
         </div>
       </IonContent>
 
-      {/*
+     {/*
         Dialog for Add Task (opened after click on Add Task button)
       */}
       <AddTaskDialog
         showAddTask={showAddTask}
         setShowAddTask={setShowAddTask}
+        setShowSuccess={setShowSuccess}
+      />
+
+        {/*
+        Dialog for Success Add Task (opened after successful creating of task)
+      */}
+      <AddTaskSuccess
+        showSuccess={showSuccess}
+        setShowSuccess={setShowSuccess}
       />
 
       {/*

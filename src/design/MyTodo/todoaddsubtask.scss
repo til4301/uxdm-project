@@ -1,0 +1,25 @@
+.todoaddsubtask-wrapper {
+    margin: 0px 0px -10px 0px;
+  }
+  
+  .todoaddsubtask-header {
+    font-size: 10px;
+    font-weight: 600;
+    display: inline;
+  }
+
+
+  
+  .todoaddsubtask-addicon {
+      margin-top: 5px;
+  }
+  
+  .todoaddsubtask-checkbox {
+    --size: 15px;
+    --background: rgba(0, 0, 0, 0);
+    --background-checked: rgba(0, 0, 0, 0);
+    --border-color: #ffffff;
+    --border-color-checked: #696e7f;
+    --checkmark-color: #696e7f;
+  }
+  

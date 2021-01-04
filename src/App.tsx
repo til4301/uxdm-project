@@ -10,7 +10,7 @@ import {
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
-  IonTabs
+  IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 /* Core CSS for Ionic */
@@ -25,8 +25,8 @@ import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/typography.css";
-import React, { useState } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 /* App design */
 import "./design/app.scss";
 import DeepFocus from "./pages/DeepFocus";
@@ -35,16 +35,13 @@ import MyTodo from "./pages/MyTodo/MyTodo";
 import Progress from "./pages/Progress/Progress";
 import RemindMe from "./pages/RemindMe/RemindMe";
 /* Login & Register */
-import ScreenLogin from "./pages/ScreenLogin";
+import ScreenLogin from "./pages/Login/ScreenLogin";
 /* Global Theme */
 import "./theme/variables.scss";
-
-
-
-
-
-
-
+import Welcome from "./pages/Login/Welcome";
+import Login from "./pages/Login/Login.js";
+import Register from "./pages/Login/Register";
+import Success from "./pages/Login/Success";
 
 /* -----
 App.tsx
@@ -52,12 +49,7 @@ App.tsx
 
 const App: React.FC = () => {
   /* States */
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  /* Handle methdods */
-  const handleLogin = (value: boolean) => {
-    setIsLoggedIn(value);
-  };
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /* return when user is logged in*/
   if (isLoggedIn) {
@@ -75,7 +67,7 @@ const App: React.FC = () => {
                   <Route exact path="/deepfocus" render={() => <DeepFocus />} />
                   <Route exact path="/progress" render={() => <Progress />} />
                   <Route exact path="/remindme" render={() => <RemindMe />} />
-                  <Route exact path="/">
+                  <Route>
                     <Redirect to="/mytodo" />
                   </Route>
                 </Switch>
@@ -104,14 +96,26 @@ const App: React.FC = () => {
       </IonApp>
     );
   } else {
-  /* return when user is not logged in*/
+    /* return when user is not logged in*/
     return (
       <IonApp>
         <IonReactRouter>
           <IonContent>
             <IonRouterOutlet>
-              <Route render={() => <ScreenLogin changeLogin={handleLogin} />} />
-              {/* <Route render={() => <Register />} /> */}
+              <Switch>
+                <Route exact path="/welcome" render={() => <Welcome />} />
+                <Route
+                  exact
+                  path="/login"
+                  render={() => <Login setIsLoggedIn={setIsLoggedIn} />}
+                />
+                <Route exact path="/register" render={() => <Register />} />
+                <Route exact path="/success" render={() => <Success />} />
+
+                <Route>
+                  <Redirect to="/welcome" />
+                </Route>
+              </Switch>
             </IonRouterOutlet>
           </IonContent>
         </IonReactRouter>

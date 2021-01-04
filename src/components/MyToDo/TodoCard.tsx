@@ -16,60 +16,84 @@ import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
 import "@ionic/react/css/typography.css";
-import React, { useState } from "react";
-/* -----
-Design
------ */
+import React, { useEffect, useState } from "react";
 /* MyTodo design */
 import "../../design/MyTodo/todocard.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
 import ProjectTag from "./ProjectTag";
 import TodoSolar from "./TodoSolar";
+import TodoAddSubtask from "./TodoAddSubtask";
 // Components
 import TodoSubtask from "./TodoSubtask";
-
-
-
-
-
+// Firebase
+import { db } from "../../firebase";
 
 /* -----
 .TodoCard.tsx
 ----- */
 
-// sub Prop
-interface subTask {
-  subtask: string;
-  checked: boolean;
-  id: number;
-}
-
 //Props
 interface Props {
   task: string;
-  subTasks: subTask[];
   solar: string;
-  checked: boolean;
   id: number;
-  projects: string[];
+  projects: string;
 }
 
 //Function
-const TodoCard: React.FC<Props> = ({
-  task,
-  subTasks,
-  solar,
-  checked,
-  id,
-  projects,
-}) => {
+const TodoCard: React.FC<Props> = ({ task, solar, id, projects }) => {
   /* states */
   const [expanded, setExpanded] = useState(false);
-  const [numberSubtask, setNumberSubtask] = useState(3);
+  const [checkedNumber, setCheckedNumber] = useState(0);
 
+  const [isChecked, setIsChecked] = useState(false);
+
+  const [data, setData] = useState<any[]>([]);
+ 
   /* variables */
   var numberCheckedTasks = 0;
+  var numberSubtask = 0;
+
+  /* Databse functions when component mounts */
+  useEffect(() => {
+    // Fteching all subtasks of parent
+    db.collection("subtask")
+      .where("parentId", "==", id)
+      .onSnapshot((snapshot) => {
+        let tempArray: any = [];
+        snapshot.forEach((item) => {
+          tempArray.push(item);
+        });
+        setData(tempArray);
+      });
+
+    // Fetching number of checked subtasks
+    db.collection("subtask")
+      .where("parentId", "==", id)
+      .where("checked", "==", true)
+      .onSnapshot((snapshot) => {
+        let tempArray: any = [];
+        snapshot.forEach((item) => {
+          tempArray.push(item);
+        });
+        setCheckedNumber(tempArray.length);
+      });
+  }, []);
+
+  /* useEffect */
+  useEffect(() => {
+    db.collection("todo").doc(id.toString()).update({ checked: isChecked });
+  }, [isChecked]);
+
+  /* Function changing checked depending ob subtasks check */
+  useEffect(() => {
+    if (checkedNumber === data.length && data.length !== 0) {
+      setIsChecked(true);
+    } else {
+      setIsChecked(false);
+    }
+  }, [checkedNumber]);
 
   /* return */
   return (
@@ -77,10 +101,10 @@ const TodoCard: React.FC<Props> = ({
       <IonGrid>
         <IonRow style={{ display: "flex", alignItems: "center" }}>
           <IonCol size="2" style={{ textAlign: "center" }}>
-            <IonCheckbox checked={checked} class="todo-card-checkbox" />
+            <IonCheckbox checked={isChecked} class="todo-card-checkbox" />
           </IonCol>
           <IonCol size="7" onClick={() => setExpanded(!expanded)}>
-            <p className={checked ? "todo-header-checked" : "todo-header"}>
+            <p className={isChecked ? "todo-header-checked" : "todo-header"}>
               {task}
             </p>
           </IonCol>
@@ -90,7 +114,7 @@ const TodoCard: React.FC<Props> = ({
             onClick={() => setExpanded(!expanded)}
           >
             <p className="todo-taskCount">
-              {numberCheckedTasks}/{subTasks.length} Tasks
+              {checkedNumber}/{data.length} Tasks
             </p>
           </IonCol>
         </IonRow>
@@ -103,9 +127,7 @@ const TodoCard: React.FC<Props> = ({
           <IonRow style={{ display: "flex", alignItems: "center" }}>
             <IonCol size="2"></IonCol>
             <IonCol size="10">
-              {projects.map((project) => (
-                <ProjectTag project={project} />
-              ))}
+              <ProjectTag project={projects} />
               <TodoSolar solar={solar} />
             </IonCol>
           </IonRow>
@@ -113,20 +135,17 @@ const TodoCard: React.FC<Props> = ({
         {/*
           mapping all subtasks
         */}
-        {subTasks.map((subTask, i) => {
-          if (subTask.checked) {
-            numberCheckedTasks = numberCheckedTasks + 1;
-          }
-
+        {data.map((subTask, i) => {
           return (
             <TodoSubtask
-              subtask={subTask.subtask}
-              checked={subTask.checked}
+              subtask={subTask.data().subTask}
+              checked={subTask.data().checked}
               parentId={id}
               id={subTask.id}
             />
           );
         })}
+        <TodoAddSubtask parentId={id} />
       </div>
     </div>
   );

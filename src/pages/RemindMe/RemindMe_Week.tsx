@@ -24,23 +24,13 @@ import AddTaskDialog from "../../components/AddTask/AddTaskDialog";
 // Components
 import DateSlider from "../../components/DateSlider";
 import RemindMeCard from "../../components/RemindMe/RemindMeCard";
-//! just for testing a database of Tasks of a day
 // Database
-import Data from "../../database/todo.json";
-/* -----
-Design
------ */
+import { db } from "../../firebase";
 /* MyTodo design */
-import "../../design/RemindMe/remindme_month.scss";
+import "../../design/RemindMe/remindme_week.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
-
-
-
-
-
-
-
+import AddTaskSuccess from "../../components/AddTask/AddTaskSuccess";
 
 /* -----
 RemindMe_Week.tsx
@@ -54,10 +44,26 @@ const RemindMe_Week: React.FC = () => {
   /* states */
   const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
   const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
+  const [showSuccess, setShowSuccess] = useState(false); //defines if addtask success popup is shown or not
+
+
+  const [data, setData] = useState<any[]>([]);
+
 
   /* useEffect - function is called once when component mounts*/
   useEffect(() => {
     setDateSlide(date.toISODate()); //current local time is set for the dateslider
+
+    db.collection("todo")
+      //.where("user", "==", "Tim")
+      .onSnapshot((snapshot) => {
+        let tempArray: any = [];
+        snapshot.forEach((item) => {
+          let tempObject: any = { data: item.data(), id: item.id };
+          tempArray.push(tempObject);
+        });
+        setData(tempArray);
+      });
   }, []);
 
   /* return */
@@ -77,9 +83,10 @@ const RemindMe_Week: React.FC = () => {
           {/*
             Function for mapping all todos that fit to current selected date period
           */}
-          {Data.ToDos.map((Task, i) => {
+          {data.length > 0 &&
+            data.map((Todo, i) => {
             if (
-              DateTime.fromISO(Task.date)
+              DateTime.fromISO(Todo.data.date)
                 .startOf("week")
                 .equals(DateTime.fromISO(dateSlide).startOf("week"))
             ) {
@@ -87,10 +94,10 @@ const RemindMe_Week: React.FC = () => {
 
               return (
                 <RemindMeCard
-                  task={Task.task}
-                  id={Task.id}
-                  date={Task.date}
-                  isActive={Task.reminder}
+                  task={Todo.data.task}
+                  id={Todo.id}
+                  date={Todo.data.date}
+                  isActive={Todo.data.reminder}
                 />
               );
             }
@@ -115,12 +122,21 @@ const RemindMe_Week: React.FC = () => {
         </div>
       </IonContent>
 
-      {/*
+     {/*
         Dialog for Add Task (opened after click on Add Task button)
       */}
       <AddTaskDialog
         showAddTask={showAddTask}
         setShowAddTask={setShowAddTask}
+        setShowSuccess={setShowSuccess}
+      />
+
+        {/*
+        Dialog for Success Add Task (opened after successful creating of task)
+      */}
+      <AddTaskSuccess
+        showSuccess={showSuccess}
+        setShowSuccess={setShowSuccess}
       />
 
       {/*
