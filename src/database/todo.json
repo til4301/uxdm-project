@@ -1,0 +1,105 @@
+{
+  "ToDos": [
+    {
+      "task": "Project UXD Meeting",
+      "date": "",
+      "subTasks": [
+        { "subtask": "Organization", "checked": true, "id": 1 },
+        {
+          "subtask": "Implementation",
+          "checked": false,
+          "id": 2
+        },
+        { "subtask": "Presentation", "checked": false, "id": 3 }
+      ],
+      "solar": "Star",
+      "projects": ["University", "Meeting"],
+      "checked": false,
+      "id": 1,
+      "reminder": false
+    },
+    {
+      "task": "Project UXD Meeting",
+      "date": "2020-12-25T09:24",
+      "subTasks": [
+        { "subtask": "Organization", "checked": true, "id": 1 },
+        {
+          "subtask": "Implementation",
+          "checked": false,
+          "id": 2
+        },
+        { "subtask": "Presentation", "checked": false, "id": 3 }
+      ],
+      "solar": "Star",
+      "projects": ["University", "Meeting"],
+      "checked": false,
+      "id": 1,
+      "reminder": false
+    },
+    {
+      "task": "Design Management",
+      "date": "2020-12-25T09:24",
+      "subTasks": [
+        { "subtask": "Design Brief", "checked": true, "id": 1 },
+        {
+          "subtask": "Summary for exam",
+          "checked": true,
+          "id": 2
+        }
+      ],
+      "solar": "Planet",
+      "projects": ["University", "Lecture"],
+      "checked": true,
+      "id": 2,
+      "reminder": true
+    },
+    {
+      "task": "Christmas Dinner",
+      "date": "2020-12-24",
+      "subTasks": [
+        {
+          "subtask": "Food and beverage shopping",
+          "checked": false,
+          "id": 1
+        },
+        {
+          "subtask": "Get Christmas Gifts",
+          "checked": false,
+          "id": 2
+        },
+        {
+          "subtask": "Decorate table",
+          "checked": true,
+          "id": 3
+        },
+        {
+          "subtask": "Get Christmas tree",
+          "checked": false,
+          "id": 4
+        },
+        {
+          "subtask": "Prepare guest room",
+          "checked": false,
+          "id": 5
+        },
+        {
+          "subtask": "Attach fairy lights",
+          "checked": true,
+          "id": 6
+        },
+        {
+          "subtask": "Create playlist for Christmas Eve",
+          "checked": true,
+          "id": 7
+        }
+      ],
+      "solar": "Moon",
+      "projects": ["Private", "Christmas 2020"],
+      "checked": false,
+      "id": 3,
+      "reminder": false
+    }
+  ],
+
+  "Projects": ["Private", "Christmas 2020", "University", "Meeting", "Lecture"]
+}

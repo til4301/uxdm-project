@@ -1,0 +1,47 @@
+//* Dateslider *//
+.dateslider-dateslider-wrapper {
+  width: 70vw;
+  height: 40px;
+  margin: 50px auto 35px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dateslider-dateslider-arrow {
+  height: 25px;
+  width: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dateslider-dateslider-arrow-icon {
+  font-size: 15px;
+  color: #6551bc;
+}
+
+.dateslider-dateslider-box {
+  width: 50vw;
+  height: 25px;
+
+  margin: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+  background-color: #6551bc;
+}
+
+.dateslider-dateslider-box-text {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.dateslider-dateslider-box-text-bold {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}

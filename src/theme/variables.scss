@@ -5,21 +5,22 @@
 
 :root {
   /** Definition of default font Montserrat **/
-  * {
-    font-family: "Montserrat", sans-serif;
-    src: url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+  :root[mode=ios] .montserrat,
+  :root[mode=md] .montserrat{
+    --ion-font-family:  'Montserrat'!important;
+    font-family:  'Montserrat' !important;
   }
 
-  /** primary **/
-  --ion-color-primary: #3880ff;
+  /** primary adapted**/
+  --ion-color-primary: #1e2662;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
   --ion-color-primary-shade: #3171e0;
   --ion-color-primary-tint: #4c8dff;
 
-  /** secondary **/
-  --ion-color-secondary: #3dc2ff;
+  /** secondary adapted**/
+  --ion-color-secondary: #6551bc;
   --ion-color-secondary-rgb: 61, 194, 255;
   --ion-color-secondary-contrast: #ffffff;
   --ion-color-secondary-contrast-rgb: 255, 255, 255;
@@ -34,8 +35,8 @@
   --ion-color-tertiary-shade: #4854e0;
   --ion-color-tertiary-tint: #6370ff;
 
-  /** success **/
-  --ion-color-success: #2dd36f;
+  /** success adapted**/
+  --ion-color-success: #00ffe2;
   --ion-color-success-rgb: 45, 211, 111;
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255, 255, 255;
@@ -50,8 +51,8 @@
   --ion-color-warning-shade: #e0ac08;
   --ion-color-warning-tint: #ffca22;
 
-  /** danger **/
-  --ion-color-danger: #eb445a;
+  /** danger adapted**/
+  --ion-color-danger: #ff4141;
   --ion-color-danger-rgb: 235, 68, 90;
   --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 255, 255, 255;
@@ -200,9 +201,8 @@ body.dark {
   --ion-color-step-900: #e6e6e6;
   --ion-color-step-950: #f2f2f2;
 
-  --ion-toolbar-background: #0d0d0d;
-
   /* App Menu at the bottom */
+  --ion-toolbar-background: #0d0d0d;
   --ion-tab-bar-background: #333a53;
   --ion-tab-bar-color: #696e7f;
   --ion-tab-bar-color-selected: #ffffff;
@@ -250,11 +250,13 @@ body.dark {
   --ion-color-step-900: #e7e7e7;
   --ion-color-step-950: #f3f3f3;
 
-  --ion-item-background: #1e1e1e;
+  /* App Menu at the bottom */
+  --ion-toolbar-background: #0d0d0d;
+  --ion-tab-bar-background: #333a53;
+  --ion-tab-bar-color: #696e7f;
+  --ion-tab-bar-color-selected: #ffffff;
 
-  --ion-toolbar-background: #1f1f1f;
+  --ion-item-background: #000000;
 
-  --ion-tab-bar-background: #1f1f1f;
-
-  --ion-card-background: #1e1e1e;
+  --ion-card-background: #1c1c1d;
 }

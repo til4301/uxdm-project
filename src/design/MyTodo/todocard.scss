@@ -1,0 +1,45 @@
+.todo-card {
+  width: 100%;
+  background-color: #1e2662;
+  margin: 5px 0px 5px 0px;
+}
+
+.todo-card-expanded {
+  width: 100%;
+  background-color: #1e2662;
+  margin: 5px 0px 15px 0px;
+}
+
+.todo-header {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.todo-header-checked {
+  font-size: 12px;
+  font-weight: 600;
+  color: #696e7f;
+}
+
+.todo-card-checkbox {
+  transform: translateY(2px);
+  --size: 17px;
+  --background: rgba(0, 0, 0, 0);
+  --background-checked: rgba(0, 0, 0, 0);
+  --border-color: #ffffff;
+  --border-color-checked: #696e7f;
+  --checkmark-color: #696e7f;
+}
+
+.todo-taskCount {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.todo {
+  display: none;
+}
+
+.todo-expanded {
+  margin-top: -25px;
+}
