@@ -26,7 +26,7 @@ import React, { useState } from "react";
 /* AddTaskDialog design */
 import "../../design/AddTask/addtasksuccess.scss";
 // Firebase
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 // Resources
 import addTaskIcon from "../../resources/addTask_icon.svg";
 import selectDateIcon from "../../resources/selectDate_icon.svg";

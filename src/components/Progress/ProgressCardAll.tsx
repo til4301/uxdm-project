@@ -25,7 +25,7 @@ import "../../design/Progress/progresscard.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
 // Firebase
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 
 /* -----
 .ProgressCardAll.tsx

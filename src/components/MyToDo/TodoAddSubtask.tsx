@@ -22,7 +22,7 @@ import React, { useEffect, useState } from "react";
 /* MyTodo design */
 import "../../design/MyTodo/todoaddsubtask.scss";
 /* Database */
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 /* Global Theme */
 import "../../theme/variables.scss";
 import addTaskIcon from "../../resources/addTask_icon.svg";

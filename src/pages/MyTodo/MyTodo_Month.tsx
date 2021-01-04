@@ -28,7 +28,7 @@ import TodoCard from "../../components/MyToDo/TodoCard";
 /* MyTodo design */
 import "../../design/MyTodo/mytodo_month.scss";
 /* Database */
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 /* Global Theme */
 import "../../theme/variables.scss";
 

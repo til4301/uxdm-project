@@ -29,7 +29,7 @@ import "../../design/RemindMe/remindmecard.scss";
 import "../../theme/variables.scss";
 
 // Firebase
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 
 /* -----
 .RemindMeCard.tsx

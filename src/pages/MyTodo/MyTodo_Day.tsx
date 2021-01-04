@@ -29,7 +29,7 @@ import "../../design/MyTodo/mytodo_day.scss";
 /* Global Theme */
 import "../../theme/variables.scss";
 // Database
-import { db } from "../../firebase";
+import { db } from "../../database/firebase";
 import AddTaskSuccess from "../../components/AddTask/AddTaskSuccess";
 
 /* -----
