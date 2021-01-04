@@ -33,7 +33,7 @@ import { db } from "../../firebase";
   Login.tsx
 ----- */
 
-const Login = ({setIsLoggedIn}) => {
+const Login = ({ setIsLoggedIn }) => {
   /* functions */
   const handleSubmit = () => {
     if (username !== "" || password !== "") {
@@ -42,10 +42,11 @@ const Login = ({setIsLoggedIn}) => {
         .get()
         .then((result) => {
           if (result.empty) {
+            errorView("NOUSER");
             setError(true);
           } else if (result.docs.length > 1) {
+            errorView("CORRUPT");
             setError(true);
-            console.log("Data corrupted");
           } else {
             db.collection("user")
               .doc(result.docs[0].id)
@@ -53,7 +54,7 @@ const Login = ({setIsLoggedIn}) => {
                 if (password === result.data().password) {
                   setIsLoggedIn(true);
                 } else {
-                  console.log("User data wrong");
+                  errorView("WRONGPASSWORD");
                   setError(true);
                 }
               });
@@ -61,13 +62,29 @@ const Login = ({setIsLoggedIn}) => {
           }
         });
     } else {
+      errorView("EMPTY");
       setError(true);
+    }
+  };
+
+  const errorView = (error) => {
+    if (error === "EMPTY") {
+      setErrorMessage("Not all fields have been filled out.");
+    } else if (error === "NOUSER") {
+      setErrorMessage("This user does not exist.");
+    } else if (error === "CORRUPT") {
+      setErrorMessage("Fatal error in the app. Please contact publisher.");
+    } else if (error === "WRONGPASSWORD") {
+      setErrorMessage("The password is not correct. Please enter again.");
+    } else {
+      setErrorMessage("Unknown error. Please contact publisher.");
     }
   };
   /* states */
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   /* return */
   return (
@@ -82,7 +99,7 @@ const Login = ({setIsLoggedIn}) => {
             </div>
             <p className="login-message">Welcome back!</p>
 
-            <form onSubmit={handleSubmit}>
+            <form>
               <input
                 type="text"
                 className="login-form"
@@ -99,8 +116,7 @@ const Login = ({setIsLoggedIn}) => {
               />
             </form>
             <p className={error ? "login-error" : "login-noerror"}>
-              {" "}
-              Your login data was not correct. Please try again.{" "}
+              {errorMessage}
             </p>
             <Button id="login-button" onClick={handleSubmit}>
               Sign in

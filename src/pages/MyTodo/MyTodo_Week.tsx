@@ -46,7 +46,6 @@ const MyTodo_Week: React.FC = () => {
   const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
   const [showSuccess, setShowSuccess] = useState(false); //defines if addtask success popup is shown or not
 
-
   const [data, setData] = useState<any[]>([]);
 
   /* useEffect - function is called once when component mounts*/
@@ -62,6 +61,7 @@ const MyTodo_Week: React.FC = () => {
         });
         setData(tempArray);
       });
+
   }, []);
 
   /* return */
@@ -120,7 +120,7 @@ const MyTodo_Week: React.FC = () => {
         </div>
       </IonContent>
 
-       {/*
+      {/*
         Dialog for Add Task (opened after click on Add Task button)
       */}
       <AddTaskDialog
@@ -129,7 +129,7 @@ const MyTodo_Week: React.FC = () => {
         setShowSuccess={setShowSuccess}
       />
 
-        {/*
+      {/*
         Dialog for Success Add Task (opened after successful creating of task)
       */}
       <AddTaskSuccess

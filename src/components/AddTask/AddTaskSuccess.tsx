@@ -97,7 +97,7 @@ const AddTaskSuccess: React.FC<Props> = ({ showSuccess, setShowSuccess }) => {
         <DialogActions style={{ margin: "auto" }}>
           <IonButton
             class="addtasksuccess-dialog-button"
-            onClick={setShowSuccess(false)}
+            onClick={()=>setShowSuccess(false)}
           >
             Okay
           </IonButton>

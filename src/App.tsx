@@ -49,7 +49,7 @@ App.tsx
 
 const App: React.FC = () => {
   /* States */
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /* return when user is logged in*/
   if (isLoggedIn) {
