@@ -3,8 +3,6 @@ Imports
 ----- */
 
 /* React and Ionic */
-import React, { useEffect, useState } from "react";
-import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import {
   IonApp,
   IonContent,
@@ -15,39 +13,35 @@ import {
   IonTabs,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-
-/* Pages */
-import DeepFocus from "./pages/DeepFocus";
-import MyTodo from "./pages/MyTodo";
-import Progress from "./pages/Progress";
-import RemindMe from "./pages/RemindMe";
-import SolarSystem from "./pages/SolarSystem";
-
-/* -----
-Design
------ */
-
-/* App design */
-import "./design/app.scss";
-
 /* Core CSS for Ionic */
 import "@ionic/react/css/core.css";
+import "@ionic/react/css/display.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/float-elements.css";
 import "@ionic/react/css/normalize.css";
-import "@ionic/react/css/structure.css";
-import "@ionic/react/css/typography.css";
-
 /* Optional CSS for Ionic */
 import "@ionic/react/css/padding.css";
-import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/structure.css";
 import "@ionic/react/css/text-alignment.css";
 import "@ionic/react/css/text-transformation.css";
-import "@ionic/react/css/flex-utils.css";
-import "@ionic/react/css/display.css";
-
+import "@ionic/react/css/typography.css";
+import React, { useEffect, useState } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+/* App design */
+import "./design/app.scss";
+import DeepFocus from "./pages/DeepFocus";
+/* Pages */
+import MyTodo from "./pages/MyTodo/MyTodo";
+import Progress from "./pages/Progress/Progress";
+import RemindMe from "./pages/RemindMe/RemindMe";
+/* Login & Register */
+import ScreenLogin from "./pages/Login/ScreenLogin";
 /* Global Theme */
 import "./theme/variables.scss";
-import ScreenLogin from "./pages/ScreenLogin";
-import Register from "./pages/Register";
+import Welcome from "./pages/Login/Welcome";
+import Login from "./pages/Login/Login.js";
+import Register from "./pages/Login/Register";
+import Success from "./pages/Login/Success";
 
 /* -----
 App.tsx
@@ -57,12 +51,7 @@ const App: React.FC = () => {
   /* States */
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  /* Handle methdods */
-  const handleLogin = (value: boolean) => {
-    setIsLoggedIn(value);
-  };
-
-  /* return */
+  /* return when user is logged in*/
   if (isLoggedIn) {
     return (
       <IonApp>
@@ -70,9 +59,7 @@ const App: React.FC = () => {
           <IonContent>
             <IonTabs>
               {/* 
-        //* Ionic router
-        Here are the routes for the TabBar at the bottom defined
-        At the end a redirect for the root path is defined
+                The router for the bottom menu bar
               */}
               <IonRouterOutlet>
                 <Switch>
@@ -80,11 +67,15 @@ const App: React.FC = () => {
                   <Route exact path="/deepfocus" render={() => <DeepFocus />} />
                   <Route exact path="/progress" render={() => <Progress />} />
                   <Route exact path="/remindme" render={() => <RemindMe />} />
-                  <Route exact path="/solar" render={() => <SolarSystem />} />
-                  <Route render={() => <MyTodo />} />
+                  <Route>
+                    <Redirect to="/mytodo" />
+                  </Route>
                 </Switch>
               </IonRouterOutlet>
 
+              {/* 
+                The bottom menu bar
+              */}
               <IonTabBar slot="bottom" style={{}}>
                 <IonTabButton tab="mytodo" href="/mytodo">
                   <IonLabel>My ToDo</IonLabel>
@@ -105,13 +96,26 @@ const App: React.FC = () => {
       </IonApp>
     );
   } else {
+    /* return when user is not logged in*/
     return (
       <IonApp>
         <IonReactRouter>
           <IonContent>
             <IonRouterOutlet>
-              <Route render={() => <ScreenLogin changeLogin={handleLogin} />} />
-              {/* <Route render={() => <Register />} /> */}
+              <Switch>
+                <Route exact path="/welcome" render={() => <Welcome />} />
+                <Route
+                  exact
+                  path="/login"
+                  render={() => <Login setIsLoggedIn={setIsLoggedIn} />}
+                />
+                <Route exact path="/register" render={() => <Register />} />
+                <Route exact path="/success" render={() => <Success />} />
+
+                <Route>
+                  <Redirect to="/welcome" />
+                </Route>
+              </Switch>
             </IonRouterOutlet>
           </IonContent>
         </IonReactRouter>

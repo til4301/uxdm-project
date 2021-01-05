@@ -1,0 +1,173 @@
+.progress-card {
+  width: 100%;
+  background-color: #1e2662;
+  margin: 5px 0px 5px 0px;
+}
+
+.progress-card-header {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+
+.progress-card-subheader {
+  font-size: 11px;
+  font-weight: 400;
+
+  color: rgba($color: #ffffff, $alpha: 0.7);
+
+  margin-top: 2px;
+}
+
+.progress-card-grid-progressbar {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.progress-card-progressbar-1 {
+  width: 90%;
+  height: 10px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #c14aaf, $alpha: 0.1) 0%,
+    rgba($color: #ff7887, $alpha: 0.1) 100%
+  );
+  border-radius: 50px;
+}
+
+.progress-card-progressbar-2 {
+  width: 90%;
+  height: 10px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #0d6465, $alpha: 0.1) 0%,
+    rgba($color: #1dd5d6, $alpha: 0.1) 100%
+  );
+  border-radius: 50px;
+}
+
+.progress-card-progressbar-3 {
+  width: 90%;
+  height: 10px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #6e85f7, $alpha: 0.1) 0%,
+    rgba($color: #34c8ff, $alpha: 0.1) 100%
+  );
+  border-radius: 50px;
+}
+
+.progress-card-progressbar-4 {
+  width: 90%;
+  height: 10px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #8e8e1a, $alpha: 0.1) 0%,
+    rgba($color: #ffff00, $alpha: 0.1) 100%
+  );
+  border-radius: 50px;
+}
+
+.progress-card-progressbar-5 {
+  width: 90%;
+  height: 10px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #ff0000, $alpha: 0.1) 0%,
+    rgba($color: #ff8900, $alpha: 0.1) 100%
+  );
+  border-radius: 50px;
+}
+
+.progress-card-progressbar-6 {
+  width: 90%;
+  height: 10px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #127991, $alpha: 0.1) 0%,
+    rgba($color: #00ceff, $alpha: 0.1) 100%
+  );
+  border-radius: 50px;
+}
+
+.progress-card-progressbar-7 {
+  width: 90%;
+  height: 10px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #9d9d9d, $alpha: 0.1) 0%,
+    rgba($color: #ffffff, $alpha: 0.1) 100%
+  );
+  border-radius: 50px;
+}
+
+.progress-card-progressbar-progress-1 {
+  height: 10px;
+  border-radius: 50px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #c14aaf, $alpha: 1) 0%,
+    rgba($color: #ff7887, $alpha: 1) 100%
+  );
+}
+
+.progress-card-progressbar-progress-2 {
+  height: 10px;
+  border-radius: 50px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #0d6465, $alpha: 1) 0%,
+    rgba($color: #1dd5d6, $alpha: 1) 100%
+  );
+}
+
+.progress-card-progressbar-progress-3 {
+  height: 10px;
+  border-radius: 50px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #6e85f7, $alpha: 1) 0%,
+    rgba($color: #34c8ff, $alpha: 1) 100%
+  );
+}
+
+.progress-card-progressbar-progress-4 {
+  height: 10px;
+  border-radius: 50px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #8e8e1a, $alpha: 1) 0%,
+    rgba($color: #ffff00, $alpha: 1) 100%
+  );
+}
+
+.progress-card-progressbar-progress-5 {
+  height: 10px;
+  border-radius: 50px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #ff0000, $alpha: 1) 0%,
+    rgba($color: #ff8900, $alpha: 1) 100%
+  );
+}
+
+.progress-card-progressbar-progress-6 {
+  height: 10px;
+  border-radius: 50px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #127991, $alpha: 1) 0%,
+    rgba($color: #00ceff, $alpha: 1) 100%
+  );
+}
+
+.progress-card-progressbar-progress-7 {
+  height: 10px;
+  border-radius: 50px;
+  background: linear-gradient(
+    0deg,
+    rgba($color: #9d9d9d, $alpha: 1) 0%,
+    rgba($color: #ffffff, $alpha: 1) 100%
+  );
+}
