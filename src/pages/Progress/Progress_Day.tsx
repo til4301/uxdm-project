@@ -49,7 +49,7 @@ const Progress_Day: React.FC = () => {
   /* states */
   const [dateSlide, setDateSlide] = useState(""); //selected date for dateslider
   const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
-  const [showSuccess, setShowSuccess] = useState(true); //defines if addtask success popup is shown or not
+  const [showSuccess, setShowSuccess] = useState(false); //defines if addtask success popup is shown or not
 
   const [data, setData] = useState<any[]>([]);
 
@@ -100,10 +100,12 @@ const Progress_Day: React.FC = () => {
                   });
               }
             })}
+            {/*
           <ProgressCardAll
             numberSubTasks={12}
             numberCheckedSubTasks={allCheckedTasks}
           />
+          */}
 
           {/*
             Function for mapping all todos that fit to current selected date period

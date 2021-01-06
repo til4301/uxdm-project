@@ -46,38 +46,21 @@ const MyTodo_Day: React.FC = () => {
   const [showAddTask, setShowAddTask] = useState(false); //defines if addtask popup is shown or not
   const [showSuccess, setShowSuccess] = useState(false); //defines if addtask success popup is shown or not
 
-
   const [data, setData] = useState<any[]>([]);
 
   /* useEffect - function is called once when component mounts*/
   useEffect(() => {
     setDateSlide(date.toISODate()); //current local time is set for the dateslider
 
-
-    db.collection("todo")
-      //.where("user", "==", "Tim")
-      .onSnapshot((snapshot) => {
-        let tempArray: any = [];
-        snapshot.forEach((item) => {
-          let tempObject: any = { data: item.data(), id: item.id };
-          tempArray.push(tempObject);
-        });
-        setData(tempArray);
+    db.collection("todo").onSnapshot((snapshot) => {
+      let tempArray: any = [];
+      snapshot.forEach((item) => {
+        let tempObject: any = { data: item.data(), id: item.id };
+        tempArray.push(tempObject);
       });
+      setData(tempArray);
+    });
   }, []);
-
-  const set = () => {
-    db.collection("todo")
-      .doc("D2tkaSpIsrz1kKN2tVjM")
-      .set({
-        user: "Los Angeles",
-        task: "CA",
-        subtasks: {
-          taskname: "asdas",
-          id: 2,
-        },
-      });
-  };
 
   /* return */
   return (
@@ -139,7 +122,7 @@ const MyTodo_Day: React.FC = () => {
         setShowSuccess={setShowSuccess}
       />
 
-        {/*
+      {/*
         Dialog for Success Add Task (opened after successful creating of task)
       */}
       <AddTaskSuccess
