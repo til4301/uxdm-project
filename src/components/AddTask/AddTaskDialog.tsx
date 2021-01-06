@@ -76,6 +76,8 @@ const AddTaskDialog: React.FC<Props> = ({
   // solar selection
   const [solarSelected, setSolarSelected] = useState("NONE"); //switch for selected solarIcon which has to be colored blue
 
+  const [error, setError] = useState(false);
+
   /* functions */
 
   const submitData = () => {
@@ -85,7 +87,7 @@ const AddTaskDialog: React.FC<Props> = ({
       selectedProject === "" ||
       solarSelected === "NONE"
     ) {
-      console.log("Not all data are filled out.");
+      setError(true);
     } else {
       db.collection("todo").doc().set({
         task: selectedTaskName,
@@ -147,7 +149,6 @@ const AddTaskDialog: React.FC<Props> = ({
                 </p>
               )}
             </div>
-
             {/* 
               Select Date input field 
             */}
@@ -175,7 +176,6 @@ const AddTaskDialog: React.FC<Props> = ({
                 </p>
               )}
             </div>
-
             {/* 
               Select Project input field 
             */}
@@ -189,7 +189,7 @@ const AddTaskDialog: React.FC<Props> = ({
               <img src={selectGroupIcon} alt="selectProject" />
               {selectedProject === "" ? (
                 <p className="addtaskdialog-dialog-input-text-default">
-                  Assing Project
+                  Assign Project
                 </p>
               ) : (
                 <p className="addtaskdialog-dialog-input-text">
@@ -197,7 +197,6 @@ const AddTaskDialog: React.FC<Props> = ({
                 </p>
               )}
             </div>
-
             {/* 
               Solar selection field 
             */}
@@ -245,6 +244,13 @@ const AddTaskDialog: React.FC<Props> = ({
                 }}
               />
             </div>
+            <p
+              className={
+                error ? "addtaskdialog-error" : "addtaskdialog-noerror"
+              }
+            >
+              Not all data are filled out. Please check your inputs.
+            </p>{" "}
           </div>
         </DialogContent>
 
