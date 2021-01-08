@@ -63,8 +63,11 @@ const DeepFocus: React.FC = () => {
   const [active, setActive] = useState(false);
   const [session, setSession] = useState(3);
   const [progress, setProgress] = useState(0.01);
+
+  const abc = 90;
   function touch() {
     setActive(!active);
+    document.documentElement.style.setProperty("--andere", "orange");
   }
   // function restart() {
   //   setSec(5);
@@ -81,7 +84,11 @@ modificated*/
     if (active && sec > 0) {
       interval = setInterval(() => {
         setSec((sec) => sec - 1);
-        setProgress(progress + 0.01);
+        setProgress(progress + 1);
+        document.documentElement.style.setProperty(
+          "--pos",
+          String(progress + "%")
+        );
       }, 1000);
     } else if (!active && sec !== 0) {
       clearInterval(interval);
@@ -101,8 +108,7 @@ modificated*/
   function pre() {
     setProgress(progress + 10);
   }
-  function prea() {
-  }
+
   return (
     <IonPage>
       <IonContent className="deepfocus-background">
@@ -217,6 +223,45 @@ modificated*/
               </div>
             </IonCol>
             <IonCol size="3"></IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol size="3" className="deepfocus-progress-div">
+              <div
+                className="deepfocus-tab-under"
+                style={{ borderRadius: "20px 0px 0px 20px" }}
+              />
+            </IonCol>
+            <IonCol size="2" className="deepfocus-progress-div-two">
+              <div
+                className="deepfocus-tab-under-two"
+                style={{ borderRadius: "0px 0px 0px 0px" }}
+              />
+            </IonCol>
+            <IonCol size="2" className="deepfocus-progress-div">
+              <div
+                className="deepfocus-tab-under"
+                style={{ borderRadius: "0px 0px 0px 0px" }}
+              />
+            </IonCol>
+            <IonCol size="2" className="deepfocus-progress-div-two">
+              <div
+                className="deepfocus-tab-under-two"
+                style={{ borderRadius: "0px 0px 0px 0px" }}
+              />
+            </IonCol>
+            <IonCol size="3" className="deepfocus-progress-div">
+              <div
+                className="deepfocus-tab-under"
+                style={{ borderRadius: "0px 20px 20px 0px" }}
+              />
+            </IonCol>
+            <div
+              className="deepfocus-ball"
+              style={{
+                borderRadius: "20px 20px 20px 20px",
+                // left: abc + "%",
+              }}
+            />
           </IonRow>
         </IonGrid>
       </IonContent>

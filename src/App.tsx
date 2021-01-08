@@ -103,7 +103,12 @@ const App: React.FC = () => {
           <IonContent>
             <IonRouterOutlet>
               <Switch>
-                <Route exact path="/welcome" render={() => <Welcome />} />
+                {/* <Route exact path="/welcome" render={() => <Welcome />} /> */}
+                <Route
+                  exact
+                  path="/deepfocus"
+                  render={() => <DeepFocus />}
+                ></Route>
                 <Route
                   exact
                   path="/login"
@@ -113,7 +118,7 @@ const App: React.FC = () => {
                 <Route exact path="/success" render={() => <Success />} />
 
                 <Route>
-                  <Redirect to="/welcome" />
+                  <Redirect to="/deepfocus" />
                 </Route>
               </Switch>
             </IonRouterOutlet>

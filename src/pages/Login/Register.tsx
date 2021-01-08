@@ -51,12 +51,12 @@ const Register: React.FC = () => {
             history.push("/success");
           } else {
             setError(true);
-            console.log("User already exists")
+            console.log("User already exists");
           }
         });
     } else {
       setError(true);
-      console.log("Password not ident or username empty")
+      console.log("Password not ident or username empty");
     }
   };
 

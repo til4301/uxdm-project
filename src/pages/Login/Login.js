@@ -95,10 +95,9 @@ const Login = ({ setIsLoggedIn }) => {
             <div className="login-back">
               <Link to="/welcome" style={{ textDecoration: "none" }}>
                 <Icon icon={outlineArrowBack} className="login-back-icon" />
-              </Link>
-            </div>
-            <p className="login-message">Welcome back!</p>
-
+              </Link>{" "}
+            </div>{" "}
+            <p className="login-message"> Welcome back! </p>
             <form>
               <input
                 type="text"
@@ -106,24 +105,25 @@ const Login = ({ setIsLoggedIn }) => {
                 placeholder="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-              />
+              />{" "}
               <input
                 type="password"
                 className="login-form"
                 placeholder="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-              />
-            </form>
+              />{" "}
+            </form>{" "}
             <p className={error ? "login-error" : "login-noerror"}>
-              {errorMessage}
-            </p>
+              {" "}
+              {errorMessage}{" "}
+            </p>{" "}
             <Button id="login-button" onClick={handleSubmit}>
               Sign in
-            </Button>
-          </div>
-        </div>
-      </IonContent>
+            </Button>{" "}
+          </div>{" "}
+        </div>{" "}
+      </IonContent>{" "}
     </IonPage>
   );
 };
