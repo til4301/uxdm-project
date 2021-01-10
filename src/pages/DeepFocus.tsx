@@ -17,11 +17,13 @@ import {
   IonButton,
   IonCol,
   IonContent,
+  IonDatetime,
   IonGrid,
   IonHeader,
   IonIcon,
   IonInput,
   IonItem,
+  IonLabel,
   IonPage,
   IonProgressBar,
   IonRow,
@@ -59,15 +61,20 @@ DeepFocus.tsx
 
 const DeepFocus: React.FC = () => {
   const [sec, setSec] = useState(5);
-  const [min, setMin] = useState(5);
+  const [min, setMin] = useState(7);
   const [active, setActive] = useState(false);
   const [session, setSession] = useState(3);
   const [progress, setProgress] = useState(0.01);
+  const [jump, setJump] = useState(0);
 
-  const abc = 90;
   function touch() {
     setActive(!active);
-    document.documentElement.style.setProperty("--andere", "orange");
+    // document.documentElement.style.setProperty("--andere", "orange");
+    setJump(100 / min);
+    console.log("valor jump: " + jump);
+  }
+  function select() {
+    setActive(false);
   }
   // function restart() {
   //   setSec(5);
@@ -81,6 +88,7 @@ modificated*/
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval> = setInterval(() => "", 1000);
+
     if (active && sec > 0) {
       interval = setInterval(() => {
         setSec((sec) => sec - 1);
@@ -95,6 +103,13 @@ modificated*/
     }
     if (sec === 0) {
       if (min === 0) {
+        setProgress(96);
+        document.documentElement.style.setProperty(
+          "--pos",
+          String(progress + "%")
+        );
+        setActive(false);
+        console.log(progress);
         clearInterval(interval);
       } else {
         setMin((min) => min - 1);
@@ -103,11 +118,6 @@ modificated*/
     }
     return () => clearInterval(interval);
   }, [active, sec]);
-
-  // test functions -- prea and pre
-  function pre() {
-    setProgress(progress + 10);
-  }
 
   return (
     <IonPage>
@@ -170,15 +180,15 @@ modificated*/
             <IonCol size="2">
               <IonInput
                 onInput={(ev) => setMin(+(ev.target as HTMLInputElement).value)}
-                onClick={touch}
-                value={min + ":"}
+                onClick={select}
+                value={min < 10 ? `0${min}` : min}
                 className="deepfocus-move-right"
               ></IonInput>
             </IonCol>
             <IonCol size="3">
               <IonInput
                 onInput={(ev) => setSec(+(ev.target as HTMLInputElement).value)}
-                onClick={touch}
+                onClick={select}
                 value={sec < 10 ? `0${sec}` : sec}
                 className="deepfocus-move-left"
               ></IonInput>
@@ -216,10 +226,14 @@ modificated*/
             <IonCol size="3"></IonCol>
             <IonCol className="tres">
               <div className="ttt">
-                <IonProgressBar
-                  className="deepfocus-progress"
-                  value={progress}
-                ></IonProgressBar>
+                {/* <IonItem>
+                  <IonLabel>Start Time</IonLabel>
+                  <IonDatetime
+                    display-format="h:mm A"
+                    // picker-format="h:mm A"
+                    value="1990-02-19T07:43Z"
+                  ></IonDatetime>
+                </IonItem> */}
               </div>
             </IonCol>
             <IonCol size="3"></IonCol>
