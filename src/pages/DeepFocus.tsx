@@ -138,7 +138,7 @@ modificated*/
         );
         setActive(false);
 
-        alert("hola");
+        alert("Time's up, take a break");
         console.log(progress);
         clearInterval(interval);
       } else {
