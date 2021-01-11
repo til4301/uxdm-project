@@ -94,7 +94,7 @@ modificated*/
     if (active && sec > 0) {
       interval = setInterval(() => {
         setSec((sec) => sec - 1);
-        setProgress(progress + 0.1);
+        setProgress(progress + 0.7);
         document.documentElement.style.setProperty(
           "--pos",
           String(progress + "%")
@@ -221,7 +221,7 @@ modificated*/
               <IonInput
                 onInput={(ev) => setSec(+(ev.target as HTMLInputElement).value)}
                 onClick={select}
-                value={sec < 10 ? `0${sec}` : sec}
+                value={":" + (sec < 10 ? `0${sec}` : sec)}
                 className="deepfocus-move-left"
               ></IonInput>
             </IonCol>
