@@ -14,6 +14,7 @@ import {
   timer,
 } from "ionicons/icons";
 import {
+  IonAlert,
   IonButton,
   IonCol,
   IonContent,
@@ -60,18 +61,19 @@ DeepFocus.tsx
 ----- */
 
 const DeepFocus: React.FC = () => {
-  const [sec, setSec] = useState(5);
-  const [min, setMin] = useState(7);
+  const [sec, setSec] = useState(3);
+  const [min, setMin] = useState(6);
   const [active, setActive] = useState(false);
-  const [session, setSession] = useState(3);
+  const [session, setSession] = useState(2);
   const [progress, setProgress] = useState(0.01);
   const [jump, setJump] = useState(0);
-
+  const [b, setB] = useState(3);
+  const [showAlert1, setShowAlert1] = useState(false);
   function touch() {
     setActive(!active);
     // document.documentElement.style.setProperty("--andere", "orange");
-    setJump(100 / min);
-    console.log("valor jump: " + jump);
+    //setJump(100 / min);
+    console.log("pro " + progress + " " + jump);
   }
   function select() {
     setActive(false);
@@ -92,15 +94,41 @@ modificated*/
     if (active && sec > 0) {
       interval = setInterval(() => {
         setSec((sec) => sec - 1);
-        setProgress(progress + 1);
+        setProgress(progress + 0.1);
         document.documentElement.style.setProperty(
           "--pos",
           String(progress + "%")
         );
+        if (min == 5 && b > 0) {
+          setJump(100 / 5);
+          console.log("aca 5 " + jump + " " + b);
+          setB(b - 1);
+        }
+        if (min == 4 && b > 0) {
+          setJump(100 / 4);
+          console.log("aca 5 " + jump + " " + b);
+          setB(b - 1);
+        }
+        if (min == 3 && b > 0) {
+          setJump(100 / 3);
+          console.log("aca 5 " + jump + " " + b);
+          setB(b - 1);
+        }
+        if (min == 2 && b > 0) {
+          setJump(100 / 3);
+          console.log("aca 5 " + jump + " " + b);
+          setB(b - 1);
+        }
+        if (min == 1 && b > 0) {
+          setJump(100 / 5);
+          console.log("aca 5 " + jump + " " + b);
+          setB(b - 1);
+        }
       }, 1000);
     } else if (!active && sec !== 0) {
       clearInterval(interval);
     }
+
     if (sec === 0) {
       if (min === 0) {
         setProgress(96);
@@ -109,11 +137,15 @@ modificated*/
           String(progress + "%")
         );
         setActive(false);
+
+        alert("hola");
         console.log(progress);
         clearInterval(interval);
       } else {
         setMin((min) => min - 1);
         setSec(59);
+        setProgress((progress) => progress + jump);
+        console.log("resto minuto " + progress + " " + jump);
       }
     }
     return () => clearInterval(interval);
@@ -238,7 +270,7 @@ modificated*/
             </IonCol>
             <IonCol size="3"></IonCol>
           </IonRow>
-          <IonRow>
+          <IonRow style={{ margin: "15px" }}>
             <IonCol size="3" className="deepfocus-progress-div">
               <div
                 className="deepfocus-tab-under"
