@@ -1,6 +1,6 @@
 .deepfocus-pos-timer {
     text-align: center;
-    top: 20px;
+    top: 50px;
     --background: #00ffe2;
     --border-radius: 47%;
     --border-width: 20%;
@@ -20,12 +20,12 @@
     text-align: center;
     font-weight: lighter;
     font-size: small;
-    top: 10px;
+    top: 40px;
 }
 
 ion-input {
     text-align: center;
-    top: 35px;
+    top: 65px;
     color: white;
     font-size: 60px;
     font-weight: bold;
@@ -34,7 +34,7 @@ ion-input {
 
 .deepfocus-move-right {
     text-align: right;
-    font-size: 25pt;
+    font-size: 23pt;
     font-family: Monserrat;
 }
 
@@ -53,7 +53,7 @@ ion-input {
 .deepfocus-move-left {
     //   --background: #ffffff;
     text-align: left;
-    font-size: 25pt;
+    font-size: 23pt;
     font-family: Monserrat;
 }
 
@@ -65,7 +65,7 @@ ion-input {
 }
 
 .deepfocus-pose {
-    top: 10px;
+    top: 50px;
     text-align: center;
     font-size: small;
     font-family: Monserrat;
@@ -73,7 +73,7 @@ ion-input {
 
 .deepfocus-progress {
     text-align: center;
-    top: 20px;
+    top: 50px;
     height: 20px;
     --background: rgba(0, 0, 0, 0);
     // --progress-background: Transparent;
@@ -120,7 +120,7 @@ ion-input {
 }
 
 .tres {
-    top: 30px;
+    top: 60px;
 }
 
 .deepfocus-tab-underline {
@@ -135,4 +135,45 @@ ion-input {
     height: 3px;
     background-color: #00ffe2;
     margin-top: 10px;
+}
+
+.deepfocus-tab-under {
+    width: 100%;
+    height: 5px;
+    background-color: #6551bc;
+    margin-top: 10px;
+}
+
+.deepfocus-progress-div {
+    top: 110px;
+    --ion-grid-column-padding: 0px;
+    // margin-left: 20px;
+}
+
+.deepfocus-tab-under-two {
+    width: 100%;
+    height: 5px;
+    background-color: #ffffff;
+    // margin-top: 10px;
+}
+
+.deepfocus-progress-div-two {
+    top: 120px;
+    --ion-grid-column-padding: 0px;
+}
+
+:root {
+    --farbe: white;
+    --andere: blue;
+    --pos: 0%;
+}
+
+.deepfocus-ball {
+    width: 5%;
+    height: 15px;
+    top: 98px;
+    background-color: #6551bc;
+    position: relative;
+    left: var(--pos);
+    border: 3px solid white;
 }
